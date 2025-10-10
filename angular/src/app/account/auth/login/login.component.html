@@ -1,0 +1,80 @@
+<div class="account-pages my-5 pt-sm-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card overflow-hidden">
+          <div class="bg-primary-subtle">
+            <div class="row">
+              <div class="col-7">
+                <div class="text-primary p-4">
+                  <h5 class="text-primary">Welcome Back!</h5>
+                  <p>Sign in to continue.</p>
+                </div>
+              </div>
+              <div class="col-5 align-self-end">
+                <img src="assets/images/profile-img.png" alt="Profile Image" class="img-fluid">
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body pt-0">
+            <a routerLink="/">
+              <div class="avatar-md profile-user-wid mb-4">
+                <span class="avatar-title rounded-circle bg-light">
+                  <img src="assets/images/logo.svg" alt="Logo" class="rounded-circle" height="34">
+                </span>
+              </div>
+            </a>
+
+            <div class="p-2">
+              <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+                <!-- Email (readonly) -->
+                <div class="mb-3">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    id="email"
+                    class="form-control"
+                    [readonly]="true"
+                  />
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                  <label for="password">Password</label>
+                  <div class="input-group">
+                    <input
+                      [type]="fieldTextType ? 'text' : 'password'"
+                      formControlName="password"
+                      id="password"
+                      class="form-control"
+                    />
+                    <button type="button" class="btn btn-outline-secondary" (click)="toggleFieldTextType()">
+                      {{ fieldTextType ? 'Hide' : 'Show' }}
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mt-3 d-grid">
+                  <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+                    Log In
+                  </button>
+                </div>
+              </form> {{sessionCmd}}
+
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 text-center">
+          <p>Don't have an account? 
+            <a routerLink="/auth/signup" class="fw-medium text-primary">Signup now</a>
+          </p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

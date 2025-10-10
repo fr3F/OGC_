@@ -1,0 +1,23 @@
+{
+  "HEADER": {
+    "LOGIN": {
+      "PROFILE": "Профиль",
+      "MY_WALLET": "Мой кошелек",
+      "SETTINGS": "Настройки",
+      "LOCK_SCREEN": "Экран блокировки",
+      "LOGOUT": "Выход"
+    }
+  },
+    "MENUITEMS": {
+    "MENU": {
+      "TEXT": "Menu"
+    },
+    "COLLABORATEUR": {
+      "TEXT": "Collaborateur"
+    },
+
+    "KIABI": {
+      "TEXT": "KIABI"
+    }
+  }
+}

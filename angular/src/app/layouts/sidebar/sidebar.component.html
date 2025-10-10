@@ -1,0 +1,66 @@
+<!-- ========== Left Sidebar Start ========== -->
+
+<ng-template #contentTemplate>
+  <div id="sidebar-menu">
+    <ul class="metismenu list-unstyled" id="side-menu" #sideMenu>
+      @for (item of menuItems; track item.id) {
+        <ng-container>
+          @if (item.isTitle) {
+            <li class="menu-title">{{ item.label | translate }}</li>
+          } @else {
+            <li>
+              @if (hasItems(item)) {
+                <a href="javascript:void(0);" class="has-arrow">
+                  @if (item.icon) {
+                    <i class="bx {{ item.icon }}"></i>
+                  }
+                  <span>{{ item.label | translate }}</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                  @for (subitem of item.subItems; track $index) {
+                    <li>
+                      @if (hasItems(subitem)) {
+                        <a href="javascript:void(0);" class="has-arrow">
+                          {{ subitem.label | translate }}
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                          @for (subSubitem of subitem.subItems; track $index) {
+                            <li>
+                              <a [routerLink]="subSubitem.link" routerLinkActive="active">
+                                {{ subSubitem.label | translate }}
+                              </a>
+                            </li>
+                          }
+                        </ul>
+                      } @else {
+                        <a [routerLink]="subitem.link" routerLinkActive="active">
+                          {{ subitem.label | translate }}
+                        </a>
+                      }
+                    </li>
+                  }
+                </ul>
+              } @else {
+                <a [routerLink]="item.link" routerLinkActive="active" class="side-nav-link-ref">
+                  @if (item.icon) {
+                    <i class="bx {{ item.icon }}"></i>
+                  }
+                  <span>{{ item.label | translate }}</span>
+                </a>
+              }
+            </li>
+          }
+        </ng-container>
+      }
+    </ul>
+  </div>
+</ng-template>
+
+<div class="vertical-menu">
+  <ngx-simplebar class="h-100" #componentRef>
+    <div>
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+  </ngx-simplebar>
+</div>
+<!-- Left Sidebar End -->

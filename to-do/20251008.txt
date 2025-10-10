@@ -1,0 +1,63 @@
+bdd : ogc_bdd
+frontEnd
+    features
+        collaborateurs
+            components
+                from-collaborateurs
+                liste-collaborateurs
+            page
+                page-collaborateurs
+            service
+                collaborateurs.service
+
+prerequis
+    npm install ngx-pagination
+        
+
+backend
+    features
+        collaborateurs
+            services
+                collaborateurs.service.js 
+            collaborateurs.controller.js 
+            collaborateurs.route.js    
+
+        compte 
+            service   
+                compte.service.js     
+            compte.controller.js 
+            compte.route.js 
+
+        departement 
+            services
+                departements.service.js
+            departements.controller.js
+            departements.route.js 
+
+        manager
+            manager.route.js 
+
+
+        CRUD
+            service
+                baseService.js
+            baseController.js
+            baseRoute.js    
+            
+    index.js
+    models
+        collaborateurs
+        components
+        demandeConge
+        departement
+        manager
+        solde
+        statusConge
+        typeConge
+        
+Remarque:
+    nouveaux du base CRUD dans le backend
+
+    npm install activedirectory
+
+

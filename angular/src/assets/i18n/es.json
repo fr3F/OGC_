@@ -1,0 +1,24 @@
+{
+  "HEADER": {
+    "LOGIN": {
+      "PROFILE": "Perfil",
+      "MY_WALLET": "Mi billetera",
+      "SETTINGS": "Configuración",
+      "LOCK_SCREEN": "Pantalla de bloqueo",
+      "LOGOUT": "Cerrar sesión"
+    }
+  },
+
+  "MENUITEMS": {
+    "MENU": {
+      "TEXT": "Menu"
+    },
+    "COLLABORATEUR": {
+      "TEXT": "Collaborateur"
+    },
+
+    "KIABI": {
+      "TEXT": "KIABI"
+    }
+  }
+}
