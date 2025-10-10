@@ -10,7 +10,7 @@ export class AuthenticationService {
   private user = this.userJson ? JSON.parse(this.userJson) : null;
   currentUser = signal<User | null>(this.user);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   get currentUserValue(): User | null {
     return this.currentUser();

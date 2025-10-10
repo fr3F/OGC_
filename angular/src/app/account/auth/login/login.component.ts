@@ -12,8 +12,8 @@ const apiUrl = environment.apiUrl;
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  standalone:true,
-  imports:[CommonModule,FormsModule,ReactiveFormsModule]
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule]
 })
 
 export class LoginComponent implements OnInit {
@@ -26,49 +26,37 @@ export class LoginComponent implements OnInit {
 
   year: number = new Date().getFullYear();
   user = '';
-  sessionCmd = ''; // affichera la "commande"
 
   constructor(
-    private formBuilder: UntypedFormBuilder, 
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private store: Store,
     private http: HttpClient) { }
 
-ngOnInit() {
-  if (localStorage.getItem('currentUser')) {
-    this.router.navigate(['/sodim']);
+  ngOnInit() {
+    this.initForm()
+    this.http.get<{ username: string }>(`${environment.apiUrl}/username`).subscribe({
+      next: (res) => {
+        if (res.username) {
+          this.user = res.username;
+          this.loginForm.get('email')?.setValue(`${this.user}@sodim.corp`);
+          console.log('[DEBUG] Username affiché:', this.user);
+        }
+      },
+      error: (err) => console.error('Erreur récupération username', err)
+    });
   }
 
-  // Récupérer username depuis le backend
-  this.http.get<{ username: string }>(`${apiUrl}/username`).subscribe({
-    next: (res) => {
-      const user = res.username || 'defaultUser';
-      const expectedEmail = `${user}@sodim.corp`;
-      this.loginForm = this.formBuilder.group({
-        email: [expectedEmail, [Validators.required, Validators.email]],
-        password: ['', [Validators.required]]
-      });
-    },
-    error: () => {
-      const expectedEmail = `defaultUser@sodim.corp`;
-      this.loginForm = this.formBuilder.group({
-        email: [expectedEmail, [Validators.required, Validators.email]],
-        password: ['', [Validators.required]]
-      });
-    }
-  });
-}
 
-
-    // Création du formulaire
-    private initForm() {
-      const expectedEmail = `${this.user}@sodim.corp`;
-      this.loginForm = this.formBuilder.group({
-        email: [expectedEmail, [Validators.required, Validators.email]],
-        password: ['', [Validators.required]]
-      });
-    }
+  // Création du formulaire
+  private initForm() {
+    const expectedEmail = `${this.user}@sodim.corp`;
+    this.loginForm = this.formBuilder.group({
+      email: [expectedEmail, [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
 
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
@@ -79,11 +67,11 @@ ngOnInit() {
     this.error = '';
 
     if (!this.loginForm.valid) {
-      return; 
+      return;
     }
 
     const payload = {
-      username: this.f['email'].value, 
+      username: this.f['email'].value,
       password: this.f['password'].value
     };
 
@@ -91,7 +79,7 @@ ngOnInit() {
       .subscribe({
         next: (res) => {
           if (res.success) {
-            localStorage.setItem('currentUser', payload.username); 
+            localStorage.setItem('currentUser', payload.username);
             this.router.navigate(['/collaborateur']);
           } else {
             this.error = res.message;
