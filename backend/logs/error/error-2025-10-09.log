@@ -1,0 +1,18 @@
+2025-10-09 08:51:18.458 [ERROR]: Table 'ogc_bdd.collaborateurs' doesn't exist
+2025-10-09 08:51:18.463 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateur.findAll (D:\projet\sodim\Angluar 18\OGC\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:28)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-09 08:55:01.007 [ERROR]: Table 'ogc_bdd.collaborateurs' doesn't exist
+2025-10-09 08:55:01.012 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateur.findAll (D:\projet\sodim\Angluar 18\OGC\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)

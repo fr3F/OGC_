@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "logs\\flux-gifis\\.f254a1dbcfa0f3d94914f0049cb75a97c25ff507-audit.json",
+    "files": [
+        {
+            "date": 1759929328913,
+            "name": "logs\\flux-gifis\\flux-gifi-2025-10-08.log",
+            "hash": "813937a3e39531c84b1253976b5df5e234fc9361b6a3026ba100e1af7264b66e"
+        },
+        {
+            "date": 1759989074769,
+            "name": "logs\\flux-gifis\\flux-gifi-2025-10-09.log",
+            "hash": "7acf6fea1afb8ca5f96e7b1d7a4c497d2b1bdbef9c78444a1ce2093e6c6af610"
+        },
+        {
+            "date": 1760072408929,
+            "name": "logs\\flux-gifis\\flux-gifi-2025-10-10.log",
+            "hash": "980920fbceda2eb25dbf88d675cddf76669e0fffbd8a57455d9b15291cdb8190"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "logs\\encaissements\\.8dfbd2b8e4d946a06f2f6b265e65612679f9377a-audit.json",
+    "files": [
+        {
+            "date": 1759929328863,
+            "name": "logs\\encaissements\\encaissement-2025-10-08.log",
+            "hash": "b4ab1c0673fdd340376b560c0f8b419fecb37a0bb1069b75cbdcb0c496a10f76"
+        },
+        {
+            "date": 1759989074733,
+            "name": "logs\\encaissements\\encaissement-2025-10-09.log",
+            "hash": "c1662532b0de00fac538fda84d2d7c69bcd94540fdee56bc67c57aefa486ccbd"
+        },
+        {
+            "date": 1760072408901,
+            "name": "logs\\encaissements\\encaissement-2025-10-10.log",
+            "hash": "06e93bb7b801dfac783c47d45a612a5a310282afb7b082ceac28a2495d6ee111"
+        }
+    ],
+    "hashType": "sha256"
+}

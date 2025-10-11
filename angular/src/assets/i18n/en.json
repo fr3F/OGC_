@@ -1,0 +1,24 @@
+{
+  "HEADER": {
+    "LOGIN": {
+      "PROFILE": "Profile",
+      "MY_WALLET": "My Wallet",
+      "SETTINGS": "Settings",
+      "LOCK_SCREEN": "Lock screen",
+      "LOGOUT": "Logout"
+    }
+  },
+
+  "MENUITEMS": {
+    "MENU": {
+      "TEXT": "Menu"
+    },
+    "COLLABORATEUR": {
+      "TEXT": "Collaborateur"
+    },
+
+    "KIABI": {
+      "TEXT": "KIABI"
+    }
+  }
+}

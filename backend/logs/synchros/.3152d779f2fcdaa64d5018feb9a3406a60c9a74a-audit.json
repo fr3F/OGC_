@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "logs\\synchros\\.3152d779f2fcdaa64d5018feb9a3406a60c9a74a-audit.json",
+    "files": [
+        {
+            "date": 1759929328902,
+            "name": "logs\\synchros\\synchro-2025-10-08.log",
+            "hash": "556df2e9f8797a0a610cc0067bf51147cf7f6c3aacf392304cab1909d8a2d39b"
+        },
+        {
+            "date": 1759989074767,
+            "name": "logs\\synchros\\synchro-2025-10-09.log",
+            "hash": "705e90e1d2afa659ee1428f6f0593ae38a883967ea90dfd8203ab9aa76c631b4"
+        },
+        {
+            "date": 1760072408927,
+            "name": "logs\\synchros\\synchro-2025-10-10.log",
+            "hash": "ca02c4a8cb69c38ad2e40ad8398730c2859b28d780c2bdeacdde4da84d7f780c"
+        }
+    ],
+    "hashType": "sha256"
+}
