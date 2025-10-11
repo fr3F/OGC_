@@ -59,5 +59,11 @@ Remarque:
     nouveaux du base CRUD dans le backend
 
     npm install activedirectory
+<<<<<<< HEAD
+=======
+    const jwt = require("jsonwebtoken");    
+    npm install passport passport-windowsauth
+    npm install concurrently --save-dev
+>>>>>>> f8f63fd5c27d1a013ab4a169be58fee0b0fae682
 
 
