@@ -1,6 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BasePageComponent } from '../base-page/base-page.component';
+import { NotificationService } from '../../services/notification.service';
+import { BaseService } from '../base/base.service';
+import { MenuService } from '../../services/menu.service';
+
 
 @Component({
   selector: 'app-base-form-page',

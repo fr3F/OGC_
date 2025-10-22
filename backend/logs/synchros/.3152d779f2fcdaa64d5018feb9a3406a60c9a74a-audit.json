@@ -19,14 +19,51 @@
             "date": 1760072408927,
             "name": "logs\\synchros\\synchro-2025-10-10.log",
             "hash": "ca02c4a8cb69c38ad2e40ad8398730c2859b28d780c2bdeacdde4da84d7f780c"
-<<<<<<< HEAD
-=======
         },
         {
             "date": 1760130203296,
             "name": "logs\\synchros\\synchro-2025-10-11.log",
             "hash": "0e41da8ddd329e73bfd9feeb10ba6ba8076a5f98c28760fa09efa8add9ef34f1"
->>>>>>> f8f63fd5c27d1a013ab4a169be58fee0b0fae682
+        },
+        {
+            "date": 1760331122519,
+            "name": "logs\\synchros\\synchro-2025-10-13.log",
+            "hash": "77dd212544700a1f65d3ad8289c280a1c6c205433704853b6d79f5f0153e3d69"
+        },
+        {
+            "date": 1760417673507,
+            "name": "logs\\synchros\\synchro-2025-10-14.log",
+            "hash": "408f824df48820481e511d212358d37525c3844589fe4ad3dc7217b3ed3f730a"
+        },
+        {
+            "date": 1760504317026,
+            "name": "logs\\synchros\\synchro-2025-10-15.log",
+            "hash": "aa05d0e2272b380c15eb941ef229d8846cb2edc0b8d89e538434e10a3cf528fd"
+        },
+        {
+            "date": 1760590653628,
+            "name": "logs\\synchros\\synchro-2025-10-16.log",
+            "hash": "75007751cbbd6a178103aa9115954d10292f49682f7a21bb0083929294f3d9c1"
+        },
+        {
+            "date": 1760677244206,
+            "name": "logs\\synchros\\synchro-2025-10-17.log",
+            "hash": "1399e92fa2a79d5501f3b8c61a2f03bfccb852b37b5cf8fa11227ecd5f577f4c"
+        },
+        {
+            "date": 1760763980341,
+            "name": "logs\\synchros\\synchro-2025-10-18.log",
+            "hash": "c011ccd7a333035ab1ad85236e4bb8a8d49d305b1f6e619428b18bd9db4abf96"
+        },
+        {
+            "date": 1760938084330,
+            "name": "logs\\synchros\\synchro-2025-10-20.log",
+            "hash": "f0943b429bf834403e5e45096df7586eaa7e384b0223e6e80178e740cd5c9fc9"
+        },
+        {
+            "date": 1761110408847,
+            "name": "logs\\synchros\\synchro-2025-10-22.log",
+            "hash": "3b8d45e35bcc401ecba0d637c1e9510aeb2343b40b5dfd6c7f3dddfbbf428c48"
         }
     ],
     "hashType": "sha256"

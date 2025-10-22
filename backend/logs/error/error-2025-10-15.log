@@ -1,0 +1,144 @@
+2025-10-15 10:11:19.099 [ERROR]: Unknown column 'manager.id' in 'field list'
+2025-10-15 10:11:19.181 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateur.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 10:11:19.342 [ERROR]: Unknown column 'manager.id' in 'field list'
+2025-10-15 10:11:19.343 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateur.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 10:58:39.170 [ERROR]: Unknown column 'manager.id_manager' in 'field list'
+2025-10-15 10:58:39.195 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateur.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 10:58:39.304 [ERROR]: Unknown column 'manager.id_manager' in 'field list'
+2025-10-15 10:58:39.305 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateur.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 10:58:57.334 [ERROR]: Unknown column 'manager.id_manager' in 'field list'
+2025-10-15 10:58:57.334 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateur.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:01:20.035 [ERROR]: Table 'ogc_bdd.collaborateurs' doesn't exist
+2025-10-15 11:01:20.064 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateur.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:01:20.240 [ERROR]: Table 'ogc_bdd.collaborateurs' doesn't exist
+2025-10-15 11:01:20.241 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateur.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:10:05.453 [ERROR]: Unknown column 'manager.id_manager' in 'field list'
+2025-10-15 11:10:05.474 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:10:11.489 [ERROR]: Unknown column 'manager.id_manager' in 'field list'
+2025-10-15 11:10:11.490 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:13:09.486 [ERROR]: Unknown column 'manager.id_manager' in 'field list'
+2025-10-15 11:13:09.487 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:13:09.617 [ERROR]: Unknown column 'manager.id_manager' in 'field list'
+2025-10-15 11:13:09.618 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:15:47.589 [ERROR]: Unknown column 'manager.id_manager' in 'field list'
+2025-10-15 11:15:47.593 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:19:31.279 [ERROR]: Unknown column 'manager.id_manager' in 'field list'
+2025-10-15 11:19:31.284 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:20:38.774 [ERROR]: Unknown column 'departement.id_departement' in 'field list'
+2025-10-15 11:20:38.778 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:26:24.802 [ERROR]: Unknown column 'departement.id_departement' in 'field list'
+2025-10-15 11:26:24.817 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-15 11:26:29.042 [ERROR]: Unknown column 'departement.id_departement' in 'field list'
+2025-10-15 11:26:29.042 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Object.getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:12:27)
+    at async getAllDetailCollaborateur (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)

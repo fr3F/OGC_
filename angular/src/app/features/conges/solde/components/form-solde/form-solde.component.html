@@ -1,0 +1,56 @@
+<div class="card shadow-sm p-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+      {{ data?.id ? 'Modifier le solde' : 'Ajouter un solde' }}
+    </h5>
+  </div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="valider()">
+    <div class="row g-3">
+      <!-- Collaborateur -->
+      <div class="col-md-6">
+        <label for="id_collab" class="form-label">Collaborateur</label>
+        <select id="id_collab" class="form-select" formControlName="id_collab">
+          <option value="" disabled selected>Sélectionnez un collaborateur</option>
+          <!-- Ajoutez vos options ici dynamiquement -->
+          <option *ngFor="let collab of collaborateurs" [value]="collab.id">{{ collab.login }}
+            ({{collab.prenom_collab}})</option>
+        </select>
+        <div *ngIf="submit && formGroup.get('id_collab')?.invalid" class="text-danger mt-1 small">
+          Le collaborateur est requis.
+        </div>
+      </div>
+
+      <!-- Type de congé -->
+      <div class="col-md-6">
+        <label for="id_type_conge" class="form-label">Type de congé</label>
+        <select id="id_type_conge" class="form-select" formControlName="id_type_conge">
+          <option value="" disabled selected>Sélectionnez un type de congé</option>
+          <!-- Ajoutez vos options ici dynamiquement -->
+          <option *ngFor="let type of typesConge" [value]="type.id">{{ type.nom_type_conge }} ({{type.max_jour}}jours)
+          </option>
+        </select>
+        <div *ngIf="submit && formGroup.get('id_type_conge')?.invalid" class="text-danger mt-1 small">
+          Le type de congé est requis.
+        </div>
+      </div>
+
+      <!-- Prix -->
+      <div class="col-md-6">
+        <label for="prix" class="form-label">Prix</label>
+        <input id="prix" type="number" class="form-control" formControlName="prix" placeholder="Entrez le prix" />
+        <div *ngIf="submit && formGroup.get('prix')?.invalid" class="text-danger mt-1 small">
+          Le prix est requis.
+        </div>
+      </div>
+
+      <!-- Boutons -->
+      <div class="col-12 text-end mt-3">
+        <button type="submit" class="btn btn-success" [disabled]="formGroup.invalid && submit">
+          <i class="fa fa-save me-1"></i>
+          {{ data?.id ? 'Modifier' : 'Enregistrer' }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

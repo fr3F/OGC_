@@ -1,0 +1,45 @@
+<div *ngIf="list && list.length === 0" class="mx-auto" style="margin-top: 40px;">
+    <p class="alert text-center alert-info">Aucun managers</p>
+</div>
+
+
+<div class="table-responsive">
+    <button type="button" class="btn btn-success mb-3 float-end" routerLink="/manager/ajouter">Ajouter</button>
+
+    <table *ngIf="list && list.length !== 0" class="table table-centered table-sm table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th scope="col" class="align-middle">Nom et Prénom</th>
+                <th scope="col" class="align-middle">Action</th>
+            </tr>
+        </thead>
+        <tbody class="align-middle">
+            <tr *ngFor="let item of list | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index">
+                <td>{{item.nom_manager}}</td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-outline-warning me-1" ngbTooltip="Modifier"
+                            (click)="modify(modalForm, item)"
+                        >
+                            <i class="fa fa-pencil-alt"></i>
+                    </button>
+                    <button mat-button class="btn btn-sm btn-outline-danger me-1" ngbTooltip="Supprimer"
+                        (click)="delete(i)"
+                    >
+                        <i class="fa fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #modalForm role="document" let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0" *ngIf="!itemSelected.id">Ajouter</h5>
+        <h5 class="modal-title mt-0"  *ngIf="itemSelected.id">Modifier</h5>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <app-form-manager [data]="itemSelected" (onValidate)="changeItem()"></app-form-manager>
+    </div>
+</ng-template>

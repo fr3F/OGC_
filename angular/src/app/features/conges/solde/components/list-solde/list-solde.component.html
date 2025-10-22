@@ -1,0 +1,67 @@
+
+<div *ngIf="list && list.length === 0" class="mx-auto" style="margin-top: 40px;">
+    <p class="alert text-center alert-info">Aucun solde disponible</p>
+</div>
+
+<div class="table-responsive">
+    <button type="button" class="btn btn-success mb-3 float-end" (click)="modify(modalForm, {})">
+        <i class="fa fa-plus me-1"></i>Ajouter
+    </button>
+
+    <table *ngIf="list && list.length !== 0" class="table table-centered table-sm table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Collaborateur</th>
+                <th scope="col">Type d'absence</th>
+                <th scope="col" class="text-center">Total</th>
+                <th scope="col" class="text-center">Utilisés</th>
+                <th scope="col" class="text-center">Restants</th>
+                <th scope="col" class="text-center">Prix</th>
+                <th scope="col" class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody class="align-middle">
+            <tr *ngFor="let item of list | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index">
+                <td>
+                    {{ item.collaborateur?.nom_collab }} {{ item.collaborateur?.prenom_collab }}
+                    <br>
+                    <small class="text-muted">{{ item.collaborateur?.email_collab }}</small>
+                </td>
+                <td>{{ item.type_conge?.nom_type_conge }}</td>
+                <td class="text-center">{{ item.nb_jours_total }} jours</td>
+                <td class="text-center">{{ item.nb_jours_utilises }} jours</td>
+                <td class="text-center">
+                    <span [class]="item.nb_jours_restants === 0 ? 'text-danger fw-bold' : ''">
+                        {{ item.nb_jours_restants ?? 'N/A' }} jours
+                    </span>
+                </td>
+                <td class="text-center">{{ item.prix }}</td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-outline-warning me-1" 
+                            ngbTooltip="Modifier"
+                            (click)="modify(modalForm, item)">
+                        <i class="fa fa-pencil-alt"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" 
+                            ngbTooltip="Supprimer"
+                            (click)="delete(i)">
+                        <i class="fa fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<ng-template #modalForm role="document" let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">
+            {{ itemSelected?.id ? 'Modifier le solde' : 'Ajouter un solde' }}
+        </h5>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <app-form-solde [data]="itemSelected" (onValidate)="changeItem()"></app-form-solde>
+    </div>
+</ng-template>

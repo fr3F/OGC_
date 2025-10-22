@@ -32,8 +32,28 @@ function validerRequete(req, att = [], nomAtt=[], type = []){
     }
 }
 
+
+function validateDemandeCongeDate (dateDebut) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const minDate = new Date(today);
+    minDate.setDate(minDate.getDate() + 5);
+    
+    const selectedDate = new Date(dateDebut);
+    selectedDate.setHours(0, 0, 0, 0);
+    
+    if (selectedDate < minDate) {
+        const formattedMinDate = minDate.toISOString().split('T')[0];
+        throw new Error(
+        `La date de début du congé doit être au minimum 5 jours à partir d'aujourd'hui. Date minimale: ${formattedMinDate}`
+        );
+    }
+};
+
 module.exports = {
     isDate,
     isInteger,
-    validerRequete
+    validerRequete,
+    validateDemandeCongeDate
 }

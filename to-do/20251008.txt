@@ -43,7 +43,7 @@ backend
                 baseService.js
             baseController.js
             baseRoute.js    
-            
+
     index.js
     models
         collaborateurs
@@ -59,11 +59,31 @@ Remarque:
     nouveaux du base CRUD dans le backend
 
     npm install activedirectory
-<<<<<<< HEAD
-=======
     const jwt = require("jsonwebtoken");    
     npm install passport passport-windowsauth
+    npm install electron --save-dev
     npm install concurrently --save-dev
->>>>>>> f8f63fd5c27d1a013ab4a169be58fee0b0fae682
+    npm install express-ntlm
+
+    npm install express passport passport-kerberos express-session cors
+
+    config navigate 
+        parametre du chrome, 
+            systeme, 
+            Accéder aux paramètres de proxy de votre ordinateur, 
+            proxy, 
+            Decoucher detecter automatiquement les paramètres
+            activer le utilisateur un serveur proxy
+            mettre le adresse : 172.16.110.2 et port : 389
+            enregistrer
+
+        bureau
+            chrome, 
+            clique droit, 
+            propriete, 
+            on trouve "C:\Program Files\Google\Chrome\Application\chrome.exe",
+            changer ici :
+            "C:\Program Files\Google\Chrome\Application\chrome.exe" --auth-server-whitelist="*sodim*" --auth-negotiate-delegate-whitelist="*.sodim.corp" 
+
 
 

@@ -22,7 +22,7 @@ function removeLeadingZeros(str) {
 }const { Op } = require("sequelize");
 const { loggerError } = require("./logger");
 
-function sendError(res, err, status = 500){
+function sendError(res, err, status = 500){    
     if(err.code)
         status = err.code;
     console.log(err);

@@ -1,0 +1,156 @@
+2025-10-20 08:31:24.398 [ERROR]: Include unexpected. Element has to be either a Model, an Association or an object.
+2025-10-20 08:31:24.484 [ERROR]: Error: Include unexpected. Element has to be either a Model, an Association or an object.
+    at collaborateurs._conformInclude (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:323:11)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:61
+    at Array.map (<anonymous>)
+    at collaborateurs._conformIncludes (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:39)
+    at collaborateurs._baseMerge (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:622:10)
+    at collaborateurs._defaultsOptions (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:656:17)
+    at collaborateurs._injectScope (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2053:10)
+    at collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1111:10)
+    at collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1324:12)
+    at Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:18:33)
+2025-10-20 08:31:24.515 [ERROR]: Include unexpected. Element has to be either a Model, an Association or an object.
+2025-10-20 08:31:24.516 [ERROR]: Error: Include unexpected. Element has to be either a Model, an Association or an object.
+    at collaborateurs._conformInclude (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:323:11)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:61
+    at Array.map (<anonymous>)
+    at collaborateurs._conformIncludes (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:39)
+    at collaborateurs._baseMerge (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:622:10)
+    at collaborateurs._defaultsOptions (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:656:17)
+    at collaborateurs._injectScope (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2053:10)
+    at collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1111:10)
+    at collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1324:12)
+    at Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:18:33)
+2025-10-20 08:32:57.604 [ERROR]: Include unexpected. Element has to be either a Model, an Association or an object.
+2025-10-20 08:32:57.608 [ERROR]: Error: Include unexpected. Element has to be either a Model, an Association or an object.
+    at collaborateurs._conformInclude (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:323:11)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:61
+    at Array.map (<anonymous>)
+    at collaborateurs._conformIncludes (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:39)
+    at collaborateurs._baseMerge (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:622:10)
+    at collaborateurs._defaultsOptions (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:656:17)
+    at collaborateurs._injectScope (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2053:10)
+    at collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1111:10)
+    at collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1324:12)
+    at Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:18:33)
+2025-10-20 08:32:57.649 [ERROR]: Include unexpected. Element has to be either a Model, an Association or an object.
+2025-10-20 08:32:57.649 [ERROR]: Error: Include unexpected. Element has to be either a Model, an Association or an object.
+    at collaborateurs._conformInclude (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:323:11)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:61
+    at Array.map (<anonymous>)
+    at collaborateurs._conformIncludes (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:39)
+    at collaborateurs._baseMerge (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:622:10)
+    at collaborateurs._defaultsOptions (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:656:17)
+    at collaborateurs._injectScope (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2053:10)
+    at collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1111:10)
+    at collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1324:12)
+    at Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:18:33)
+2025-10-20 13:13:42.280 [ERROR]: notNull Violation: collaborateurs.nom_collab cannot be null,
+notNull Violation: collaborateurs.prenom_collab cannot be null,
+notNull Violation: collaborateurs.id_departement cannot be null
+2025-10-20 13:13:42.385 [ERROR]: SequelizeValidationError: notNull Violation: collaborateurs.nom_collab cannot be null,
+notNull Violation: collaborateurs.prenom_collab cannot be null,
+notNull Violation: collaborateurs.id_departement cannot be null
+    at InstanceValidator._validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async InstanceValidator._validateAndRunHooks (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:60:7)
+    at async InstanceValidator.validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:54:12)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2426:7)
+    at async collaborateurs.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)
+2025-10-20 13:14:11.292 [ERROR]: notNull Violation: collaborateurs.nom_collab cannot be null,
+notNull Violation: collaborateurs.prenom_collab cannot be null,
+notNull Violation: collaborateurs.id_departement cannot be null
+2025-10-20 13:14:11.296 [ERROR]: SequelizeValidationError: notNull Violation: collaborateurs.nom_collab cannot be null,
+notNull Violation: collaborateurs.prenom_collab cannot be null,
+notNull Violation: collaborateurs.id_departement cannot be null
+    at InstanceValidator._validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async InstanceValidator._validateAndRunHooks (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:60:7)
+    at async InstanceValidator.validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:54:12)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2426:7)
+    at async collaborateurs.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)
+2025-10-20 13:18:36.554 [ERROR]: notNull Violation: collaborateurs.nom_collab cannot be null,
+notNull Violation: collaborateurs.matricule_collab cannot be null,
+notNull Violation: collaborateurs.prenom_collab cannot be null,
+notNull Violation: collaborateurs.id_departement cannot be null
+2025-10-20 13:18:36.580 [ERROR]: SequelizeValidationError: notNull Violation: collaborateurs.nom_collab cannot be null,
+notNull Violation: collaborateurs.matricule_collab cannot be null,
+notNull Violation: collaborateurs.prenom_collab cannot be null,
+notNull Violation: collaborateurs.id_departement cannot be null
+    at InstanceValidator._validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async InstanceValidator._validateAndRunHooks (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:60:7)
+    at async InstanceValidator.validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:54:12)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2426:7)
+    at async collaborateurs.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)
+2025-10-20 13:27:21.668 [ERROR]: notNull Violation: collaborateurs.nom_collab cannot be null,
+notNull Violation: collaborateurs.matricule_collab cannot be null,
+notNull Violation: collaborateurs.prenom_collab cannot be null,
+notNull Violation: collaborateurs.id_departement cannot be null
+2025-10-20 13:27:21.695 [ERROR]: SequelizeValidationError: notNull Violation: collaborateurs.nom_collab cannot be null,
+notNull Violation: collaborateurs.matricule_collab cannot be null,
+notNull Violation: collaborateurs.prenom_collab cannot be null,
+notNull Violation: collaborateurs.id_departement cannot be null
+    at InstanceValidator._validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async InstanceValidator._validateAndRunHooks (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:60:7)
+    at async InstanceValidator.validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:54:12)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2426:7)
+    at async collaborateurs.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)
+2025-10-20 15:48:29.099 [ERROR]: soldes is associated to collaborateurs using an alias. You must use the 'as' keyword to specify the alias within your include statement.
+2025-10-20 15:48:29.127 [ERROR]: SequelizeEagerLoadingError: soldes is associated to collaborateurs using an alias. You must use the 'as' keyword to specify the alias within your include statement.
+    at collaborateurs._getIncludedAssociation (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:576:13)
+    at collaborateurs._validateIncludedElement (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:502:53)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:421:37
+    at Array.map (<anonymous>)
+    at collaborateurs._validateIncludedElements (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:417:39)
+    at collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1252:12)
+    at collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+2025-10-20 15:48:29.145 [ERROR]: soldes is associated to collaborateurs using an alias. You must use the 'as' keyword to specify the alias within your include statement.
+2025-10-20 15:48:29.145 [ERROR]: SequelizeEagerLoadingError: soldes is associated to collaborateurs using an alias. You must use the 'as' keyword to specify the alias within your include statement.
+    at collaborateurs._getIncludedAssociation (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:576:13)
+    at collaborateurs._validateIncludedElement (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:502:53)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:421:37
+    at Array.map (<anonymous>)
+    at collaborateurs._validateIncludedElements (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:417:39)
+    at collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1252:12)
+    at collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+2025-10-20 15:48:40.652 [ERROR]: soldes is associated to collaborateurs using an alias. You must use the 'as' keyword to specify the alias within your include statement.
+2025-10-20 15:48:40.653 [ERROR]: SequelizeEagerLoadingError: soldes is associated to collaborateurs using an alias. You must use the 'as' keyword to specify the alias within your include statement.
+    at collaborateurs._getIncludedAssociation (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:576:13)
+    at collaborateurs._validateIncludedElement (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:502:53)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:421:37
+    at Array.map (<anonymous>)
+    at collaborateurs._validateIncludedElements (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:417:39)
+    at collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1124:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async collaborateurs.findOne (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1240:12)
+    at async Object.findOneUserDemandeConge (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:54:25)
+    at async getCollabByLogin (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\rh.controller.js:18:19)
+2025-10-20 15:50:36.353 [ERROR]: Cannot read properties of undefined (reading 'manager')
+2025-10-20 15:50:36.359 [ERROR]: TypeError: Cannot read properties of undefined (reading 'manager')
+    at getCollaborateurInclude (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:30:17)
+    at Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:20:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\rh.controller.js:7:19)
+2025-10-20 15:50:36.369 [ERROR]: Cannot read properties of undefined (reading 'manager')
+2025-10-20 15:50:36.370 [ERROR]: TypeError: Cannot read properties of undefined (reading 'manager')
+    at getCollaborateurInclude (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:30:17)
+    at Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:20:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\rh.controller.js:7:19)

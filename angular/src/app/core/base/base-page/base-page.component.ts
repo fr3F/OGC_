@@ -12,6 +12,11 @@ export class BasePageComponent extends BaseFormComponent implements OnInit {
   acces: any = {};
   tabFonctionnalite:Acces [] = [];
 
+  // ngOnInit(): void {
+  //   this.testAccess()
+  //   this.initializeTabAccess();
+  // }
+
   idFonctionnalite;
 
   testAccess(){

@@ -1,0 +1,129 @@
+<div class="row">
+  <div class="col-md-10 mx-auto">
+    <form [formGroup]="formGroup" (ngSubmit)="valider()">
+
+      <div class="row">
+
+        <div class="row col-md-12">
+
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="bold"><strong>Nom et prénom</strong></label>
+              <p *ngIf="userName">{{ userName }}</p>
+            </div>
+
+            <div class="mb-3">
+              <label class="bold"><strong>Département</strong></label>
+              <p *ngIf="userName">{{ departementName }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="bold"><strong>Manager</strong></label>
+              <p *ngIf="userName">Mr/Mme {{ managerName }}</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Date début -->
+        <div class="col-md-6 mt-2">
+          <label><strong>Date début</strong></label>
+          <input type="date" class="form-control" formControlName="date_debut_conge"
+                [ngClass]="{'is-invalid': isInvalid('date_debut_conge') || formGroup.errors?.dateDebut5jourAvant}" />
+
+          <div *ngIf="formGroup.get('date_debut_conge')?.value && !isInvalid('date_debut_conge') && !formGroup.errors?.dateDebut5jourAvant"
+              class="small text-success mt-2">
+            <i class="fa fa-calendar"></i> {{ formatDateDisplay(formGroup.get('date_debut_conge')?.value) }}
+          </div>
+
+          <!-- Message d'erreur -->
+          <div *ngIf="isInvalid('date_debut_conge')" class="invalid-feedback d-block">
+            {{ getErrorMessage('date_debut_conge') }}
+          </div>
+
+          <div *ngIf="formGroup.errors?.dateDebut5jourAvant" class="small text-danger">
+            La date de début doit être au moins 5 jours ouvrables après aujourd'hui.
+          </div>
+          <div *ngIf="formGroup.errors?.dateDebutDimanche" class="small text-danger">
+            La date de début ne peut pas être un dimanche.
+          </div>
+        </div>
+
+        <!-- Date fin -->
+        <div class="col-md-6 mt-2">
+          <label><strong>Date de fin</strong></label>
+          <input type="date" formControlName="date_fin_conge" class="form-control"
+                [ngClass]="{'is-invalid': isInvalid('date_fin_conge') || formGroup.errors?.dateFinBeforeDebut}" />
+
+          <div *ngIf="formGroup.get('date_fin_conge')?.value && !isInvalid('date_fin_conge') && !formGroup.errors?.dateFinBeforeDebut"
+              class="small text-success mt-2">
+            <i class="fa fa-calendar"></i> {{ formatDateDisplay(formGroup.get('date_fin_conge')?.value) }}
+          </div>
+
+          <div *ngIf="isInvalid('date_fin_conge')" class="small text-danger">
+            {{ getErrorMessage('date_fin_conge') }}
+          </div>
+
+          <div *ngIf="formGroup.errors?.dateFinBeforeDebut" class="small text-danger">
+            La date de fin ne peut pas être antérieure à la date de début.
+          </div>
+          <div *ngIf="formGroup.errors?.dateFinDimanche" class="small text-danger">
+            La date de fin ne peut pas être un dimanche.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Affichage de la différence entre les deux dates -->
+      <div class="row mt-3" *ngIf="formGroup.get('date_debut_conge')?.value && 
+          formGroup.get('date_fin_conge')?.value && 
+          !isInvalid('date_debut_conge') && 
+          !isInvalid('date_fin_conge')">
+          <div class="d-flex align-items-center">
+            <strong>Durée du congé :</strong>
+            <span class="text-black px-2 fs-5">{{ calculateDaysDifference() }} jour(s)</span>
+          </div>
+      </div>
+
+      <!-- Section Motifs -->
+      <div class="row">
+        <div class="col-md-12 mt-2">
+          <label for="motifs_conge"><strong>Motifs</strong></label>
+          <textarea id="motifs_conge" class="form-control" formControlName="motifs_conge" placeholder="Motifs du congé"
+            rows="4" [ngClass]="{ 'is-invalid': isInvalid('motifs_conge') }"></textarea>
+          <div *ngIf="isInvalid('motifs_conge')" class="invalid-feedback d-block">
+            Veuillez renseigner le motif
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Type de congé -->
+      <div class="row">
+        <div class="col-md-6 mt-2">
+          <label><strong>Type congé</strong></label>
+          <select class="form-control" formControlName="id_type_conge"
+            [ngClass]="{'is-invalid': isInvalid('id_type_conge')}">
+            <option value="" disabled>Sélectionnez un type</option>
+            <option *ngFor="let t of typeConges" [value]="t.id">{{ t.nom_type_conge }}</option>
+          </select>
+          <div *ngIf="isInvalid('id_type_conge')" class="invalid-feedback d-block">
+            Veuillez sélectionner un type de congé
+          </div>
+        </div>
+      </div>
+
+      <input type="hidden" formControlName="id_status_conge" [value]="null" />
+
+      <!-- Bouton de soumission -->
+      <div class="mt-4 text-center">
+        <button type="submit" class="btn btn-success" [disabled]="formGroup.invalid">
+          <i class="fa fa-check"></i>
+          <span class="ms-1">Enregistrer</span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseComponentComponent } from '../base-component/base-component.component';
 import { BaseService } from '../base/base.service';
-import { baseUpdate } from 'src/app/store/base/base-update/base-update.actions';
-import { baseSave, baseSaveSuccess } from 'src/app/store/base/base-create/base-create-page.actions';
+
 import { Actions, ofType } from '@ngrx/effects';
 import { filter } from 'rxjs';
+import { baseSave, baseSaveSuccess } from 'src/app/store/base/base-create/base-create-page.actions';
+import { baseUpdate } from 'src/app/store/base/base-update/base-update.actions';
 
 @Component({
   selector: 'app-base-form',
@@ -83,7 +84,7 @@ export class BaseFormComponent extends BaseComponentComponent implements OnInit 
     this.showSpinner();
 
     const payload = { data, nomModele };
-    this.storeAction(payload);
+    this.storeAction(payload, redirectUrl);
   }
 
   private flattenFormData(formValue: any): any {
@@ -94,17 +95,27 @@ export class BaseFormComponent extends BaseComponentComponent implements OnInit 
     return result;
   }
 
-  private storeAction(payload: { data: any; nomModele: string }) {
+  public storeAction(payload: { data: any; nomModele: string }, redirectUrl?:string) {
+    console.log("data", payload.data.id);
+    
     if (payload.data.id) {
-      this.store.dispatch(baseUpdate(payload));
+      this.store.dispatch(baseUpdate({
+        data:payload.data,
+        nomModele:payload.nomModele,
+        redirectUrl
+      }));
       this.onSuccess()
 
     } else {
-      this.store.dispatch(baseSave(payload));
+      this.store.dispatch(baseSave({ 
+        nomModele: payload.nomModele, 
+        data: payload.data, 
+        redirectUrl
+    }));
       this.onSuccess()
     }
-
   }
+
   showSpinner() {
     this.loading = true;
     this.baseServ.spinner.show();

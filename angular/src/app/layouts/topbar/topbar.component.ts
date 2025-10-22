@@ -14,9 +14,7 @@ import { RootReducerState } from 'src/app/store';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-const apiUrl = environment.apiUrl
-
+//
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
@@ -47,7 +45,7 @@ export class TopbarComponent implements OnInit {
   dataLayout$: Observable<string>;
   // Define layoutMode as a property
 
-  constructor(@Inject(DOCUMENT) private document: any, private router: Router,private http: HttpClient, private authService: AuthenticationService,
+  constructor(@Inject(DOCUMENT) private document: any, private router: Router, private authService: AuthenticationService,
     private authFackservice: AuthfakeauthenticationService,
     public languageService: LanguageService,
     public translate: TranslateService,
@@ -67,44 +65,45 @@ export class TopbarComponent implements OnInit {
 
   @Output() settingsButtonClicked = new EventEmitter();
   @Output() mobileMenuButtonClicked = new EventEmitter();
-  currentUser;
-  user = '';
-  ngOnInit() {
-    // this.initialAppState = initialState;
-    this.store.select('layout').subscribe((data) => {
-      this.theme = data.DATA_LAYOUT;
-    })
-    this.openMobileMenu = false;
-    this.element = document.documentElement;
+  currentUser
 
-    this.cookieValue = this._cookiesService.get('lang');
-    const val = this.listLang.filter(x => x.lang === this.cookieValue);
-    this.countryName = val.map(element => element.text);
-    if (val.length === 0) {
-      if (this.flagvalue === undefined) { this.valueset = 'assets/images/flags/us.jpg'; }
-    } else {
-      this.flagvalue = val.map(element => element.flag);
-    }
-
-    const userStr = localStorage.getItem('currentUser');
-     if (userStr) {
-      this.currentUser = JSON.parse(userStr);
-      this.user = this.currentUser.username;
-
-    }
-    this.getUserName()
-  }
-
-  getUserName(){
-     this.http.get<{ username: string }>(`${apiUrl}/username`).subscribe({
-    next: (res) => {
-      this.user = res.username || 'defaultUser';
-    },
-    error: () => {
-      this.user = 'defaultUser';
-    }
+ngOnInit() {
+  // Récupération du thème depuis le store
+  this.store.select('layout').subscribe((data) => {
+    this.theme = data.DATA_LAYOUT;
   });
+
+  this.openMobileMenu = false;
+  this.element = document.documentElement;
+
+  // Gestion des langues
+  this.cookieValue = this._cookiesService.get('lang');
+  const val = this.listLang.filter(x => x.lang === this.cookieValue);
+  this.countryName = val.map(element => element.text);
+  if (val.length === 0) {
+    if (this.flagvalue === undefined) { 
+      this.valueset = 'assets/images/flags/us.jpg'; 
+    }
+  } else {
+    this.flagvalue = val.map(element => element.flag);
   }
+
+  // Récupération du username depuis localStorage
+  const userStr = localStorage.getItem('currentUser');
+  if (userStr) {
+    try {
+      const userObj = JSON.parse(userStr);
+      this.currentUser = userObj?.username ?? userStr; 
+    } catch (err) {
+      this.currentUser = userStr;
+    }
+  } else {
+    this.currentUser = ''; 
+  }
+
+  console.log('[DEBUG] Current user:', this.currentUser);
+}
+
   setLanguage(text: string, lang: string, flag: string) {
     this.countryName = text;
     this.flagvalue = flag;

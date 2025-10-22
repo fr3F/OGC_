@@ -3,15 +3,13 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError, tap } from 'rxjs';
 import { of } from 'rxjs';
 import { BaseService } from 'src/app/core/base/base/base.service';
-import { AutoriseZeroService } from 'src/app/features/parametrage/autorize-zero-page/service/autorise-zero.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DemandeVirementService } from 'src/app/features/suivi-commande-depot/demande/service/demande-virement.service';
-import { CaisseService } from 'src/app/features/caisses/services/caisse.service';
 import { baseUpdate, baseUpdateFailure, baseUpdateSuccess } from './base-update.actions';
 import { MenuService } from 'src/app/core/services/menu.service';
+import { AutoriseZeroService } from 'src/app/core/services/autorise-zero.service';
 
 @Injectable()
 export class BaseUpdateEffects {
@@ -30,12 +28,12 @@ export class BaseUpdateEffects {
     this.actions$.pipe(
       ofType(baseUpdate),
       mergeMap(({ nomModele, data, redirectUrl }) => {
+        
         this.spinner.show();
 
         return this.updateServices(nomModele, data).pipe(
           map((response) => baseUpdateSuccess({ nomModele, response })),
           tap(() =>{
-            setTimeout(() => window.location.reload(), 1000)
             return this.notif.show("Mis à jour avec succès")
           }),
           tap(() => this.spinner.hide()),
@@ -60,8 +58,7 @@ export class BaseUpdateEffects {
     switch (nomModele) {
       case 'fonctionnalites':
         return this.menuServ.updateAcces(data.roleId, data.menus, data.modules);
-
-
+        
       default:
         return this.baseService.update(data, nomModele);
     }

@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as BaseDeletePageActions from './base-delete-page.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { BaseService } from 'src/app/core/base/base/base.service';
-import { AutoriseZeroService } from 'src/app/features/parametrage/autorize-zero-page/service/autorise-zero.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { AutoriseZeroService } from 'src/app/core/services/autorise-zero.service';
 
 @Injectable()
 export class BaseDeletePageEffects {

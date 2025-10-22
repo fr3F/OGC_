@@ -1,0 +1,14 @@
+frontEnd  
+    demandeConge
+        form demandeConge
+        ok   Gérer le form date
+                datedebut avant de 5jours qu'il valide
+                exemple aujourd'hui le 20 donc le date valide c'est le 15 plus tard
+        ok  afficher la difference du datedebut début et date fin 
+        liste demandeConge 
+        ok    (afficher le nom user, son solde, son manager)
+
+        afaka verifié-ny Monsieur ilay izy ao, oe mety ve sa ahoana fa efa nahitsiko ilay notenenin'i Monsieur hoe :
+        - amborina lay eo amin'ilay date
+        - afficher la difference entre les 2 dates
+        - afficher nom user, manager

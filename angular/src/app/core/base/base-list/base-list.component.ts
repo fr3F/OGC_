@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
+import { loadDelete } from 'src/app/store/base/base-delete/base-delete-page.actions';
 import { NotificationService } from '../../services/notification.service';
 import { BaseService } from '../base/base.service';
-import { loadDelete } from '../../../store/base/base-delete/base-delete-page.actions';
 
 @Component({
   selector: 'app-base-list',
@@ -64,5 +64,5 @@ export class BaseListComponent implements OnInit {
     
     this.store.dispatch(loadDelete({nomModele, id}))
   }
-
+  
 }

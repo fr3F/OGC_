@@ -12,6 +12,8 @@ import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AutoriseZeroService } from "src/app/core/services/autorise-zero.service";
 import { BaseService } from "src/app/core/base/base/base.service";
+import { DemandeCongesService } from "src/app/features/conges/demande-conges/services/demande-conges.service";
+import { SoldeService } from "src/app/features/conges/solde/services/solde.service";
 
 @Injectable()
 export class BaseCreateEffects {
@@ -23,6 +25,8 @@ export class BaseCreateEffects {
     private spinner: NgxSpinnerService,
     private router: Router,
     private modalService: NgbModal,
+    private demandeCongeService: DemandeCongesService,
+    private soldService : SoldeService
   ) {}
 
   save$ = createEffect(() =>
@@ -32,14 +36,13 @@ export class BaseCreateEffects {
         this.spinner.show();
 
         return this.saveServices(nomModele, data).pipe(
-          // ✅ utilisation dynamique
           map((response) => baseSaveSuccess({ nomModele, response })),
           tap(() => this.notif.show("Enregistré")),
           tap(() => this.spinner.hide()),
           tap(() => this.autoriseZeroService.triggerReloadChildData()),
-          tap(() => {
-            this.modalService.dismissAll(); // ferme le modal après succès
-          }),
+          // tap(() => {
+          //   this.modalService.dismissAll(); 
+          // }),
           tap(() => {
             if (redirectUrl) {
               this.router.navigateByUrl(redirectUrl);
@@ -48,6 +51,7 @@ export class BaseCreateEffects {
           catchError((error) => {
             this.spinner.hide();
             this.notif.error(error);
+            
             return of(baseSaveFailure({ nomModele, error }));
           })
         );
@@ -57,8 +61,14 @@ export class BaseCreateEffects {
 
   private saveServices(nomModele: string, data: any) {
     switch (nomModele) {
+
       case "collaborateur":
         return this.baseService.save(data, nomModele);
+      case "demandeconge":
+        return this.demandeCongeService.createDemandeConge(data, nomModele);
+        
+      case "solde":
+        return this.soldService.createSoldePasCrud(data, nomModele)
 
       default:
         return this.baseService.save(data, nomModele); 

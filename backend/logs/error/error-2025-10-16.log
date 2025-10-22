@@ -1,0 +1,240 @@
+2025-10-16 10:10:22.344 [ERROR]: Unknown column 'departement.designation' in 'where clause'
+2025-10-16 10:10:22.377 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async departement.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async departement.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async departement.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getDepartementPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\departement\services\departement.service.js:8:15)
+    at async getDepartementPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\departement\departement.controller.js:6:19)
+2025-10-16 10:12:45.880 [ERROR]: Include unexpected. Element has to be either a Model, an Association or an object.
+2025-10-16 10:12:45.885 [ERROR]: Error: Include unexpected. Element has to be either a Model, an Association or an object.
+    at departement._conformInclude (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:323:11)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:61
+    at Array.map (<anonymous>)
+    at departement._conformIncludes (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:270:39)
+    at departement._baseMerge (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:622:10)
+    at departement._defaultsOptions (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:656:17)
+    at departement._injectScope (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2053:10)
+    at departement.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1111:10)
+    at departement.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1324:12)
+    at Object.getDepartementPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\departement\services\departement.service.js:8:33)
+2025-10-16 10:14:37.772 [ERROR]: Unknown column 'departement.designation' in 'where clause'
+2025-10-16 10:14:37.778 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async departement.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async departement.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async departement.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getDepartementPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\departement\services\departement.service.js:8:15)
+    at async getDepartementPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\departement\departement.controller.js:6:19)
+2025-10-16 11:51:24.831 [ERROR]: Cannot read properties of undefined (reading 'findAndCountAll')
+2025-10-16 11:51:24.867 [ERROR]: TypeError: Cannot read properties of undefined (reading 'findAndCountAll')
+    at Object.getComptePaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\compte\services\compte.service.js:13:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getComptePaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\compte\compte.controller.js:6:19)
+2025-10-16 15:28:36.746 [ERROR]: Table 'ogc.collaborateurs' doesn't exist
+2025-10-16 15:28:36.773 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:28:45.425 [ERROR]: Table 'ogc.collaborateurs' doesn't exist
+2025-10-16 15:28:45.426 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:28:52.808 [ERROR]: Table 'ogc.collaborateurs' doesn't exist
+2025-10-16 15:28:52.809 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:35:07.150 [ERROR]: Table 'ogc.soldes' doesn't exist
+2025-10-16 15:35:07.154 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:35:07.197 [ERROR]: Table 'ogc.soldes' doesn't exist
+2025-10-16 15:35:07.197 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:58:16.511 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 15:58:16.530 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Promise.all (index 1)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:58:20.228 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 15:58:20.229 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:58:20.279 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 15:58:20.280 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:58:20.341 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 15:58:20.342 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:58:20.454 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 15:58:20.455 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:58:58.042 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 15:58:58.043 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Promise.all (index 1)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:58:58.183 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 15:58:58.183 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 15:59:02.079 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 15:59:02.079 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 16:00:18.528 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 16:00:18.529 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 16:02:26.612 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 16:02:26.617 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async collaborateurs.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Promise.all (index 1)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 16:11:14.581 [ERROR]: Unknown column 'collaborateurs.login' in 'where clause'
+2025-10-16 16:11:14.585 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.rawSelect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async collaborateurs.aggregate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1277:19)
+    at async collaborateurs.count (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1306:20)
+    at async Promise.all (index 0)
+    at async collaborateurs.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\services\collaborateurs.service.js:18:13)
+    at async getAllDetailCollabPagine (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\collaborateurs\collaborateurs.controller.js:17:19)
+2025-10-16 16:17:50.801 [ERROR]: Validation error
+2025-10-16 16:17:50.805 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.insert (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2490:35)
+    at async compte.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)

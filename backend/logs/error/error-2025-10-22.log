@@ -1,0 +1,50 @@
+2025-10-22 08:25:56.795 [ERROR]: Cannot add or update a child row: a foreign key constraint fails (`ogc`.`soldes`, CONSTRAINT `soldes_ibfk_166` FOREIGN KEY (`id_collab`) REFERENCES `collaborateurs` (`id`) ON UPDATE CASCADE)
+2025-10-22 08:25:56.801 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.insert (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2490:35)
+    at async soldes.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)
+2025-10-22 08:29:53.023 [ERROR]: Cannot add or update a child row: a foreign key constraint fails (`ogc`.`soldes`, CONSTRAINT `soldes_ibfk_166` FOREIGN KEY (`id_collab`) REFERENCES `collaborateurs` (`id`) ON UPDATE CASCADE)
+2025-10-22 08:29:53.025 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.insert (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2490:35)
+    at async soldes.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)
+2025-10-22 09:50:00.685 [ERROR]: notNull Violation: status_conge.nom_status_conge cannot be null
+2025-10-22 09:50:00.778 [ERROR]: SequelizeValidationError: notNull Violation: status_conge.nom_status_conge cannot be null
+    at InstanceValidator._validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async InstanceValidator._validateAndRunHooks (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:60:7)
+    at async InstanceValidator.validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:54:12)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2426:7)
+    at async status_conge.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)
+2025-10-22 09:53:33.442 [ERROR]: notNull Violation: status_conge.nom_status_conge cannot be null
+2025-10-22 09:53:33.443 [ERROR]: SequelizeValidationError: notNull Violation: status_conge.nom_status_conge cannot be null
+    at InstanceValidator._validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async InstanceValidator._validateAndRunHooks (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:60:7)
+    at async InstanceValidator.validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:54:12)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2426:7)
+    at async status_conge.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)
+2025-10-22 09:55:18.909 [ERROR]: notNull Violation: status_conge.nom_status_conge cannot be null
+2025-10-22 09:55:18.911 [ERROR]: SequelizeValidationError: notNull Violation: status_conge.nom_status_conge cannot be null
+    at InstanceValidator._validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async InstanceValidator._validateAndRunHooks (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:60:7)
+    at async InstanceValidator.validate (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\instance-validator.js:54:12)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2426:7)
+    at async status_conge.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)

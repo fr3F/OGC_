@@ -1,0 +1,57 @@
+<div class="">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+      {{ data?.id ? 'Modifier le type de congé' : 'Ajouter un type de congé' }}
+    </h5>
+  </div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="valider()" class="d-flex justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="row g-3 align-items-center">
+
+        <!-- Champ nom type congé -->
+        <div class="col-12">
+          <label for="">Nom </label>
+          <input
+            id="nom_type_conge"
+            type="text"
+            class="form-control"
+            formControlName="nom_type_conge"
+            placeholder=""
+          />
+          <div *ngIf="submit && formGroup.get('nom_type_conge')?.invalid" class="text-danger small mt-1">
+            Le nom du compte est requis.
+          </div>
+        </div>
+
+        <!-- Champ Type -->
+        <div class="col-12">
+          <label for="">Maximum de jours</label>
+          <input
+            id="max_jour"
+            type="text"
+            class="form-control"
+            formControlName="max_jour"
+            placeholder=""
+          />
+          <div *ngIf="submit && formGroup.get('max_jour')?.invalid" class="text-danger small mt-1">
+            Le maximum de jours est requis.
+          </div>
+        </div>
+
+        <!-- Bouton Validation -->
+        <div class="col-12 mt-3">
+          <button
+            type="submit"
+            class="btn btn-success float-end"
+            [disabled]="formGroup.invalid"
+          >
+            <i class="fa fa-save me-1"></i>
+            {{ data?.id ? 'Modifier' : 'Enregistrer' }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

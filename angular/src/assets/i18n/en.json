@@ -17,8 +17,29 @@
       "TEXT": "Collaborateur"
     },
 
-    "KIABI": {
-      "TEXT": "KIABI"
+    "DEPARTEMENT": {
+      "TEXT": "Département"
+    },
+    "MANAGER": {
+      "TEXT": "Manager"
+    },
+    "COMPTE": {
+      "TEXT": "Compte"
+    },
+    "CONGE": {
+      "TEXT": "Congés"
+    },
+    "STATUT_CONGES": {
+      "TEXT": "Statut des Congés"
+    },
+    "TYPE_CONGES": {
+      "TEXT": "Type des Congés"
+    },
+    "DEMANDE_CONGE": {
+      "TEXT": "Demande de Congé"
+    },
+    "SOLDE": {
+      "TEXT": "Solde"
     }
   }
 }

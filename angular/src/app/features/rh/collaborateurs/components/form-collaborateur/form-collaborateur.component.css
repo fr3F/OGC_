@@ -1,0 +1,16 @@
+@media (max-width: 576px) {
+  form label {
+    font-size: 0.9rem;
+  }
+
+  form .form-control,
+  form .form-select {
+    font-size: 0.9rem;
+    padding: 0.45rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin-top: 0.4rem;
+  }
+}

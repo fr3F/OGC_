@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Récupérer username</title>
+</head>
+<body>
+  <input type="text" id="usernameField" placeholder="Username du PC">
+  <button onclick="getUsernameFromPC()">Récupérer Username</button>
+
+  <script type="text/javascript">
+    function getUsernameFromPC() {
+      try {
+        var network = new ActiveXObject("WScript.Network");
+        var username = network.UserName;
+
+        console.log('Username PC:', username);
+
+        document.getElementById('usernameField').value = username;
+
+        return username;
+      } catch (e) {
+        console.error('Impossible de récupérer le username (ActiveX désactivé ou navigateur incompatible)', e);
+        alert('Impossible de récupérer le username sur ce navigateur.');
+        return null;
+      }
+    }
+  </script>
+</body>
+</html>

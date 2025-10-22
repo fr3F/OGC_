@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { User } from 'src/app/store/Authentication/auth.models';
 import { environment } from 'src/environments/environment';
@@ -13,21 +13,45 @@ export class AuthfakeauthenticationService {
   public currentUser: Observable<User | null>;
 
   constructor(private http: HttpClient) {
-    const storedUser = localStorage.getItem('currentUser');
-    this.currentUserSubject = new BehaviorSubject<User | null>(
-      storedUser ? JSON.parse(storedUser) : null
-    );
-    this.currentUser = this.currentUserSubject.asObservable();
-  }
+      const stored = localStorage.getItem('currentUser');
+      let user: User | null = null;
 
-  public get currentUserValue(): User | null {
-    return this.currentUserSubject.value;
-  }
+      if (stored) {
+        try {
+          // Essaye de parser JSON
+          const parsed = JSON.parse(stored);
+          if (typeof parsed === 'string') {
+            // Ancien format simple string
+            user = { email: parsed, username: parsed.split('@')[0], token: 'fake-jwt-token' };
+            localStorage.setItem('currentUser', JSON.stringify(user));
+          } else if (parsed && parsed.username && parsed.email) {
+            user = parsed;
+          } else {
+            // Format inattendu → reset
+            console.warn('Format localStorage invalide, reset.');
+            localStorage.removeItem('currentUser');
+          }
+        } catch (e) {
+          // Si parse JSON échoue (ex: string brute), on convertit en objet
+          console.warn('Erreur parsing localStorage currentUser, reset.', e);
+          user = { email: stored, username: stored.split('@')[0], token: 'fake-jwt-token' };
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      }
+
+      this.currentUserSubject = new BehaviorSubject<User | null>(user);
+      this.currentUser = this.currentUserSubject.asObservable();
+    }
+
+
+    public get currentUserValue(): User | null {
+      return this.currentUserSubject.value;
+    }
 
   /**
    * Login via backend session (récupère username automatiquement)
    */
-  login() {
+ login(): Observable<User> {
     return this.http.get<{ username: string }>(`${apiUrl}/username`).pipe(
       map(res => {
         if (!res.username) {
@@ -36,9 +60,9 @@ export class AuthfakeauthenticationService {
 
         const email = `${res.username}@sodim.corp`;
         const user: User = {
-          email,
           username: res.username,
-          token: 'fake-jwt-token' // optionnel si tu n’as pas de JWT réel
+          email,
+          token: 'fake-jwt-token'
         };
 
         // Stockage local
@@ -48,10 +72,13 @@ export class AuthfakeauthenticationService {
         return user;
       }),
       catchError(err => {
-        return throwError(() => new Error(err.message || 'Erreur de session'));
+        // Gestion correcte de l'erreur avec throwError
+        const message = err?.error?.message || err?.message || 'Erreur de session';
+        return throwError(() => new Error(message));
       })
     );
   }
+
 
   logout() {
     localStorage.removeItem('currentUser');

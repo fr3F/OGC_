@@ -2,86 +2,82 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
-<<<<<<< HEAD
-const os = require("os"); // <-- ajouter
-const routes = require("./app/features/index"); 
-=======
 const os = require("os");
 const fs = require("fs");
+const session = require("express-session");
+
 const routes = require("./app/features/index");
->>>>>>> f8f63fd5c27d1a013ab4a169be58fee0b0fae682
 const db = require("./models/index");
 
 const app = express();
 const PORT = process.env.PORT || 8082;
 
-global.__basedir = path.resolve(__dirname);
-<<<<<<< HEAD
-app.use(cors());
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
-routes(app); 
+// ----------------- Middleware -----------------
 
-// Route pour récupérer le nom d'utilisateur
-app.get("/api/username", (res) => {
-  const username = process.env.USERNAME || process.env.USER || os.userInfo().username;
-  console.log("username",username);
+// Configuration CORS pour Angular
+const allowedOrigin = "http://192.168.2.41:8086"; 
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true 
+}));
 
-  res.json({ username });
-});
-
-db.sequelize.sync({ force: true })
-  .then(() => console.log("Base synchronisée"))
-  .catch(err => console.error("Erreur sync :", err));
-
-app.get("/", (req, res) => {
-  res.send("Server Node.js pour gestion des réceptions Excel est actif !");
-});
-
-app.listen(PORT, () => {
-  console.log(`Server démarré sur http://localhost:${PORT}`);
-=======
-
-app.use(cors());
+// Body parser
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
-let lastUsername ;
+// Session
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'uiUjkl4k3r9p!s@lT#2025!',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false, sameSite: 'lax' } // compatible HTTP local
+}));
+
+
+// ----------------- Routes -----------------
+
 routes(app);
 
-app.get("/api/set-username", (req, res) => {
-  lastUsername = req.query.u || "";
-  console.log("[API] Username reçu depuis Electron:", lastUsername);
-  res.json({ success: true });
-});
+let lastUsername = "";
 
-app.get("/api/username", (req, res) => {
-  res.json({ username: lastUsername });
-});
+// API pour récupérer le username du serveur
+// app.get("/api/username", (req, res) => {
+//   const username = process.env.USERNAME || process.env.USER || os.userInfo().username;
+//   console.log("[API] Username serveur :", username);
+//   res.json({ username });
+// });
+
+// API pour renvoyer le username stocké
+// app.get("/api/get-username", (req, res) => {
+//   res.json({ username: lastUsername });
+// });
+
+// ----------------- Angular static -----------------
 
 const angularDistPath = path.join(__dirname, "dist/skote");
 app.use(express.static(angularDistPath));
 
 app.use((req, res, next) => {
   const filePath = path.join(angularDistPath, req.path);
-
   if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
     return res.sendFile(filePath);
   }
-
+  // Toutes les routes non-API renvoient index.html
   if (!req.path.startsWith("/api/")) {
     return res.sendFile(path.join(angularDistPath, "index.html"));
   }
-
-  next(); 
+  next();
 });
 
+// ----------------- DB -----------------
+
 db.sequelize
-  .sync({ force: true })
+  .sync({ alter: true })
   .then(() => console.log("Base synchronisée"))
   .catch((err) => console.error("Erreur sync :", err));
 
+// ----------------- Lancement -----------------
+
 app.listen(PORT, () => {
   console.log(`Serveur démarré sur http://localhost:${PORT}`);
->>>>>>> f8f63fd5c27d1a013ab4a169be58fee0b0fae682
 });

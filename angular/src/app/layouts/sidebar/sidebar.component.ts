@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Input, OnChanges, inject } from '@angular/core';
 import MetisMenu from 'metismenujs';
 import { EventService } from '../../core/services/event.service';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
@@ -10,6 +10,9 @@ import { MenuItem } from './menu.model';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { CommonModule } from '@angular/common';
+import { Collaborateur } from 'src/app/features/rh/collaborateurs/models/collaborateur.model';
+import { CollaborateurService } from 'src/app/features/rh/collaborateurs/service/collaborateur.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -27,7 +30,10 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   menuItems: MenuItem[] = [];
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
-
+  private collaborateurService = inject(CollaborateurService);
+  private notificationService = inject(NotificationService);
+  
+  userRole 
   constructor(
     private eventService: EventService,
     private router: Router,
@@ -43,9 +49,45 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     });
   }
 
+  // ngOnInit() {
+  //   this.initialize();
+  //   this._scrollElement();
+  // }
+
   ngOnInit() {
-    this.initialize();
-    this._scrollElement();
+  this.getUserRoleAndInitializeMenu();
+  this._scrollElement();
+  console.log("userRole", this.userRole);
+  
+}
+
+  getUserRoleAndInitializeMenu() {
+    const storedUser = localStorage.getItem('currentUser');
+    if (!storedUser) return;
+
+    let username: string;
+    try {
+      const parsed = JSON.parse(storedUser);
+      username = parsed.username ?? parsed;
+    } catch {
+      username = storedUser;
+    }
+
+    this.collaborateurService.getByLogin(username).subscribe({
+      next: (collab: Collaborateur & { compte?: { type: string } }) => {
+        console.log("collab", collab);
+        
+        if (!collab) return;
+        console.log("collab", collab.compte?.type);
+
+        // On récupère le rôle depuis le compte (ou autre champ)
+        this.userRole = collab.compte?.type; 
+
+        // Initialiser le menu filtré par rôle
+        this.menuItems = this.filterMenuByRole(MENU, this.userRole);
+      },
+      error: (err) => this.notificationService.error(err),
+    });
   }
 
   ngAfterViewInit() {
@@ -124,9 +166,26 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
+  // initialize(): void {
+  //   this.menuItems = MENU;
+  // }
+
+// ici utiliser le droit accés
   initialize(): void {
-    this.menuItems = MENU;
-  }
+  this.menuItems = this.filterMenuByRole(MENU, this.userRole);
+}
+
+/**
+ * Filtre récursivement le menu selon le rôle
+ */
+filterMenuByRole(items: MenuItem[], role: string): MenuItem[] {
+  return items
+    .filter(item => !item.roles || item.roles.includes(role))
+    .map(item => ({
+      ...item,
+      subItems: item.subItems ? this.filterMenuByRole(item.subItems, role) : []
+    }));
+}
 
   hasItems(item: MenuItem) {
     return item.subItems !== undefined ? item.subItems.length > 0 : false;

@@ -1,0 +1,6 @@
+/* form-manager.component.css */
+@media (max-width: 576px) {
+  .btn span {
+    display: none;
+  }
+}

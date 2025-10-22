@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { map } from 'rxjs/operators';
 import { NotificationService } from '../../services/notification.service';
@@ -24,6 +24,13 @@ export class BaseService {
     protected eventService: EventService
   ) { }
 
+  // Enregistrer
+  // save(data){
+  //   let url = apiUrl + "/" + this.nomModele + "/";    
+  //   if(data.id)
+  //     return this.update(data);
+  //   return this.http.post(url, data);
+  // }
 
   save(data: any, nomModele: string) {
     console.log("Save API called", data, nomModele);
@@ -75,9 +82,7 @@ export class BaseService {
   }
 
   list(nomModele: string, params: any) {
-    const url = `${apiUrl}/${nomModele}`;
-    console.log("list", url);
-    
+    const url = `${apiUrl}/${nomModele}`;  
     return this.http.get<any>(url, { params });
   }
 
@@ -102,7 +107,8 @@ export class BaseService {
     const url = `${this.apiUrl}/${nomModele}/${id}/dupliquer`;
     return this.http.post(url, { nombre });
   }
-  
+
+
   addFile($event, data, attr){
     const target = $event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {

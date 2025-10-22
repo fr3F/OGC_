@@ -1,5 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { MenuService } from '../../services/menu.service';
+import { Component, inject, OnInit } from '@angular/core';import { MenuService } from '../../services/menu.service';
 import { NotificationService } from '../../services/notification.service';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -57,8 +56,8 @@ export class BaseComponentComponent implements OnInit {
     const onSuccess = (resp) =>{
       this.fonctionnalites = resp;
     }
-    this.menuServ.getFonctionnaliteModuleRole(this.idModule)
-      .subscribe(onSuccess, this.onError);
+    // this.menuServ.getFonctionnaliteModuleRole(this.idModule)
+    //   .subscribe(onSuccess, this.onError);
   }
 
   isVisible(type){

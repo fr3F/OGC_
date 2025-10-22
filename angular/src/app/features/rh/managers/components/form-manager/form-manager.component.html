@@ -1,0 +1,45 @@
+<div class="card shadow-sm p-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+      {{ data?.id ? 'Modifier le manager' : 'Ajouter un manager' }}
+    </h5>
+  </div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="valider()">
+    <div class="row g-2 align-items-center">
+      <!-- Champ input -->
+      <div class="col-9">
+        <input
+          id="nom_manager"
+          type="text"
+          class="form-control"
+          formControlName="nom_manager"
+          placeholder="Entrez le nom du manager"
+        />
+        <div
+          *ngIf="submit && formGroup.get('nom_manager')?.invalid"
+          class="text-danger mt-1 small"
+        >
+          Le nom du manager est requis.
+        </div>
+      </div>
+
+      <!-- Bouton -->
+      <div class="col-3 text-end">
+        <button
+          type="button"
+          class="btn btn-success w-100"
+          (click)="valider()"
+          [disabled]="formGroup.invalid"
+        >
+          <i class="fa fa-pencil-alt"></i>
+          <!-- <span class="d-none d-sm-inline ms-1">
+            {{ data?.id ? 'Modifier' : 'Enregistrer' }}
+          </span> -->
+        </button>
+
+
+      </div>
+    </div>
+  </form>
+</div>

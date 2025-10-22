@@ -20,7 +20,7 @@ export const initialState: BaseUpdateState = {
 export const BaseUpdateReducer = createReducer(
   initialState,
 
-  // 🔥 UPDATE
+  // UPDATE
   on(BaseUpdateActions.baseUpdate, (state) => ({
     ...state,
     updating: true,

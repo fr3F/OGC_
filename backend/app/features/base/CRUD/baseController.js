@@ -1,3 +1,5 @@
+const helper = require("./../../../helpers/helpers.helper");
+
 class BaseController {
     constructor(service) {
         this.service = service;
@@ -6,10 +8,9 @@ class BaseController {
     async create(req, res) {
         try {
             const result = await this.service.create(req.body);
-            res.status(201).json(result);
-        } catch (err) {
-            console.error("Error create:", err);
-            res.status(500).json({ message: err.message });
+            res.send(result);
+        } catch (err) {           
+            helper.sendError(res, err);
         }
     }
 
@@ -18,8 +19,7 @@ class BaseController {
             const result = await this.service.findAll();
             res.json(result);
         } catch (err) {
-            console.error("Error getAll:", err);
-            res.status(500).json({ message: err.message });
+            helper.sendError(res, err);
         }
     }
 
@@ -29,8 +29,7 @@ class BaseController {
             if (!result) return res.status(404).json({ message: "Not found" });
             res.json(result);
         } catch (err) {
-            console.error("Error getById:", err);
-            res.status(500).json({ message: err.message });
+            helper.sendError(res, err);
         }
     }
 
@@ -39,8 +38,7 @@ class BaseController {
             const result = await this.service.update(req.params.id, req.body);
             res.json(result);
         } catch (err) {
-            console.error("Error update:", err);
-            res.status(500).json({ message: err.message });
+            helper.sendError(res, err);
         }
     }
 
@@ -49,8 +47,7 @@ class BaseController {
             await this.service.delete(req.params.id);
             res.status(204).send();
         } catch (err) {
-            console.error("Error delete:", err);
-            res.status(500).json({ message: err.message });
+            helper.sendError(res, err);
         }
     }
 }

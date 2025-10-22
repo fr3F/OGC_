@@ -1,0 +1,55 @@
+  <div class="text-center mb-3">
+    <h5 class="mb-0">
+      {{ data?.login ? 'Modifier le compte' : 'Ajouter un compte' }}
+    </h5>
+  </div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="valider()" class="d-flex justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="row g-3 align-items-center">
+
+        <!-- Champ Login -->
+        <div class="col-12">
+          <label for="">Nom </label>
+          <input
+            id="login"
+            type="text"
+            class="form-control text-center"
+            formControlName="login"
+            placeholder=""
+          />
+          <div *ngIf="submit && formGroup.get('login')?.invalid" class="text-danger small mt-1 text-center">
+            Le nom du compte est requis.
+          </div>
+        </div>
+
+        <!-- Champ Type -->
+        <div class="col-12">
+          <label for="">Type du compte</label>
+          <input
+            id="type"
+            type="text"
+            class="form-control text-center"
+            formControlName="type"
+            placeholder=""
+          />
+          <div *ngIf="submit && formGroup.get('type')?.invalid" class="text-danger small mt-1 text-center">
+            Le type du compte est requis.
+          </div>
+        </div>
+
+        <!-- Bouton Validation -->
+        <div class="col-12 text-center mt-3">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="formGroup.invalid"
+          >
+            <i class="fa fa-save me-1"></i>
+            {{ data?.login ? 'Modifier' : 'Enregistrer' }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </form>
