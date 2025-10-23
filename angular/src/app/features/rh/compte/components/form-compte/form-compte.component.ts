@@ -41,4 +41,5 @@ export class FormcompteComponent extends BaseFormComponent {
     super.storeAction(payload, redirectUrl);
     this.onValidate.emit();
   }
+  
 }

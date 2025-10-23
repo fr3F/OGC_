@@ -45,6 +45,17 @@ async function getDemandeCongePaginated (req, res) {
     }
 }
 
+async function getDemandeCongePaginatedByManager (req, res) {
+    try{    
+        let rep = await congesService.getDemandeCongePaginatedByManager(req); 
+        res.send(rep)
+    }
+    catch(err){
+    console.error(err);
+
+        sendError(res, err);
+    }
+}
 
 // solde
 async function getSoldeCongePaginated (req, res) {
@@ -79,5 +90,6 @@ module.exports = {
     createDemandeConge,
     getDemandeCongePaginated,
     getSoldeCongePaginated,
-    createSolde
+    createSolde,
+    getDemandeCongePaginatedByManager
 }

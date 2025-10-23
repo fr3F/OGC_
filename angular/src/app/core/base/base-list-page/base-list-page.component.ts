@@ -6,10 +6,9 @@ import {
   selectError, 
   selectListByNomModele, 
   selectLoadingByNomModele, 
-  selectTotalItemsByNomModele, 
-   
+  selectTotalItemsByNomModele
 } from 'src/app/store/base/base-liste/base-list-page.selectors';
-import { filterList, loadList } from 'src/app/store/base/base-liste/base-list-page.actions';
+import { loadList } from 'src/app/store/base/base-liste/base-list-page.actions';
 import { AutoriseZeroService } from '../../services/autorise-zero.service';
 
 @Component({
@@ -19,8 +18,8 @@ import { AutoriseZeroService } from '../../services/autorise-zero.service';
 })
 export class BaseListPageComponent extends BaseComponentComponent implements OnInit, OnDestroy {
   // Inputs
-  @Input() titre: string;
-  @Input() idParent: any;
+  @Input() titre!: string;
+  @Input() idParent?: any;
   @Input() component = false;
 
   // Search & pagination
@@ -31,13 +30,12 @@ export class BaseListPageComponent extends BaseComponentComponent implements OnI
   motSearch = "";
   page = 1;
   count = 0;
-
   pageSize = 10;
   pageSizes = [10, 25, 50, 100];
-  nomParent: string;
-  nomModele: string;
+  nomParent?: string;
+  nomModele!: string;
   plusFiltre = false;
-  status?: number = 0  
+  status?: number = 0;
 
   idModule = 3;
   user: any;
@@ -47,25 +45,24 @@ export class BaseListPageComponent extends BaseComponentComponent implements OnI
   loading$;
   count$;
   error$;
-  public store = inject(Store);
+  store = inject(Store);
 
-  public reloadSubscription: Subscription;
-
-  public autoriseZeroService =  inject(AutoriseZeroService)
+  reloadSubscription!: Subscription;
+  autoriseZeroService = inject(AutoriseZeroService);
 
   ngOnInit(): void {
     super.ngOnInit();
-   
-    
+
     this.user = this.baseServ.getCurrentUser();
     this.fonctionnalites = {};
     this.initializeFonctionnalite();
 
-    // Sélecteurs NgRx
+    // ⚡ Sélecteurs NgRx
     this.list$ = this.store.select(selectListByNomModele(this.nomModele));
     this.loading$ = this.store.select(selectLoadingByNomModele(this.nomModele));
     this.count$ = this.store.select(selectTotalItemsByNomModele(this.nomModele));
     this.error$ = this.store.select(selectError);
+
     this.refreshData();
     this.listenReloadFlag();
   }
@@ -76,8 +73,8 @@ export class BaseListPageComponent extends BaseComponentComponent implements OnI
     }
   }
 
-  listenReloadFlag(){
-    this.autoriseZeroService.reloadChildData$.subscribe(() => {
+  listenReloadFlag(): void {
+    this.reloadSubscription = this.autoriseZeroService.reloadChildData$.subscribe(() => {
       this.refreshData();
     });
   }
@@ -108,68 +105,26 @@ export class BaseListPageComponent extends BaseComponentComponent implements OnI
     this.refreshData();
   }
 
-  getParamSearch() : any{
-    let param = {};
-    param["search"] = this.motSearch;
-    param["page"] = this.page<=0? 0: this.page - 1;
-    param["size"] = this.pageSize;
-    for(let p of this.paramSearchs)
-      param[p] = this[p];
-    // console.log(param)
-    if(this.idParent)
-      param[this.nomParent] = this.idParent
+  getParamSearch(): any {
+    const param: any = {
+      search: this.motSearch,
+      page: this.page <= 0 ? 0 : this.page - 1,
+      size: this.pageSize
+    };
+
+    // Paramètres dynamiques sécurisés
+    for (const p of this.paramSearchs) {
+      // on vérifie que la propriété existe sur `this` avant d'ajouter
+      if (this.hasOwnProperty(p) && this[p] != null) {
+        param[p] = this[p];
+      }
+    }
+
+    // idParent si nécessaire
+    if (this.idParent && this.nomParent) {
+      param[this.nomParent] = this.idParent;
+    }
+
     return param;
   }
-
-  // getParamSearch(): any {
-  //   const param: any = {
-  //     search: this.motSearch,
-  //     page: this.page <= 0 ? 0 : this.page - 1,
-  //     size: this.pageSize
-  //   };
-  //   for (const p of this.paramSearchs) param[p] = this[p];
-  //   if (this.idParent) param[this.nomParent] = this.idParent;
-  //   return param;
-  // }
-
-
-  // effacerFiltre(): void {
-  //   this.motSearch = "";
-  //   for (const p of this.paramSearchs) {
-  //     if (!this.nePasEffacer.includes(p)) {
-  //       this[p] = "";
-  //     }
-  //   }
-  //   this.search();
-  // }
-
-  // setFiltreDate(event: any, nom: string): void {
-  //   this[`${nom}Debut`] = event.dateDebut;
-  //   this[`${nom}Fin`] = event.dateFin;
-  //   this.search();
-  // }
-
-  // suppression(event: any): void {
-  //   this.refreshData();
-  // }
-
-  // importer(file: any): void {
-  //   // 👇 Implémenter si besoin
-  // }
-
-  // importExcel(event: any): void {
-  //   const target = event.target as HTMLInputElement;
-  //   if (target.files && target.files.length > 0) {
-  //     const file = target.files[0];
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => {
-  //       this.importer(reader.result);
-  //     };
-  //   }
-  // }
-
-  // updateList(): void {
-  //   this.store.dispatch(filterList({ nomModele: this.nomModele, searchTerm: this.motSearch }));
-  // }
 }

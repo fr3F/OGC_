@@ -23,7 +23,7 @@ export class FormTypeCongesComponent extends BaseFormComponent {
   buildForm(): void {
     this.formGroup = this.formBuilder.group({
       nom_type_conge: [this.data?.nom_type_conge, [Validators.required]],
-      max_jour: [this.data?.max_jour, [Validators.required]],
+      max_jour: [this.data?.max_jour],
     });
   }
 

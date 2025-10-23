@@ -6,22 +6,22 @@
 
         <div class="row col-md-12">
 
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="userContext.userName()">
             <div class="mb-3">
               <label class="bold"><strong>Nom et prénom</strong></label>
-              <p *ngIf="userName">{{ userName }}</p>
+              <p >{{ userContext.userName() }}</p>
             </div>
 
             <div class="mb-3">
               <label class="bold"><strong>Département</strong></label>
-              <p *ngIf="userName">{{ departementName }}</p>
+              <p >{{ userContext.departementName() }}</p>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="mb-3">
               <label class="bold"><strong>Manager</strong></label>
-              <p *ngIf="userName">Mr/Mme {{ managerName }}</p>
+              <p >Mr/Mme {{ userContext.managerName() }}</p>
             </div>
           </div>
 

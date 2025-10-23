@@ -60,7 +60,7 @@ export class BaseListPageEffects {
 
   private getService(nomModele: string, params: any, status: number) {
     switch (nomModele) {
-      
+
       case 'collaborateur':
         return this.collaborateurService.getAllDetailCollab(nomModele, params);
 
@@ -71,7 +71,7 @@ export class BaseListPageEffects {
         return this.managersService.getAllDetailManager(nomModele, params);
 
       case 'compte':
-        return this.competeService.getAllDetailcompte(nomModele, params);
+        return this.comptesService.getAllDetailcompte(nomModele, params);
 
       case 'statusconge':
         return this.statutCongesService.getAllDetailStatutConges(nomModele, params);
@@ -80,11 +80,16 @@ export class BaseListPageEffects {
         return this.typeCongeService.getAllDetailTypeConge(nomModele, params);
 
       case 'demandeconge':
-        return this.demandeCongeService.getAllDemandeConge(nomModele, params);
-      
+        // utiliser le typeCompte pour choisir le service
+        if (params?.typeCompte === 'manager') {
+          return this.demandeCongeService.getAllDemandeCongeManagerByLogin(nomModele, params);
+        } else {
+          return this.demandeCongeService.getAllDemandeCongeByLogin(nomModele, params);
+        }
+
       case 'solde':
-          return this.soldeService.getAllDetailSoldes(nomModele, params);
-          
+        return this.soldeService.getAllDetailSoldes(nomModele, params);
+
       default:
         return this.baseService.list(nomModele, params);
     }
@@ -95,7 +100,7 @@ export class BaseListPageEffects {
     private collaborateurService: CollaborateurService,
     private departementService: DepartementService,
     private managersService: ManagersService,
-    private competeService: ComptesService,
+    private comptesService: ComptesService,
     private baseService: BaseService,
     private spinner: NgxSpinnerService,
     private notif : NotificationService,

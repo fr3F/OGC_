@@ -63,23 +63,22 @@ function getFiltreRechercheTypeConge(req){
 // creation demande congé
 async function createDemandeConge(req, data) {
   try {
-    const loginAD = getLoginFromSession(req); 
-    const loginShort = extractShortLogin(loginAD); 
-    const collab = await db.collaborateur.findOne({ 
+    const loginAD = getLoginFromSession(req);
+    const loginShort = extractShortLogin(loginAD);
+
+    const collab = await db.collaborateur.findOne({
       where: { login: loginShort },
-      include: [{ model: db.solde }] 
+      include: [{ model: db.solde }]
     });
 
     if (!collab) throw new Error("Collaborateur non trouvé pour le login : " + loginShort);
 
     await ensureCompteExists(loginShort);
+
     data.id_status_conge = await getStatusEnAttenteId();
 
-    const solde = await Solde.findOne({
-      where: { id_collab: collab.id, id_type_conge: data.id_type_conge }
-    });
-
-    if (!solde) throw new Error("Solde non trouvé pour ce collaborateur et ce type de congé");
+    const typeConge = await TypeConge.findByPk(data.id_type_conge);
+    if (!typeConge) throw new Error("Type de congé introuvable");
 
     const dateDebut = new Date(data.date_debut_conge);
     const dateFin = new Date(data.date_fin_conge);
@@ -89,16 +88,29 @@ async function createDemandeConge(req, data) {
     const diffTime = dateFin.getTime() - dateDebut.getTime();
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
-    if (diffDays > solde.nb_jours_restants) {
-      throw new Error(`Impossible de créer le congé : ${solde.nb_jours_restants} jour(s) restant(s) seulement.`);
+    let solde = null;
+    if (typeConge.nom_type_conge.toLowerCase() !== 'maladie') {
+      solde = await Solde.findOne({
+        where: { id_collab: collab.id, id_type_conge: typeConge.id }
+      });
+
+      if (!solde) throw new Error("Solde non trouvé pour ce collaborateur et ce type de congé");
+
+      if (diffDays > solde.nb_jours_restants) {
+        throw new Error(`Impossible de créer le congé : ${solde.nb_jours_restants} jour(s) restant(s) seulement.`);
+      }
     }
 
+    // Créer la demande de congé
     data.login = loginShort;
     const demande = await DemandeConge.create(data);
 
-    solde.nb_jours_utilises += diffDays;
-    solde.nb_jours_restants -= diffDays;
-    await solde.save();
+    // Mettre à jour le solde si ce n'est pas un congé maladie
+    if (solde) {
+      solde.nb_jours_utilises += diffDays;
+      solde.nb_jours_restants -= diffDays;
+      await solde.save();
+    }
 
     return demande;
 
@@ -107,6 +119,7 @@ async function createDemandeConge(req, data) {
     throw err;
   }
 }
+
 
 function getLoginFromSession(req) {
   const loginAD = req.session?.currentUser?.username;
@@ -149,27 +162,25 @@ async function getStatusEnAttenteId() {
   }
 }
 
-async function createDemandeCongeEntry(data, loginShort) {
-  data.login = loginShort;
-  return await DemandeConge.create(data);
-}
-
 //Demande Conge Paginated
 async function getDemandeCongePaginated(req) {
   let { page, limit, offset } = getVarNecessairePagination(req);
   let option = getOptionGetDemandeConge(req, limit, offset);
 
-  option.include = getDemandeCongeInclude(); // inclure les relations correctement
+  option.include = getDemandeCongeInclude(req); 
 
   let rep = await DemandeConge.findAndCountAll(option);
   rep = dataToJson(rep);
   return getPagingData(rep, page, limit);
 }
-function getDemandeCongeInclude() {
+
+function getDemandeCongeInclude(req) {
+  const login = req.query.login;
   return [
     {
       model: db.compte,
       attributes: ['login', 'type'],
+      where: login ? { login } : undefined,
       include: [
         {
           model: db.collaborateur,
@@ -233,56 +244,130 @@ function getFiltreRechercheDemandeConge(req) {
   return filters;
 }
 
+//Liste demande conge par son manager
+function getQueryParams(req) {
+    const query = req.query || {};
+    const managerId = query.managerId;
+    if (!managerId) throw new Error("managerId requis");
+
+    const search = query.search || "";
+
+    const { page, size, limit, offset } = getVarNecessairePagination(req);
+
+    return { managerId, page, size, limit, offset, search };
+}
+
+function buildDataQuery({ managerId, limit, offset, search }) {
+    const sql = `
+        SELECT *
+        FROM vue_demandes_manager
+        WHERE manager_id = :managerId
+        ${search ? "AND motifs_conge LIKE :search" : ""}
+        LIMIT :limit OFFSET :offset
+    `;
+
+    const replacements = { managerId, limit, offset };
+    if (search) replacements.search = `%${search}%`;
+
+    return { sql, replacements };
+}
+
+function buildCountQuery({ managerId, search }) {
+    const sql = `
+        SELECT COUNT(*) AS total
+        FROM vue_demandes_manager
+        WHERE manager_id = :managerId
+        ${search ? "AND motifs_conge LIKE :search" : ""}
+    `;
+
+    const replacements = { managerId };
+    if (search) replacements.search = `%${search}%`;
+
+    return { sql, replacements };
+}
+
+async function executeQuery(sql, replacements) {
+    const results = await db.sequelize.query(sql, {
+        replacements,
+        type: db.Sequelize.QueryTypes.SELECT
+    });
+    return results;
+}
+
+async function getDemandeCongePaginatedByManager(req) {
+    const params = getQueryParams(req);
+    const { sql: dataSql, replacements: dataReplacements } = buildDataQuery(params);
+    const results = await executeQuery(dataSql, dataReplacements);
+    const { sql: countSql, replacements: countReplacements } = buildCountQuery(params);
+    const countResults = await executeQuery(countSql, countReplacements);
+    const totalItems = countResults[0].total;
+
+    return {
+        data: results,
+        page: params.page,
+        size: params.size,
+        totalItems,
+        totalPages: Math.ceil(totalItems / params.size)
+    };
+}
+
+
+
 
 //Create solde personnaliser
 async function createSolde(data) {
   try {
-    const typeConge = await TypeConge.findByPk(data.id_type_conge);
-    if (!typeConge) {
-      throw new Error("Type de congé introuvable");
-    }
-
-    if (!data.nb_jours_total || data.nb_jours_total === 0) {
-      data.nb_jours_total = typeConge.max_jour;
-    }
-
-    if (data.nb_jours_total > typeConge.max_jour) {
-      throw new Error(
-        `Le congé "${typeConge.nom_type_conge}" est limité à ${typeConge.max_jour} jours (vous avez demandé ${data.nb_jours_total}).`
-      );
-    }
-
-    const collaborateur = await Collaborateur.findByPk(data.id_collab);
-    if (!collaborateur) {
-      throw new Error("Collaborateur introuvable");
-    }
-
-    const soldeExistant = await Solde.findOne({
-      where: {
-        id_collab: data.id_collab,
-        id_type_conge: data.id_type_conge
-      }
-    });
-
-    if (soldeExistant) {
-      throw new Error(
-        `Ce collaborateur possède déjà un solde pour le type de congé "${typeConge.nom_type_conge}"`
-      );
-    }
-
-    if (data.nb_jours_utilises > data.nb_jours_total) {
-      throw new Error(
-        `Le nombre de jours utilisés (${data.nb_jours_utilises}) ne peut pas dépasser le total (${data.nb_jours_total})`
-      );
-    }
+    const typeConge = await getTypeCongeOrThrow(data.id_type_conge);
+    validateNbJoursTotal(data, typeConge);
+    await getCollaborateurOrThrow(data.id_collab);
+    await checkSoldeExistant(data.id_collab, data.id_type_conge, typeConge);
+    validateNbJoursUtilises(data);
 
     const solde = await Solde.create(data);
-
     return solde;
 
   } catch (error) {
     console.error("Erreur createSolde:", error);
     throw error;
+  }
+}
+async function getTypeCongeOrThrow(id_type_conge) {
+  const typeConge = await TypeConge.findByPk(id_type_conge);
+  if (!typeConge) throw new Error("Type de congé introuvable");
+  return typeConge;
+}
+function validateNbJoursTotal(data, typeConge) {
+  if (!data.nb_jours_total || data.nb_jours_total === 0) {
+    data.nb_jours_total = typeConge.max_jour;
+  }
+
+  if (data.nb_jours_total > typeConge.max_jour) {
+    throw new Error(
+      `Le congé "${typeConge.nom_type_conge}" est limité à ${typeConge.max_jour} jours (vous avez demandé ${data.nb_jours_total}).`
+    );
+  }
+}
+async function getCollaborateurOrThrow(id_collab) {
+  const collaborateur = await Collaborateur.findByPk(id_collab);
+  if (!collaborateur) throw new Error("Collaborateur introuvable");
+  return collaborateur;
+}
+async function checkSoldeExistant(id_collab, id_type_conge, typeConge) {
+  const soldeExistant = await Solde.findOne({
+    where: { id_collab, id_type_conge }
+  });
+
+  if (soldeExistant) {
+    throw new Error(
+      `Ce collaborateur possède déjà un solde pour le type de congé "${typeConge.nom_type_conge}"`
+    );
+  }
+}
+function validateNbJoursUtilises(data) {
+  if (data.nb_jours_utilises > data.nb_jours_total) {
+    throw new Error(
+      `Le nombre de jours utilisés (${data.nb_jours_utilises}) ne peut pas dépasser le total (${data.nb_jours_total})`
+    );
   }
 }
 
@@ -291,14 +376,16 @@ async function getSoldePaginated(req) {
   let { page, limit, offset } = getVarNecessairePagination(req);
   let option = getOptionGetSolde(req, limit, offset);
 
-  option.include = getSoldeInclude(); 
+  option.include = getSoldeInclude(req); 
 
   let rep = await Solde.findAndCountAll(option);
   rep = dataToJson(rep);
   return getPagingData(rep, page, limit);
 }
 
-function getSoldeInclude() {
+function getSoldeInclude(req) {
+  const login = req.query.login;
+  
   return [
     {
       model: db.collaborateur,
@@ -306,7 +393,8 @@ function getSoldeInclude() {
       include: [
         {
           model: db.compte,
-          attributes: ['login', 'type']
+          attributes: ['login', 'type'],
+          where: login ? { login } : undefined 
         }
       ]
     },
@@ -333,11 +421,13 @@ function getFiltreRechercheSolde(req) {
   return filters;
 }
 
+
 module.exports = {
   getStatusCongePaginated,
   getTypeCongePaginated,
   createDemandeConge,
   getDemandeCongePaginated,
   getSoldePaginated,
-  createSolde
+  createSolde,
+  getDemandeCongePaginatedByManager
 };

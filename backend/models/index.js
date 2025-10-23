@@ -49,5 +49,6 @@ db.typeConge.hasMany(db.solde, { foreignKey: "id_type_conge" });
 db.solde.belongsTo(db.collaborateur, { foreignKey: "id_collab" });
 db.collaborateur.hasMany(db.solde, { foreignKey: "id_collab" });
 
+
 module.exports = db;
 

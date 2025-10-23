@@ -43,4 +43,9 @@ export class SoldeService {
     const url = `${this.baseUrl}/${nomModele}/allSolde`
     return this.http.get(url, { params })
   }
+
+  getAllDetailSoldesByLogin(nomModele: string, params: any){
+    const url = `${this.baseUrl}/${nomModele}/allSolde`
+    return this.http.get(url, { params: { ...params } });
+  }
 }

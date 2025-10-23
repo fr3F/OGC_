@@ -39,6 +39,5 @@ export class ListSoldesComponent extends BaseListComponent {
   delete(index){
     let nomModele = this.nomModele
     super.delete(nomModele, index)
-  }
-
+  }  
 }

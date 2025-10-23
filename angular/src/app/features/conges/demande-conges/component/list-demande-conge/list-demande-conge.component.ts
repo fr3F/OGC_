@@ -27,7 +27,7 @@ export class ListDemandeCongeComponent extends BaseListComponent {
   itemSelected = {};
   private dateUtils = inject(DateUtilsService);
 
-  public calculateDaysDifference(dateDebut, dateFin) {
+  calculateDaysDifference(dateDebut, dateFin) {
     return this.dateUtils.calculateDaysDifference(dateDebut, dateFin);
   }
 

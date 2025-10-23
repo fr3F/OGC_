@@ -48,3 +48,33 @@
     at async status_conge.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
     at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
     at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)
+2025-10-22 14:28:11.382 [ERROR]: Not found
+2025-10-22 14:28:11.405 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-22 14:28:20.975 [ERROR]: Not found
+2025-10-22 14:28:20.976 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-22 14:29:22.584 [ERROR]: Not found
+2025-10-22 14:29:22.584 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-22 14:31:55.472 [ERROR]: Not found
+2025-10-22 14:31:55.472 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-22 14:34:24.753 [ERROR]: Incorrect integer value: ' ' for column 'max_jour' at row 1
+2025-10-22 14:34:24.759 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.insert (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2490:35)
+    at async type_conge.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async BaseService.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:7:16)
+    at async BaseController.create (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:10:28)

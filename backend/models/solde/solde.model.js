@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true, 
       autoIncrement: true 
     },  
-    id_collab: { type: DataTypes.INTEGER, allowNull: false },   // ajouté
-    id_type_conge: { type: DataTypes.INTEGER, allowNull: false }, // ajouté
+    id_collab: { type: DataTypes.INTEGER, allowNull: false },
+    id_type_conge: { type: DataTypes.INTEGER, allowNull: false },
     prix: { type: DataTypes.INTEGER },
-    nb_jours_total: { type: DataTypes.INTEGER, allowNull: false },
+    nb_jours_total: { type: DataTypes.INTEGER, allowNull: true },
     nb_jours_utilises: { type: DataTypes.INTEGER, defaultValue: 0 },
     nb_jours_restants: { type: DataTypes.INTEGER }
   }, {

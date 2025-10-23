@@ -11,28 +11,28 @@ export const MENU: MenuItem[] = [
     label: 'MENUITEMS.COLLABORATEUR.TEXT',
     icon: 'bx-group',
     link: '/collaborateur',
-    roles: ['admin', 'user'] 
+    roles: ['admin', 'user', "manager"] 
   },
   {
     id: 3,
     label: 'MENUITEMS.DEPARTEMENT.TEXT',
     icon: 'bx-home-circle',
     link: '/departement',
-    roles: ['admin', 'responsable', 'user']
+    roles: ['admin', 'user', "manager"]
   },
   {
     id: 4,
     label: 'MENUITEMS.MANAGER.TEXT',
     icon: 'bx-user-circle',
     link: '/manager',
-    roles: ['admin', 'user']
+    roles: ['admin', 'user', "manager"]
   },
   {
     id: 5,
     label: 'MENUITEMS.COMPTE.TEXT',
     icon: 'bx-cog',
     link: '/compte',
-    roles: ['admin', 'user']
+    roles: ['admin', 'user', "manager"]
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ export const MENU: MenuItem[] = [
         icon: 'bx-badge-check',
         link: '/statut-conges',
         parentId: 6,
-        roles: ['admin', 'responsable','user']
+        roles: ['admin','user', "manager"]
       },
       {
         id: 8,
@@ -53,7 +53,7 @@ export const MENU: MenuItem[] = [
         icon: 'bx-list-ul',
         link: '/type-conges',
         parentId: 6,
-        roles: ['admin']
+        roles: ['admin', 'user', "manager"]
       },
       {
         id: 9,
@@ -61,7 +61,7 @@ export const MENU: MenuItem[] = [
         icon: 'bx-clipboard',
         link: '/demande-conge',
         parentId: 6,
-        roles: ['admin', 'responsable', 'user']
+        roles: ['admin', 'user', "manager"]
       },
       {
         id: 10,
@@ -69,7 +69,7 @@ export const MENU: MenuItem[] = [
         icon: 'bx-wallet',
         link: '/solde',
         parentId: 6,
-        roles: ['admin', 'responsable', 'user']
+        roles: ['admin', 'user', "manager"]
       }
     ]
   }

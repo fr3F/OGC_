@@ -16,10 +16,10 @@ export class CollaborateurService {
     return this.http.get(`${this.baseUrl}/${this.nomModele}`);
   }
 
-  getByLogin(username: string): Observable<Collaborateur> {
-    return this.http.post<Collaborateur>(
+  getByLogin(username) {
+    return this.http.post(
       `${this.baseUrl}/${this.nomModele}/login`,
-      { login: username } // body JSON
+      { login: username } 
     );
   }
 

@@ -1,0 +1,9 @@
+2025-10-23 15:25:42.902 [ERROR]: Cannot delete or update a parent row: a foreign key constraint fails (`ogc`.`demande_conges`, CONSTRAINT `demande_conges_ibfk_397` FOREIGN KEY (`id_type_conge`) REFERENCES `type_conges` (`id`) ON UPDATE CASCADE)
+2025-10-23 15:25:42.972 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:393:12)
+    at async model.destroy (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2627:16)
+    at async BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:27:16)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)

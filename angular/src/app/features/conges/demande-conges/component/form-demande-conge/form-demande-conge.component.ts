@@ -9,6 +9,7 @@ import { StatutCongeService } from '../../../statut-conges/services/statut_conge
 import { CollaborateurService } from 'src/app/features/rh/collaborateurs/service/collaborateur.service';
 import { Collaborateur } from 'src/app/features/rh/collaborateurs/models/collaborateur.model';
 import { dateValidator } from 'src/app/core/utils/date-validator';
+import { UserContextService } from 'src/app/core/services/user-context.service';
 
 @Component({
   selector: 'app-form-demande-conge',
@@ -24,22 +25,19 @@ export class FormDemandeCongesComponent extends BaseFormComponent {
 
   typeConges = [];
   statusConges = [];
-  userName: string;
-  managerName: string;
-  departementName: string;
-  nbSoldes: number;
-  compteType: string;
 
   private typeCongesService = inject(TypeCongeService);
   private statusCongesService = inject(StatutCongeService);
   private notificationService = inject(NotificationService);
   private collaborateurService = inject(CollaborateurService);
+  userContext = inject(UserContextService);
 
   ngOnInit(): void {
     this.buildForm();
     this.getAllTypes();
     this.getAllStatusConge();
-    this.getCollabById();
+    // this.getCollabById();
+    this.userContext.loadCurrentCollaborateur();
   }
 
   buildForm(): void {
@@ -60,35 +58,36 @@ export class FormDemandeCongesComponent extends BaseFormComponent {
     }, { validators: dateValidator });
   }
 
-  getCollabById() {
-    const storedUser = localStorage.getItem('currentUser');
-    if (!storedUser) return;
+  // getCollabById() {
+  //   const storedUser = localStorage.getItem('currentUser');
+  //   if (!storedUser) return;
 
-    let username: string;
-    try {
-      const parsed = JSON.parse(storedUser);
-      username = parsed.username ?? parsed;
-    } catch {
-      username = storedUser;
-    }
+  //   let username: string;
+  //   try {
+  //     const parsed = JSON.parse(storedUser);
+  //     username = parsed.username ?? parsed;
+  //   } catch {
+  //     username = storedUser;
+  //   }
 
-    this.collaborateurService.getByLogin(username).subscribe({
-      next: (collab: Collaborateur & { 
-        compte?: { login: string; type: string }; 
-        manager?: { id: number; nom_manager: string }; 
-        departement?: { id: number; nom_dep: string }; 
-        soldes?: any[];
-      }) => {
-        if (!collab) return;
-        this.userName = `${collab.nom_collab} ${collab.prenom_collab}`;
-        this.managerName = collab.manager?.nom_manager ?? 'Non défini';
-        this.departementName = collab.departement?.nom_dep ?? 'Non défini';
-        this.compteType = collab.compte?.type ?? 'Non défini';
-        this.nbSoldes = collab.soldes?.length ?? 0;
-      },
-      error: (err) => this.notificationService.error(err),
-    });
-  }
+  //   this.collaborateurService.getByLogin(username).subscribe({
+      
+  //     next: (collab: Collaborateur & { 
+  //       compte?: { login: string; type: string }; 
+  //       manager?: { id: number; nom_manager: string }; 
+  //       departement?: { id: number; nom_dep: string }; 
+  //       soldes?: any[];
+  //     }) => {
+  //       if (!collab) return;
+  //       this.userName = `${collab.nom_collab} ${collab.prenom_collab}`;
+  //       this.managerName = collab.manager?.nom_manager ?? 'Non défini';
+  //       this.departementName = collab.departement?.nom_dep ?? 'Non défini';
+  //       this.compteType = collab.compte?.type ?? 'Non défini';
+  //       this.nbSoldes = collab.soldes?.length ?? 0;
+  //     },
+  //     error: (err) => this.notificationService.error(err),
+  //   });
+  // }
 
   valider() {
     this.submit = true;

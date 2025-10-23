@@ -57,10 +57,8 @@ async function findOneUserDemandeConge(login) {
   });
 
   if (collaborateur) {
-    console.log("Collaborateur trouvé :", collaborateur.toJSON());
     return collaborateur.toJSON(); 
   } else {
-    console.log("Aucun collaborateur trouvé avec ce login");
     return null;
   }
 }

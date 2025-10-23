@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  // ✅ Afficher / masquer le mot de passe
+  //Afficher / masquer le mot de passe
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }

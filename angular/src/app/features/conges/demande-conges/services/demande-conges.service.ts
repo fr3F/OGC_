@@ -35,6 +35,16 @@ export class DemandeCongesService {
     return this.http.get(url, { params });
   }
 
+  getAllDemandeCongeByLogin(nomModele: string, params: any) {
+    const url = `${this.baseUrl}/${nomModele}/allDemandeConge`;
+    return this.http.get(url, { params: { ...params } });
+  }
+  
+  getAllDemandeCongeManagerByLogin(nomModele: string, params: any) {
+    const url = `${this.baseUrl}/${nomModele}/demandeCongeByManager`;
+    return this.http.get(url, { params: { ...params } });
+  }
+  
   createDemandeConge(data, nomModele) {
     console.log("data--data", data);
     

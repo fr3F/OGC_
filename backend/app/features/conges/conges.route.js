@@ -48,6 +48,7 @@ module.exports = (app) => {
   registerModelRoutes("demandeconge", congesController, [
     { method: "post", path: "/ajouter", handler: congesController.createDemandeConge },
     { method: "get", path: "/allDemandeConge", handler: congesController.getDemandeCongePaginated },
+    { method: "get", path: "/demandeCongeByManager", handler: congesController.getDemandeCongePaginatedByManager },
   ]);
   
   registerModelRoutes("solde", congesController,[

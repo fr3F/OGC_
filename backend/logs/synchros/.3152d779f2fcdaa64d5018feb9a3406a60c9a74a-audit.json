@@ -6,11 +6,6 @@
     "auditLog": "logs\\synchros\\.3152d779f2fcdaa64d5018feb9a3406a60c9a74a-audit.json",
     "files": [
         {
-            "date": 1759929328902,
-            "name": "logs\\synchros\\synchro-2025-10-08.log",
-            "hash": "556df2e9f8797a0a610cc0067bf51147cf7f6c3aacf392304cab1909d8a2d39b"
-        },
-        {
             "date": 1759989074767,
             "name": "logs\\synchros\\synchro-2025-10-09.log",
             "hash": "705e90e1d2afa659ee1428f6f0593ae38a883967ea90dfd8203ab9aa76c631b4"
@@ -64,6 +59,11 @@
             "date": 1761110408847,
             "name": "logs\\synchros\\synchro-2025-10-22.log",
             "hash": "3b8d45e35bcc401ecba0d637c1e9510aeb2343b40b5dfd6c7f3dddfbbf428c48"
+        },
+        {
+            "date": 1761196514090,
+            "name": "logs\\synchros\\synchro-2025-10-23.log",
+            "hash": "bdbca3112f200789306c8e6bf5e8d711be6400f038ba60e960287fe3ab722dd8"
         }
     ],
     "hashType": "sha256"

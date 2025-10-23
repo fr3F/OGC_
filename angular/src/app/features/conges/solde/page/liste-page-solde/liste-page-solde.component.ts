@@ -26,7 +26,22 @@ export class ListePageSoldeComponent extends BaseListPageComponent {
   nomModele: string = "solde";
   titre: string = "Liste des solde congés";
   ngOnInit() {
-    super.ngOnInit()
-    this.refreshData() 
+    super.ngOnInit();
+    this.refreshData();
+    this.setLoginFromLocalStorage();
   }
+
+  private setLoginFromLocalStorage(): void {
+    const userStr = localStorage.getItem('currentUser');
+    if (!userStr) return;
+
+    const user = JSON.parse(userStr);
+    const loginManager = user.username;
+
+    if (loginManager) {
+      this.paramSearchs.push('login');
+      this['login'] = loginManager;
+    }
+  }
+
 }

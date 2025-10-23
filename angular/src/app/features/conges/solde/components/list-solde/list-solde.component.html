@@ -5,7 +5,8 @@
 
 <div class="table-responsive">
     <button type="button" class="btn btn-success mb-3 float-end" (click)="modify(modalForm, {})">
-        <i class="fa fa-plus me-1"></i>Ajouter
+        <!-- <i class="fa fa-plus me-1"></i> -->
+        Ajouter
     </button>
 
     <table *ngIf="list && list.length !== 0" class="table table-centered table-sm table-bordered">
@@ -52,7 +53,6 @@
         </tbody>
     </table>
 </div>
-
 
 <ng-template #modalForm role="document" let-modal>
     <div class="modal-header">
