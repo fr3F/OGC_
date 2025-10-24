@@ -10,12 +10,24 @@
         <thead class="table-light">
             <tr>
                 <th scope="col" class="align-middle">Nom et Prénom</th>
+                <th scope="col" class="align-middle">Son Manager</th>
                 <th scope="col" class="align-middle">Action</th>
             </tr>
         </thead>
         <tbody class="align-middle">
             <tr *ngFor="let item of list | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index">
                 <td>{{item.nom_manager}}</td>
+                <td>
+                    <span *ngIf="item.superior; else noManager">
+                        {{ item.superior.nom_manager }}
+                        <br>
+                        <small class="text-muted">{{ item.superior.email_manager }}</small>
+                    </span>
+                    <ng-template #noManager>
+                        <small class="text-muted">Aucun manager</small>
+                    </ng-template>
+                </td>
+
                 <td class="text-center">
                     <button class="btn btn-sm btn-outline-warning me-1" ngbTooltip="Modifier"
                             (click)="modify(modalForm, item)"

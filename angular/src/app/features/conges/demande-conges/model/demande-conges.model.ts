@@ -5,4 +5,5 @@ export interface DemandeConges {
   motifs_conge?: string;
   id_status_conge?: string | Date;
   id_type_conge?: string;  
+  demande_id?: number
 }

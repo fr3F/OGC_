@@ -82,6 +82,7 @@ export class AuthfakeauthenticationService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('userData');
     this.currentUserSubject.next(null);
   }
 }

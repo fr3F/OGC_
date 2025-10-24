@@ -1,0 +1,163 @@
+2025-10-24 10:37:21.521 [ERROR]: Not found
+2025-10-24 10:37:21.591 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 12:08:48.841 [ERROR]: Not found
+2025-10-24 12:08:48.879 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 12:11:26.339 [ERROR]: Not found
+2025-10-24 12:11:26.341 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 12:11:40.301 [ERROR]: Not found
+2025-10-24 12:11:40.301 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 12:14:01.917 [ERROR]: Not found
+2025-10-24 12:14:01.920 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 13:43:26.987 [ERROR]: connect ETIMEDOUT
+2025-10-24 13:43:35.169 [ERROR]: SequelizeConnectionError: connect ETIMEDOUT
+    at ConnectionManager.connect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\connection-manager.js:102:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ConnectionManager._connect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+2025-10-24 14:21:35.188 [ERROR]: Not found
+2025-10-24 14:21:35.202 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:23:44.414 [ERROR]: Not found
+2025-10-24 14:23:44.419 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:26:04.484 [ERROR]: Not found
+2025-10-24 14:26:04.502 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:32:02.526 [ERROR]: Not found
+2025-10-24 14:32:02.549 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:33:21.803 [ERROR]: Not found
+2025-10-24 14:33:21.807 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:33:27.768 [ERROR]: Not found
+2025-10-24 14:33:27.768 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:33:38.575 [ERROR]: Not found
+2025-10-24 14:33:38.576 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:34:01.272 [ERROR]: Not found
+2025-10-24 14:34:01.272 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:34:22.278 [ERROR]: Not found
+2025-10-24 14:34:22.279 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:34:37.720 [ERROR]: Not found
+2025-10-24 14:34:37.720 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:35:25.966 [ERROR]: Not found
+2025-10-24 14:35:25.967 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:26:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:38:45.685 [ERROR]: Not found
+2025-10-24 14:38:45.689 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:28:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:42:21.464 [ERROR]: Not found
+2025-10-24 14:42:21.465 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:28:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:42:42.957 [ERROR]: Not found
+2025-10-24 14:42:42.958 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:28:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:44:31.700 [ERROR]: Not found
+2025-10-24 14:44:31.700 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:28:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:45:00.528 [ERROR]: Not found
+2025-10-24 14:45:00.529 [ERROR]: Error: Not found
+    at BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:28:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 14:56:26.284 [ERROR]: Cannot delete or update a parent row: a foreign key constraint fails (`ogc`.`soldes`, CONSTRAINT `soldes_ibfk_262` FOREIGN KEY (`id_collab`) REFERENCES `collaborateurs` (`id`) ON UPDATE CASCADE)
+2025-10-24 14:56:26.320 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:393:12)
+    at async model.destroy (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:2627:16)
+    at async BaseService.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\services\baseService.js:29:16)
+    at async BaseController.delete (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\base\CRUD\baseController.js:47:13)
+2025-10-24 16:13:26.759 [ERROR]: Unknown column 'manager.createdAt' in 'order clause'
+2025-10-24 16:13:26.842 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async manager.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Promise.all (index 1)
+    at async manager.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getManagerPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:146:15)
+    at async getManagerPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\rh.controller.js:51:19)
+2025-10-24 16:13:26.927 [ERROR]: Unknown column 'manager.createdAt' in 'order clause'
+2025-10-24 16:13:26.927 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async manager.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Promise.all (index 1)
+    at async manager.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getManagerPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:146:15)
+    at async getManagerPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\rh.controller.js:51:19)
+2025-10-24 16:23:09.183 [ERROR]: Unknown column 'manager.createdAt' in 'order clause'
+2025-10-24 16:23:09.321 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async manager.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Promise.all (index 1)
+    at async manager.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getManagerPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:146:15)
+    at async getManagerPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\rh.controller.js:51:19)
+2025-10-24 16:23:09.435 [ERROR]: Unknown column 'manager.createdAt' in 'order clause'
+2025-10-24 16:23:09.436 [ERROR]: Error
+    at Query.run (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async manager.findAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async Promise.all (index 1)
+    at async manager.findAndCountAll (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\model.js:1322:27)
+    at async Object.getManagerPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\services\rh.service.js:146:15)
+    at async getManagerPaginated (D:\projet\sodim\Angluar 18\OGC\projet\backend\app\features\rh\rh.controller.js:51:19)

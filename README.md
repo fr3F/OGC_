@@ -8,9 +8,6 @@
 		cd D:\projet\sodim\Angluar 18\OGC\angular
 		ng serve --port=8086 --host=0.0.0.0
 
-		ng serve --port 8086 --host 0.0.0.0
-
-
 # Build
 ##	Build
 		D:

@@ -5,7 +5,15 @@ module.exports = (sequelize, DataTypes) => {
     date_fin_conge: { type: DataTypes.DATE },
     motifs_conge: { type: DataTypes.STRING(50) },
     id_status_conge: { type: DataTypes.INTEGER, allowNull: false },
-    id_type_conge: { type: DataTypes.INTEGER, allowNull: false }
+    id_type_conge: { type: DataTypes.INTEGER, allowNull: false },
+    id_manager: {
+      type: DataTypes.INTEGER,   
+      allowNull: true,
+      references: {
+          model: "manager",
+          key: "id"
+      }
+    }
   });
 
   return DemandeConge;

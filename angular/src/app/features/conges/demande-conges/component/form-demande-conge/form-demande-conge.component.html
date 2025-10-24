@@ -112,7 +112,21 @@
             Veuillez sélectionner un type de congé
           </div>
         </div>
+              <!-- Section status de congé -->
+        <div class="col-md-6 mt-2" *ngIf = "userType === 'manager'">
+          <label><strong>status congé</strong></label>
+          <select class="form-control" formControlName="id_status_conge"
+            [ngClass]="{'is-invalid': isInvalid('id_status_conge')}">
+            <option value="" disabled>Sélectionnez un status</option>
+            <option *ngFor="let t of statusConges" [value]="t.id">{{ t.nom_status_conge }}</option>
+          </select>
+          <div *ngIf="isInvalid('id_status_conge')" class="invalid-feedback d-block">
+            Veuillez sélectionner un status de congé
+          </div>
+        </div>
+
       </div>
+
 
       <input type="hidden" formControlName="id_status_conge" [value]="null" />
 

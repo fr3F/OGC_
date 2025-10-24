@@ -17,13 +17,22 @@ import { CommonModule } from '@angular/common';
 })
 export class FormManagerComponent extends BaseFormComponent {
   @Input() data!: Manager;
-
+  managers
   private managerService = inject(ManagersService);
 
+  ngOnInit(): void {
+    this.buildForm()
+    this.getAllManager()
+  }
   buildForm(): void {
     this.formGroup = this.formBuilder.group({
       nom_manager: [this.data?.nom_manager, [Validators.required]],
+      id_manager: [this.data?.id_manager]
     });
+  }
+
+  getAllManager(){
+    this.managerService.getAll().subscribe((r)=>this.managers = r)
   }
 
   valider() {

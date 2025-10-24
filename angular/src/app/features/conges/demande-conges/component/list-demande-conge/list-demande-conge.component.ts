@@ -27,6 +27,10 @@ export class ListDemandeCongeComponent extends BaseListComponent {
   itemSelected = {};
   private dateUtils = inject(DateUtilsService);
 
+  ngOnInit() {
+    super.ngOnInit()
+  }
+
   calculateDaysDifference(dateDebut, dateFin) {
     return this.dateUtils.calculateDaysDifference(dateDebut, dateFin);
   }
@@ -42,8 +46,13 @@ export class ListDemandeCongeComponent extends BaseListComponent {
   }
 
   delete(index){
+    const id = index.demande_id || index.id
     let nomModele = this.nomModele
-    super.delete(nomModele, index)
+    super.deleteSimple(nomModele, id)
+  }
+
+  validerConge(){
+    
   }
 
 }

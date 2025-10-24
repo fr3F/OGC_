@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, tap, finalize } from 'rxjs';
+import { catchError, map, mergeMap, of, tap, finalize, Observable } from 'rxjs';
 import { BaseService } from 'src/app/core/base/base/base.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { loadList, loadListFailure, loadListSuccess } from '../base-liste/base-list-page.actions';
@@ -21,12 +21,12 @@ export class BaseListPageEffects {
   loadList$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadList),
-      tap(() => this.spinner.show()), 
+      tap(() => this.spinner.show()),
       mergeMap(({ nomModele, params, status }) =>
         this.getService(nomModele, params, status).pipe(
           tap((response) => console.log(`Réponse API ${nomModele}`, response)),
           map((response: any) => this.normalizeResponse(nomModele, response)),
-          catchError(error => {
+          catchError((error) => {
             this.notif.error(error);
             return of(loadListFailure({ nomModele, error }));
           }),
@@ -80,12 +80,8 @@ export class BaseListPageEffects {
         return this.typeCongeService.getAllDetailTypeConge(nomModele, params);
 
       case 'demandeconge':
-        // utiliser le typeCompte pour choisir le service
-        if (params?.typeCompte === 'manager') {
-          return this.demandeCongeService.getAllDemandeCongeManagerByLogin(nomModele, params);
-        } else {
-          return this.demandeCongeService.getAllDemandeCongeByLogin(nomModele, params);
-        }
+        const methodName = this.getDemandeCongeServiceCall(params);
+        return this.demandeCongeService[methodName](nomModele, params);
 
       case 'solde':
         return this.soldeService.getAllDetailSoldes(nomModele, params);
@@ -93,6 +89,12 @@ export class BaseListPageEffects {
       default:
         return this.baseService.list(nomModele, params);
     }
+  }
+
+  private getDemandeCongeServiceCall(params) {
+    return (params.typeCompte === 'manager' && params.managerId) 
+      ? 'getAllDemandeCongeManagerByLogin' 
+      : 'getAllDemandeCongeByLogin';
   }
 
   constructor(

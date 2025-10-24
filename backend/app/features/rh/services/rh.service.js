@@ -143,13 +143,29 @@ function getFiltreRechercheDepartement(req){
 async function getManagerPaginated(req) {
     let { page, limit, offset } = getVarNecessairePagination(req);
     let option = await getOptionGetManager(req, limit, offset);
-    let rep = await Manager.findAndCountAll(option);
+    let rep = await Manager.findAndCountAll(   
+      {
+        ...option, 
+        include: getManagerInclude()
+      }
+      );
     rep = dataToJson(rep);
     return getPagingData(rep, page, limit)
 }
+
+function getManagerInclude() {
+  return [
+    {
+      model: db.manager,
+      as: 'superior',      
+      attributes: ['id', 'nom_manager', 'email_manager']
+    }
+  ];
+}
+
 function getOptionGetManager(req, limit, offset){
     let filters = getFiltreRechercheManager(req);
-    let order = [['createdAt', 'DESC']];
+    let order = [['id', 'DESC']];
     return {
         where: filters,
         limit, offset,

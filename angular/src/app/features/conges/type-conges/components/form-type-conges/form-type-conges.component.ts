@@ -20,6 +20,7 @@ export class FormTypeCongesComponent extends BaseFormComponent {
 
   private typeCongeService = inject(TypeCongeService);
 
+  
   buildForm(): void {
     this.formGroup = this.formBuilder.group({
       nom_type_conge: [this.data?.nom_type_conge, [Validators.required]],

@@ -105,26 +105,41 @@ export class BaseListPageComponent extends BaseComponentComponent implements OnI
     this.refreshData();
   }
 
-  getParamSearch(): any {
-    const param: any = {
-      search: this.motSearch,
-      page: this.page <= 0 ? 0 : this.page - 1,
-      size: this.pageSize
-    };
+  // getParamSearch(): any {
+  //   const param: any = {
+  //     search: this.motSearch,
+  //     page: this.page <= 0 ? 0 : this.page - 1,
+  //     size: this.pageSize
+  //   };
 
-    // Paramètres dynamiques sécurisés
-    for (const p of this.paramSearchs) {
-      // on vérifie que la propriété existe sur `this` avant d'ajouter
-      if (this.hasOwnProperty(p) && this[p] != null) {
-        param[p] = this[p];
-      }
-    }
+  //   // Paramètres dynamiques sécurisés
+  //   for (const p of this.paramSearchs) {
+  //     // on vérifie que la propriété existe sur `this` avant d'ajouter
+  //     if (this.hasOwnProperty(p) && this[p] != null) {
+  //       param[p] = this[p];
+  //     }
+  //   }
 
-    // idParent si nécessaire
-    if (this.idParent && this.nomParent) {
-      param[this.nomParent] = this.idParent;
-    }
+  //   // idParent si nécessaire
+  //   if (this.idParent && this.nomParent) {
+  //     param[this.nomParent] = this.idParent;
+  //   }
 
+  //   return param;
+  // }
+
+
+  getParamSearch() : any{
+    let param = {};
+    param["search"] = this.motSearch;
+    param["page"] = this.page<=0? 0: this.page - 1;
+    param["size"] = this.pageSize;
+    for(let p of this.paramSearchs)
+      param[p] = this[p];
+    // console.log(param)
+    if(this.idParent)
+      param[this.nomParent] = this.idParent
     return param;
   }
+
 }

@@ -25,7 +25,7 @@ export class FormDemandeCongesComponent extends BaseFormComponent {
 
   typeConges = [];
   statusConges = [];
-
+  userType
   private typeCongesService = inject(TypeCongeService);
   private statusCongesService = inject(StatutCongeService);
   private notificationService = inject(NotificationService);
@@ -33,12 +33,16 @@ export class FormDemandeCongesComponent extends BaseFormComponent {
   userContext = inject(UserContextService);
 
   ngOnInit(): void {
+    super.ngOnInit()
+    this.userType = this.userStorageService.getUserType()
     this.buildForm();
     this.getAllTypes();
     this.getAllStatusConge();
     // this.getCollabById();
     this.userContext.loadCurrentCollaborateur();
   }
+
+
 
   buildForm(): void {
     const formatDate = (date: string | undefined) => {
@@ -58,37 +62,6 @@ export class FormDemandeCongesComponent extends BaseFormComponent {
     }, { validators: dateValidator });
   }
 
-  // getCollabById() {
-  //   const storedUser = localStorage.getItem('currentUser');
-  //   if (!storedUser) return;
-
-  //   let username: string;
-  //   try {
-  //     const parsed = JSON.parse(storedUser);
-  //     username = parsed.username ?? parsed;
-  //   } catch {
-  //     username = storedUser;
-  //   }
-
-  //   this.collaborateurService.getByLogin(username).subscribe({
-      
-  //     next: (collab: Collaborateur & { 
-  //       compte?: { login: string; type: string }; 
-  //       manager?: { id: number; nom_manager: string }; 
-  //       departement?: { id: number; nom_dep: string }; 
-  //       soldes?: any[];
-  //     }) => {
-  //       if (!collab) return;
-  //       this.userName = `${collab.nom_collab} ${collab.prenom_collab}`;
-  //       this.managerName = collab.manager?.nom_manager ?? 'Non défini';
-  //       this.departementName = collab.departement?.nom_dep ?? 'Non défini';
-  //       this.compteType = collab.compte?.type ?? 'Non défini';
-  //       this.nbSoldes = collab.soldes?.length ?? 0;
-  //     },
-  //     error: (err) => this.notificationService.error(err),
-  //   });
-  // }
-
   valider() {
     this.submit = true;
     if (this.formGroup.invalid) return;
@@ -96,7 +69,9 @@ export class FormDemandeCongesComponent extends BaseFormComponent {
     const formData = this.formGroup.value;
     if (formData.id_status_conge === null) delete formData.id_status_conge;
 
-    const flattenedData = { ...formData, id: this.data?.id };
+    const id = this.data?.demande_id || this.data?.id;
+    const flattenedData = { ...formData, id };
+    
     const payload = { data: flattenedData, nomModele: this.nomModele };
     const redirectUrl = '/demande-conge';
     super.storeAction(payload, redirectUrl);

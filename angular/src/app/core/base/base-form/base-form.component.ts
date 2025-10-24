@@ -8,6 +8,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { filter } from 'rxjs';
 import { baseSave, baseSaveSuccess } from 'src/app/store/base/base-create/base-create-page.actions';
 import { baseUpdate } from 'src/app/store/base/base-update/base-update.actions';
+import { UserStorageService } from '../../services/UserStorageService';
 
 @Component({
   selector: 'app-base-form',
@@ -27,12 +28,17 @@ export class BaseFormComponent extends BaseComponentComponent implements OnInit 
   redirect: boolean = true;
   formGroup!: FormGroup;
   submit: boolean = false;
-  nomModele:string = ""
+  nomModele:string = "";
 
   public actions$ = inject(Actions);
   public router = inject(Router);
   public baseServ =  inject(BaseService) ;
   public formBuilder = inject(FormBuilder);   
+  public userStorageService = inject(UserStorageService)
+  
+  // ngOnInit() {
+  //   this.userType = this.userStorageService.getUserType()
+  // }
 
   listenSaveSuccess(nomModele) {
     this.actions$.pipe(

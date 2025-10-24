@@ -6,16 +6,6 @@
     "auditLog": "logs\\global\\.948db0b42a7bc804d16f31a685668eb6ed79044f-audit.json",
     "files": [
         {
-            "date": 1759989074773,
-            "name": "logs\\global\\gestion-caisse-2025-10-09.log",
-            "hash": "50ffb63c525c37579e00a671674dccea5cd7ffa5745c8843fa1f82c92010643e"
-        },
-        {
-            "date": 1760072408934,
-            "name": "logs\\global\\gestion-caisse-2025-10-10.log",
-            "hash": "40bc16cfdece3ba649557a756922ce60954fe40c8917a20d9a88d7fde55aaafb"
-        },
-        {
             "date": 1760130203325,
             "name": "logs\\global\\gestion-caisse-2025-10-11.log",
             "hash": "2976a7893753a2f3af987385d1c96334035a8ff96c97c3214a2b59c61d0726a9"
@@ -64,6 +54,11 @@
             "date": 1761196514136,
             "name": "logs\\global\\gestion-caisse-2025-10-23.log",
             "hash": "cc21f89046cec792567908c9bacfc977f5501435c0f79eeff11bcd6c731f9e22"
+        },
+        {
+            "date": 1761282608680,
+            "name": "logs\\global\\gestion-caisse-2025-10-24.log",
+            "hash": "f6e44ba6787bfaf63791287099d691c2e49d3e814f4b408e7a12c508f8c2d9a7"
         }
     ],
     "hashType": "sha256"

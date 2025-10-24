@@ -22,6 +22,8 @@ class BaseService {
     }
 
     async delete(id) {
+        console.log("model", this.model, "id", id);
+        
         const instance = await this.model.findByPk(id);
         if (!instance) throw new Error("Not found");
         return await instance.destroy();

@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { loadDelete } from 'src/app/store/base/base-delete/base-delete-page.actions';
 import { NotificationService } from '../../services/notification.service';
 import { BaseService } from '../base/base.service';
+import { UserStorageService } from '../../services/UserStorageService';
 
 @Component({
   selector: 'app-base-list',
@@ -16,9 +17,12 @@ export class BaseListComponent implements OnInit {
   public store = inject(Store);
   public modalService = inject(NgbModal);
   public notif = inject(NotificationService);
-  public baseService = inject(BaseService)
-  nombreDuplicate =  1;
+  public baseService = inject(BaseService);
+  public userStorageService = inject(UserStorageService)
 
+  nombreDuplicate =  1;
+  public userType
+   
   @Input() fonctionnalites;
   @Input() isVisible;
   @Input() acces;
@@ -33,6 +37,7 @@ export class BaseListComponent implements OnInit {
   plusFiltre = false;
 
   ngOnInit(): void {
+    this.userType = this.userStorageService.getUserType()
   }
 
   masquerAction(){

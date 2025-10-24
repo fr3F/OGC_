@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { Collaborateur } from 'src/app/features/rh/collaborateurs/models/collaborateur.model';
 import { CollaborateurService } from 'src/app/features/rh/collaborateurs/service/collaborateur.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { UserStorageService } from 'src/app/core/services/UserStorageService';
 
 @Component({
   selector: 'app-sidebar',
@@ -32,7 +33,8 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('sideMenu') sideMenu: ElementRef;
   private collaborateurService = inject(CollaborateurService);
   private notificationService = inject(NotificationService);
-  
+  private userStorageService = inject(UserStorageService);
+
   userRole 
   constructor(
     private eventService: EventService,
@@ -73,17 +75,31 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       username = storedUser;
     }
 
+    this.loadUserData(username)
+  }
+
+  
+  loadUserData(username: string) {
     this.collaborateurService.getByLogin(username).subscribe({
       next: (collab: Collaborateur & { compte?: { type: string } }) => {
         console.log("collab", collab);
         
         if (!collab) return;
-        console.log("collab", collab.compte?.type);
 
-        // On récupère le rôle depuis le compte (ou autre champ)
-        this.userRole = collab.compte?.type; 
+        // Utiliser le service pour sauvegarder
+        this.userStorageService.saveUserData({
+          id: collab.id!,
+          username: username,
+          nom: collab.nom_collab,
+          prenom: collab.prenom_collab,
+          email: collab.email_collab,
+          matricule: collab.matricule_collab,
+          type: collab.compte?.type || 'collaborateur',
+          id_manager: collab.id_manager ? Number(collab.id_manager) : null 
 
-        // Initialiser le menu filtré par rôle
+        });
+
+        this.userRole = collab.compte?.type;
         this.menuItems = this.filterMenuByRole(MENU, this.userRole);
       },
       error: (err) => this.notificationService.error(err),

@@ -7,63 +7,57 @@ import { BaseListPageComponent } from 'src/app/core/base/base-list-page/base-lis
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ListDemandeCongeComponent } from '../../component/list-demande-conge/list-demande-conge.component';
 import { UserContextService } from 'src/app/core/services/user-context.service';
+import { UserStorageService } from 'src/app/core/services/UserStorageService';
 
 @Component({
   selector: 'app-liste-page-demande-conge',
   templateUrl: './liste-page-demande-conge.component.html',
   styleUrls: ['./liste-page-demande-conge.component.css'],
-  standalone:true,
-  imports:[
+  standalone: true,
+  imports: [
     CommonModule,
     PagetitleComponent,
     FormsModule,
     ReactiveFormsModule,
     NgbPaginationModule,
     NgxPaginationModule,
-    ListDemandeCongeComponent
-  ]
+    ListDemandeCongeComponent,
+  ],
 })
 export class ListePageDemandeCongeComponent extends BaseListPageComponent {
-  nomModele: string = "demandeconge";
-  titre: string = "Liste des demandes de congé";
+  nomModele: string = 'demandeconge';
+  titre: string = 'Liste des demandes de congé';
   userContext = inject(UserContextService);
-  
+  userStorageService = inject(UserStorageService)
 
   ngOnInit() {
     super.ngOnInit();
-    this.setLoginFromLocalStorage();
+    this.setUserParams();
     this.refreshData();
+
   }
 
-  
-  private setLoginFromLocalStorage() {
-    const userStr = localStorage.getItem('currentUser');
-    if (!userStr) return;
+  private setUserParams() {
+      const userData = this.userStorageService.getUserData();      
 
-    const user = JSON.parse(userStr);
-    const loginManager = user.username;
-    const typeCompte = user.compte?.type ?? 'Non défini';
-    const typeConge = this.userContext.typeConge(); 
-    console.log("typeConge", typeConge);
-    
-    if (loginManager) {
-      // Ajouter 'login', 'typeCompte', 'typeConge' dans paramSearchs
-      ['login', 'typeCompte', 'typeConge'].forEach(p => {
-        if (!this.paramSearchs.includes(p)) this.paramSearchs.push(p);
+      if (!userData) {
+        console.warn('Aucune donnée utilisateur');
+        return;
+      }
+
+      // Ajouter les paramètres
+      ['typeCompte', 'managerId', 'login'].forEach(p => {
+        if (!this.paramSearchs.includes(p)) {
+          this.paramSearchs.push(p);
+        }
       });
 
-      // Créer les propriétés dynamiques
-      this['login'] = loginManager;
-      this['typeCompte'] = typeCompte;
-      this['typeConge'] = typeConge;
+      // Créer les propriétés
+      this['typeCompte'] = userData.type;
+      this['managerId'] = userData.id_manager;
+      this['login'] = userData.username;
+
+      console.log("Params configurés depuis UserStorageService");
     }
-  }
 
-
-  handlePageChange(page: number) {
-    this.page = page;
-    this.refreshData();
-  }
 }
-
-
