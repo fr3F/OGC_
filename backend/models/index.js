@@ -96,6 +96,9 @@ db.typeConge.hasMany(db.solde, { foreignKey: "id_type_conge" });
 db.solde.belongsTo(db.collaborateur, { foreignKey: "id_collab" });
 db.collaborateur.hasMany(db.solde, { foreignKey: "id_collab" });
 
+db.manager.belongsTo(db.compte, { foreignKey: "login"});
+db.compte.hasMany(db.manager, { foreignKey: "login" });
+
 
 module.exports = db;
 

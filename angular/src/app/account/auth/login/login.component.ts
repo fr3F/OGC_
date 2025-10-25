@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     let username = this.f['username'].value.trim();
     const password = this.f['password'].value;
 
-    // ✅ Ajout automatique du domaine s’il n’existe pas
+    // Ajout automatique du domaine s’il n’existe pas
     const domain = '@sodim.corp';
     if (!username.includes('@')) {
       username += domain;

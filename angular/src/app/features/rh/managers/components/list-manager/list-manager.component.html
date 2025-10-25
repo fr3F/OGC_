@@ -11,6 +11,7 @@
             <tr>
                 <th scope="col" class="align-middle">Nom et Prénom</th>
                 <th scope="col" class="align-middle">Son Manager</th>
+                <th scope="col" class="align-middle">Login</th>
                 <th scope="col" class="align-middle">Action</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                         <small class="text-muted">Aucun manager</small>
                     </ng-template>
                 </td>
+                <td>{{item.login}}</td>
 
                 <td class="text-center">
                     <button class="btn btn-sm btn-outline-warning me-1" ngbTooltip="Modifier"

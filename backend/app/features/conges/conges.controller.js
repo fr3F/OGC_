@@ -57,6 +57,26 @@ async function getDemandeCongePaginatedByManager (req, res) {
     }
 }
 
+async function validerDemandeConge(){
+
+try {
+    const { demandeId, valide } = req.body; 
+    const login_manager = req.user?.login || req.body.login_manager;
+
+    if (!demandeId || typeof valide !== 'boolean') {
+      return res.status(400).json({ message: 'Paramètres manquants ou invalides' });
+    }
+
+    const demande = await congesService.validerDemandeConge(login_manager, demandeId, valide);
+
+    res.json({ success: true, demande });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+
+}
+
 // solde
 async function getSoldeCongePaginated (req, res) {
     try{    
@@ -91,5 +111,6 @@ module.exports = {
     getDemandeCongePaginated,
     getSoldeCongePaginated,
     createSolde,
-    getDemandeCongePaginatedByManager
+    getDemandeCongePaginatedByManager,
+    validerDemandeConge
 }

@@ -63,61 +63,122 @@ function getFiltreRechercheTypeConge(req){
 // creation demande congé
 async function createDemandeConge(req, data) {
   try {
-    const loginAD = getLoginFromSession(req);
-    const loginShort = extractShortLogin(loginAD);
-
-    const collab = await db.collaborateur.findOne({
-      where: { login: loginShort },
-      include: [{ model: db.solde }]
-    });
-
-    if (!collab) throw new Error("Collaborateur non trouvé pour le login : " + loginShort);
-
-    await ensureCompteExists(loginShort);
-
-    data.id_status_conge = await getStatusEnAttenteId();
-
-    const typeConge = await TypeConge.findByPk(data.id_type_conge);
-    if (!typeConge) throw new Error("Type de congé introuvable");
-
-    const dateDebut = new Date(data.date_debut_conge);
-    const dateFin = new Date(data.date_fin_conge);
-    dateDebut.setHours(0, 0, 0, 0);
-    dateFin.setHours(0, 0, 0, 0);
-
-    const diffTime = dateFin.getTime() - dateDebut.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-
-    let solde = null;
-    if (typeConge.nom_type_conge.toLowerCase() !== 'maladie') {
-      solde = await Solde.findOne({
-        where: { id_collab: collab.id, id_type_conge: typeConge.id }
-      });
-
-      if (!solde) throw new Error("Solde non trouvé pour ce collaborateur et ce type de congé");
-
-      if (diffDays > solde.nb_jours_restants) {
-        throw new Error(`Impossible de créer le congé : ${solde.nb_jours_restants} jour(s) restant(s) seulement.`);
-      }
-    }
-
-    // Créer la demande de congé
-    data.login = loginShort;
-    const demande = await DemandeConge.create(data);
-
-    // Mettre à jour le solde si ce n'est pas un congé maladie
-    if (solde) {
-      solde.nb_jours_utilises += diffDays;
-      solde.nb_jours_restants -= diffDays;
-      await solde.save();
-    }
+    const { collab, loginShort } = await getCollaborateurWithSolde(req);
+    const { typeConge, diffDays, solde } = await checkConges(collab, data);
+    const preparedData = await prepareDemande(collab, loginShort, data);
+    const demande = await saveDemande(preparedData);
 
     return demande;
-
   } catch (err) {
     console.error("Erreur createDemandeConge:", err);
     throw err;
   }
+}
+
+async function getCollaborateurWithSolde(req) {
+  const loginAD = getLoginFromSession(req);
+  const loginShort = extractShortLogin(loginAD);
+
+  const collab = await db.collaborateur.findOne({
+    where: { login: loginShort },
+    include: [{ model: db.solde }]
+  });
+
+  if (!collab) throw new Error("Collaborateur non trouvé pour le login : " + loginShort);
+
+  await ensureCompteExists(loginShort);
+
+  return { collab, loginShort };
+}
+
+async function checkConges(collab, data) {
+  data.id_status_conge = await getStatusEnAttenteId();
+
+  const typeConge = await db.typeConge.findByPk(data.id_type_conge);
+  if (!typeConge) throw new Error("Type de congé introuvable");
+
+  const dateDebut = new Date(data.date_debut_conge);
+  const dateFin = new Date(data.date_fin_conge);
+  dateDebut.setHours(0, 0, 0, 0);
+  dateFin.setHours(0, 0, 0, 0);
+
+  const diffTime = dateFin.getTime() - dateDebut.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+  let solde = null;
+  if (typeConge.nom_type_conge.toLowerCase() !== 'maladie') {
+    solde = await db.solde.findOne({
+      where: { id_collab: collab.id, id_type_conge: typeConge.id }
+    });
+
+    if (!solde) throw new Error("Solde non trouvé pour ce collaborateur et ce type de congé");
+
+    if (diffDays > solde.nb_jours_restants) {
+      throw new Error(`Impossible de créer le congé : ${solde.nb_jours_restants} jour(s) restant(s) seulement.`);
+    }
+  }
+
+  return { typeConge, diffDays, solde };
+}
+
+async function prepareDemande(collab, loginShort, data) {
+  data.login = loginShort;
+  data.id_manager = await getIdManagerCollaborateur(collab.id);
+  return data;
+}
+
+async function saveDemande(data, solde, diffDays) {
+  const demande = await db.demandeconge.create(data);
+
+  return demande;
+}
+
+// Valider demande conge
+async function validerDemandeConge(login_manager, demandeId, valide) {
+  // Récupérer la demande
+  const demande = await db.demandeconge.findOne({
+    where: { id_demande_conge: demandeId, id_manager: login_manager }
+  });
+
+  if (!demande) throw new Error("Demande non trouvée ou vous n'êtes pas le manager de cette demande");
+
+  // Mettre à jour le statut
+  demande.is_valide = valide; 
+  demande.id_status_conge = await getStatusId(valide ? "Validé" : "Rejeté");
+  // demande.date_validation = new Date();
+
+  await demande.save();
+
+  // Si validé et pas maladie, ajuster solde
+  if (valide) {
+    const typeConge = await db.typeConge.findByPk(demande.id_type_conge);
+    if (typeConge.nom_type_conge.toLowerCase() !== "maladie") {
+      const collab = await db.collaborateur.findOne({ where: { login: demande.login } });
+      const solde = await db.solde.findOne({
+        where: { id_collab: collab.id_collab, id_type_conge: typeConge.id_type_conge }
+      });
+
+      const diffTime = new Date(demande.date_fin_conge).getTime() - new Date(demande.date_debut_conge).getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+      solde.nb_jours_utilises += diffDays;
+      solde.nb_jours_restants -= diffDays;
+      await solde.save();
+    }
+  }
+
+  return demande;
+}
+
+// Fonction pour récupérer l'ID du manager d'un collaborateur
+async function getIdManagerCollaborateur(collabId) {
+  const collaborateur = await db.collaborateur.findOne({
+    where: { id: collabId },
+    attributes: ['id_manager']
+  });
+
+  if (!collaborateur) throw new Error("Collaborateur introuvable");
+  return collaborateur.id_manager;
 }
 
 
@@ -224,6 +285,12 @@ function getDemandeCongeInclude(req) {
     {
       model: db.typeConge,
       attributes: ['id', 'nom_type_conge', 'max_jour']
+    },
+    {
+      // Ici on remplace 'manager' par 'manager_valide'
+      model: db.manager,
+      as: 'manager_valide',
+      attributes: ['id', 'nom_manager', 'email_manager']
     }
   ];
 }
@@ -247,40 +314,40 @@ function getFiltreRechercheDemandeConge(req) {
 //Liste demande conge par son manager
 function getQueryParams(req) {
     const query = req.query || {};
-    const managerId = query.managerId;
-    if (!managerId) throw new Error("managerId requis");
+    const login_manager = query.login_manager;
+    if (!login_manager) throw new Error("login_manager requis");
 
     const search = query.search || "";
 
     const { page, size, limit, offset } = getVarNecessairePagination(req);
 
-    return { managerId, page, size, limit, offset, search };
+    return { login_manager, page, size, limit, offset, search };
 }
 
-function buildDataQuery({ managerId, limit, offset, search }) {
+function buildDataQuery({ login_manager, limit, offset, search }) {
     const sql = `
         SELECT *
         FROM vue_demandes_manager
-        WHERE manager_id = :managerId
+        WHERE login_manager = :login_manager
         ${search ? "AND motifs_conge LIKE :search" : ""}
         LIMIT :limit OFFSET :offset
     `;
 
-    const replacements = { managerId, limit, offset };
+    const replacements = { login_manager, limit, offset };
     if (search) replacements.search = `%${search}%`;
 
     return { sql, replacements };
 }
 
-function buildCountQuery({ managerId, search }) {
+function buildCountQuery({ login_manager, search }) {
     const sql = `
         SELECT COUNT(*) AS total
         FROM vue_demandes_manager
-        WHERE manager_id = :managerId
+        WHERE login_manager = :login_manager
         ${search ? "AND motifs_conge LIKE :search" : ""}
     `;
 
-    const replacements = { managerId };
+    const replacements = { login_manager };
     if (search) replacements.search = `%${search}%`;
 
     return { sql, replacements };
@@ -310,8 +377,6 @@ async function getDemandeCongePaginatedByManager(req) {
         totalPages: Math.ceil(totalItems / params.size)
     };
 }
-
-
 
 
 //Create solde personnaliser
@@ -429,5 +494,6 @@ module.exports = {
   getDemandeCongePaginated,
   getSoldePaginated,
   createSolde,
-  getDemandeCongePaginatedByManager
+  getDemandeCongePaginatedByManager,
+  validerDemandeConge
 };

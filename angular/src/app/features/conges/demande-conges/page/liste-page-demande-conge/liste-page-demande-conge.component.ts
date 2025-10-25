@@ -29,7 +29,7 @@ export class ListePageDemandeCongeComponent extends BaseListPageComponent {
   titre: string = 'Liste des demandes de congé';
   userContext = inject(UserContextService);
   userStorageService = inject(UserStorageService)
-
+  status
   ngOnInit() {
     super.ngOnInit();
     this.setUserParams();
@@ -37,27 +37,28 @@ export class ListePageDemandeCongeComponent extends BaseListPageComponent {
 
   }
 
-  private setUserParams() {
-      const userData = this.userStorageService.getUserData();      
+private setUserParams() {
+  const userData = this.userStorageService.getUserData();
+  this.status=userData.type
 
-      if (!userData) {
-        console.warn('Aucune donnée utilisateur');
-        return;
-      }
+  if (!userData) {
+    console.warn('Aucune donnée utilisateur');
+    return;
+  }
 
-      // Ajouter les paramètres
-      ['typeCompte', 'managerId', 'login'].forEach(p => {
-        if (!this.paramSearchs.includes(p)) {
-          this.paramSearchs.push(p);
-        }
-      });
-
-      // Créer les propriétés
-      this['typeCompte'] = userData.type;
-      this['managerId'] = userData.id_manager;
-      this['login'] = userData.username;
-
-      console.log("Params configurés depuis UserStorageService");
+  // Ajouter uniquement les paramètres nécessaires
+  ['typeCompte', 'login_manager'].forEach(p => {
+    if (!this.paramSearchs.includes(p)) {
+      this.paramSearchs.push(p);
     }
+  });
+
+  // Créer les propriétés
+  this['typeCompte'] = userData.type;
+  // this['login_manager'] = userData.username;
+  this['login_manager'] = "user028";
+  console.log("Params configurés depuis UserStorageService sans login");
+}
+
 
 }

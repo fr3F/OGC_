@@ -58,7 +58,7 @@ export class BaseListPageEffects {
   return loadListSuccess({ nomModele, data, totalItems });
 }
 
-  private getService(nomModele: string, params: any, status: number) {
+  private getService(nomModele: string, params: any, status) {
     switch (nomModele) {
 
       case 'collaborateur':
@@ -80,9 +80,9 @@ export class BaseListPageEffects {
         return this.typeCongeService.getAllDetailTypeConge(nomModele, params);
 
       case 'demandeconge':
-        const methodName = this.getDemandeCongeServiceCall(params);
-        return this.demandeCongeService[methodName](nomModele, params);
-
+        return status === 'manager'
+          ? this.demandeCongeService.getAllDemandeCongeManagerByLogin(nomModele, params)
+          : this.demandeCongeService.getAllDemandeCongeByLogin(nomModele, params);
       case 'solde':
         return this.soldeService.getAllDetailSoldes(nomModele, params);
 
@@ -91,11 +91,6 @@ export class BaseListPageEffects {
     }
   }
 
-  private getDemandeCongeServiceCall(params) {
-    return (params.typeCompte === 'manager' && params.managerId) 
-      ? 'getAllDemandeCongeManagerByLogin' 
-      : 'getAllDemandeCongeByLogin';
-  }
 
   constructor(
     private actions$: Actions,

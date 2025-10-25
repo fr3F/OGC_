@@ -24,9 +24,22 @@
         <select id="id_manager" class="form-select" formControlName="id_manager"
                 [ngClass]="{'is-invalid': isInvalid('id_manager')}">
           <option value="">-- Sélectionnez son manager --</option>
-          <option *ngFor="let c of managers" [value]="c.id">{{ c.nom_manager }}</option>
+          <option *ngFor="let m of managers" [value]="m.id">{{ c.nom_manager }}</option>
         </select>
         <div *ngIf="isInvalid('id_manager')" class="invalid-feedback">
+          Veuillez sélectionner un manager.
+        </div>
+      </div>
+
+      <!-- Sélection du manager supérieur -->
+      <div class="col-12">
+        <label for="login" class="form-label">Login</label>
+        <select id="login" class="form-select" formControlName="login"
+                [ngClass]="{'is-invalid': isInvalid('login')}">
+          <option value="">-- Sélectionnez login --</option>
+          <option *ngFor="let c of comptes" [value]="c.login">{{ c.login }}</option>
+        </select>
+        <div *ngIf="isInvalid('login')" class="invalid-feedback">
           Veuillez sélectionner un manager.
         </div>
       </div>

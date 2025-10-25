@@ -13,7 +13,4 @@
 		D:
 		cd D:\projet\sodim\Angluar 18\OGC\angular
         ng build --configuration production --base-href /ogc/ --deploy-url /ogc/
->>>>>>> 6f0c0cf (Initial commit after fix)
-
         ng build --configuration production --base-href /ogc/ --deploy-url /ogc/
-
