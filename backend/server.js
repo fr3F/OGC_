@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8082;
 // ----------------- Middleware -----------------
 
 // Configuration CORS pour Angular
-const allowedOrigin = "http://192.168.2.41:8086"; 
+const allowedOrigin = "http://192.168.96.1:8086"; 
 app.use(cors({
   origin: allowedOrigin,
   credentials: true 

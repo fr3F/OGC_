@@ -59,6 +59,11 @@
             "date": 1761368667872,
             "name": "logs\\global\\gestion-caisse-2025-10-25.log",
             "hash": "c8054588cee9b3dc2cdb50b50a3933f7316e413e25f21972e4dc6300abf6a132"
+        },
+        {
+            "date": 1761470078535,
+            "name": "logs\\global\\gestion-caisse-2025-10-26.log",
+            "hash": "a258ed3924b8182ff3ebb8ee6347e51c505110e02b64193eb9e35574c76ebc40"
         }
     ],
     "hashType": "sha256"

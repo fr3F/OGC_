@@ -1,99 +1,120 @@
-<div *ngIf="list && list.length === 0" class="mx-auto" style="margin-top: 40px;">
-    <p class="alert text-center alert-info">Aucun collaborateur</p>
+<div *ngIf="list && list.length === 0" class="mx-auto" style="margin-top: 40px">
+  <p class="alert text-center alert-info">Aucun collaborateur</p>
 </div>
 
-
 <div class="table-responsive">
+  <button type="button" class="btn btn-success mb-3 float-end" routerLink="/demande-conge/ajouter">
+    Ajouter
+  </button>
+  <table *ngIf="list && list.length !== 0" class="table table-centered table-sm table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th scope="col" class="align-middle">Date début</th>
+        <th scope="col" class="align-middle">Date fin</th>
+        <th scope="col" class="align-middle">Motif</th>
+        <th scope="col" class="align-middle">Login</th>
+        <th scope="col" class="align-middle" *ngIf="userType !== 'manager'">Manager</th>
+        <th scope="col" class="align-middle">Département</th>
+        <th scope="col" class="align-middle">Nombres du jours</th>
+        <th scope="col" class="align-middle">Status</th>
+        <th scope="col" class="align-middle">Type</th>
+        <th scope="col" class="align-middle">Action</th>
+      </tr>
+    </thead>
+    <tbody class="align-middle">
+      <tr
+        *ngFor="
+          let item of list
+            | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count };
+          let i = index
+        "
+      >
+        <td>{{ item.date_debut_conge | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ item.date_fin_conge | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ item.motifs_conge }}</td>
+        <td>{{ userType === 'manager' ? item.collaborateur_login : item.login }}</td>
 
-    <button type="button" class="btn btn-success mb-3 float-end" routerLink="/demande-conge/ajouter">Ajouter</button>
-    <table *ngIf="list && list.length !== 0" class="table table-centered table-sm table-bordered">
-        <thead class="table-light">
-            <tr>
-                <th scope="col" class="align-middle">Date début</th>
-                <th scope="col" class="align-middle">Date fin</th>
-                <th scope="col" class="align-middle">Motif</th>
-                <th scope="col" class="align-middle">Login</th>
-                <th scope="col" class="align-middle" *ngIf="userType !== 'manager'">Manager</th>
-                <th scope="col" class="align-middle">Département</th>
-                <th scope="col" class="align-middle">Nombres du jours</th>
-                <th scope="col" class="align-middle">Status</th>
-                <th scope="col" class="align-middle">Type</th>
-                <th scope="col" class="align-middle">Action</th>
-            </tr>
-        </thead>
-        <tbody class="align-middle">
-            <tr *ngFor="let item of list | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index">
-                <td>{{item.date_debut_conge | date:'yyyy-MM-dd'}} </td>
-                <td>{{item.date_fin_conge | date:'yyyy-MM-dd'}} </td>
-                <td>{{item.motifs_conge}}</td>
-                <td>{{ 
-                        userType === 'manager' 
-                        ? item.collaborateur_login 
-                        : item.login 
-                    }}
-                </td>
+        <td *ngIf="userType !== 'manager'">
+          {{ item.compte?.collaborateur?.manager?.nom_manager }}
+        </td>
 
-                <td *ngIf="userType !== 'manager'">
-                    {{ item.compte?.collaborateur?.manager?.nom_manager }}
-                </td>
+        <td>
+          {{
+            userType === 'manager'
+              ? item.departement_collab
+              : item.compte?.collaborateur?.departement?.nom_dep
+          }}
+        </td>
+        <td>
+          {{ calculateDaysDifference(item.date_debut_conge, item.date_fin_conge) }}
+          {{
+            calculateDaysDifference(item.date_debut_conge, item.date_fin_conge) > 1
+              ? 'jours'
+              : 'jour'
+          }}
+        </td>
+        <td>
+          {{ userType === 'manager' ? item.nom_status_conge : item.status_conge?.nom_status_conge }}
+        </td>
+        <td>
+          {{ userType === 'manager' ? item.nom_type_conge : item.type_conge?.nom_type_conge }}
+        </td>
+        <td class="text-center">
+          <button
+            class="btn btn-sm btn-outline-warning me-1"
+            ngbTooltip="Modifier"
+            (click)="modify(modalForm, item)"
+          >
+            <i class="fa fa-pencil-alt"></i>
+          </button>
+          <button
+            mat-button
+            class="btn btn-sm btn-outline-danger me-1"
+            ngbTooltip="Supprimer"
+            (click)="delete(item)"
+          >
+            <i class="fa fa-trash-alt"></i>
+          </button>
 
-                <td>{{
-                        userType === 'manager'
-                        ? item.departement_collab
-                        : item.compte?.collaborateur?.departement?.nom_dep
-                    }}
-                </td>
-                <td>
-                    {{ calculateDaysDifference(item.date_debut_conge, item.date_fin_conge) }}
-                    {{ calculateDaysDifference(item.date_debut_conge, item.date_fin_conge) > 1 ? 'jours' : 'jour' }}
-                </td>
-                <td>{{ 
-                        userType ==='manager'
-                        ? item.nom_status_conge
-                        : item.status_conge?.nom_status_conge
-                    }}
-                </td>
-                <td>
-                    {{ 
-                        userType === 'manager' 
-                        ? item.nom_type_conge 
-                        : item.type_conge?.nom_type_conge
-                    }}
-                </td>
-                <td class="text-center">
-                    <button class="btn btn-sm btn-outline-warning me-1" ngbTooltip="Modifier"
-                            (click)="modify(modalForm, item)"
-                        >
-                            <i class="fa fa-pencil-alt"></i>
-                    </button>
-                    <button 
-                    *ngIf="userType !== manager"
-                    mat-button class="btn btn-sm btn-outline-danger me-1" ngbTooltip="Supprimer"
-                        (click)="delete(item)"
-                    >
-                        <i class="fa fa-trash-alt"></i>
-                    </button>
-                    <!-- <button
-                        *ngIf = "userType !== manager"
-                        mat-button class="btn btn-sm btn-outline-success me-1"
-                        ngbTooltip="Valider"
-                        (click)="validerConge(i)"
-                    >
-                        <i class="fa fa-check"></i>
-                    </button> -->
-                </td>
-            </tr>
-        </tbody>
-    </table>
+          <button
+            *ngIf="item.nom_status_conge === 'Validé'"
+            mat-button
+            class="btn btn-sm btn-outline-success me-1"
+            ngbTooltip="Valider"
+            (click)="validerConge(i)"
+          >
+            <i class="fa fa-check"></i>
+          </button>
+          <button
+            *ngIf="item.nom_status_conge !== 'Validé'"
+            mat-button
+            class="btn btn-sm btn-outline-success me-1"
+            ngbTooltip="Rejeter"
+            (click)="rejeterConge(i)"
+          >
+            <i class="fa fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <ng-template #modalForm role="document" let-modal>
-    <div class="modal-header">
-        <h5 class="modal-title mt-0" *ngIf="!itemSelected.login">Ajouter</h5>
-        <h5 class="modal-title mt-0"  *ngIf="itemSelected.login">Modifier</h5>
-        <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <app-form-demande-conge [data]="itemSelected" (onValidate)="changeItem()"></app-form-demande-conge>
-    </div>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0" *ngIf="!itemSelected.login">Ajouter</h5>
+    <h5 class="modal-title mt-0" *ngIf="itemSelected.login">Modifier</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-hidden="true"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-form-demande-conge
+      [data]="itemSelected"
+      (onValidate)="changeItem()"
+    ></app-form-demande-conge>
+  </div>
 </ng-template>

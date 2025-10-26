@@ -1,10 +1,17 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Input, OnChanges, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  ViewChild,
+  Input,
+  OnChanges,
+  inject,
+} from '@angular/core';
 import MetisMenu from 'metismenujs';
 import { EventService } from '../../core/services/event.service';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
-
 import { HttpClient } from '@angular/common/http';
-
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -20,29 +27,26 @@ import { UserStorageService } from 'src/app/core/services/UserStorageService';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
   standalone: true,
-  imports: [SimplebarAngularModule, RouterModule, CommonModule, TranslateModule]
+  imports: [SimplebarAngularModule, RouterModule, CommonModule, TranslateModule],
 })
 export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('componentRef') scrollRef;
   @Input() isCondensed = false;
   menu: any;
-  data: any;
-
   menuItems: MenuItem[] = [];
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
+
   private collaborateurService = inject(CollaborateurService);
   private notificationService = inject(NotificationService);
   private userStorageService = inject(UserStorageService);
 
-  userRole 
   constructor(
     private eventService: EventService,
     private router: Router,
     public translate: TranslateService,
     private http: HttpClient
   ) {
-    // Réactive le menu à chaque navigation
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this._activateMenuDropdown();
@@ -51,64 +55,23 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     });
   }
 
-  // ngOnInit() {
-  //   this.initialize();
-  //   this._scrollElement();
-  // }
-
   ngOnInit() {
-  this.getUserRoleAndInitializeMenu();
-  this._scrollElement();
-  console.log("userRole", this.userRole);
-  
-}
-
-  getUserRoleAndInitializeMenu() {
-    const storedUser = localStorage.getItem('currentUser');
-    if (!storedUser) return;
-
-    let username: string;
-    try {
-      const parsed = JSON.parse(storedUser);
-      username = parsed.username ?? parsed;
-    } catch {
-      username = storedUser;
-    }
-
-    this.loadUserData(username)
+    this.initializeMenu(); // ✅ on affiche le menu complet directement
+    this._scrollElement();
   }
 
-  
-  loadUserData(username: string) {
-    this.collaborateurService.getByLogin(username).subscribe({
-      next: (collab: Collaborateur & { compte?: { type: string } }) => {
-        console.log("collab", collab);
-        
-        if (!collab) return;
-
-        // Utiliser le service pour sauvegarder
-        this.userStorageService.saveUserData({
-          id: collab.id!,
-          username: username,
-          nom: collab.nom_collab,
-          prenom: collab.prenom_collab,
-          email: collab.email_collab,
-          matricule: collab.matricule_collab,
-          type: collab.compte?.type || 'collaborateur',
-          id_manager: collab.id_manager ? Number(collab.id_manager) : null 
-
-        });
-
-        this.userRole = collab.compte?.type;
-        this.menuItems = this.filterMenuByRole(MENU, this.userRole);
-      },
-      error: (err) => this.notificationService.error(err),
-    });
+  /**
+   * Initialise le menu complet sans filtrage de rôles
+   */
+  initializeMenu(): void {
+    this.menuItems = MENU; // Aucun filtrage
   }
 
   ngAfterViewInit() {
-    this.menu = new MetisMenu(this.sideMenu.nativeElement);
-    this._activateMenuDropdown();
+    setTimeout(() => {
+      this.menu = new MetisMenu(this.sideMenu.nativeElement);
+      this._activateMenuDropdown();
+    }, 0);
   }
 
   toggleMenu(event) {
@@ -116,7 +79,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (!this.isCondensed && this.sideMenu || this.isCondensed) {
+    if ((!this.isCondensed && this.sideMenu) || this.isCondensed) {
       setTimeout(() => {
         this.menu = new MetisMenu(this.sideMenu.nativeElement);
       });
@@ -127,25 +90,24 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
 
   _scrollElement() {
     setTimeout(() => {
-      if (document.getElementsByClassName("mm-active").length > 0) {
-        const currentPosition = document.getElementsByClassName("mm-active")[0]['offsetTop'];
-        if (currentPosition > 500)
-          if (this.scrollRef.SimpleBar !== null)
-            this.scrollRef.SimpleBar.getScrollElement().scrollTop =
-              currentPosition + 300;
+      const activeEls = document.getElementsByClassName('mm-active');
+      if (activeEls.length > 0) {
+        const currentPosition = (activeEls[0] as HTMLElement).offsetTop;
+        if (currentPosition > 500 && this.scrollRef?.SimpleBar) {
+          this.scrollRef.SimpleBar.getScrollElement().scrollTop =
+            currentPosition + 300;
+        }
       }
     }, 300);
   }
 
   _removeAllClass(className: string) {
     const els = document.getElementsByClassName(className);
-    while (els[0]) {
-      els[0].classList.remove(className);
-    }
+    while (els[0]) els[0].classList.remove(className);
   }
 
   /**
-   * Active le menu selon l’URL
+   * Active le menu selon l’URL courante
    */
   _activateMenuDropdown() {
     this._removeAllClass('active');
@@ -153,10 +115,8 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     this._removeAllClass('mm-show');
 
     const links = document.getElementsByClassName('side-nav-link-ref');
-    let menuItemEl: HTMLElement | null = null;
-
-    // Utilisation de Angular Router au lieu de window.location
     const currentUrl = this.router.url;
+    let menuItemEl: HTMLElement | null = null;
 
     for (let i = 0; i < links.length; i++) {
       const link = links[i] as HTMLAnchorElement;
@@ -168,42 +128,16 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
 
     if (menuItemEl) {
       menuItemEl.classList.add('active');
-
       let parentEl = menuItemEl.parentElement;
       while (parentEl && parentEl.id !== 'side-menu') {
-        if (parentEl.tagName === 'LI') {
-          parentEl.classList.add('mm-active');
-        }
-        if (parentEl.tagName === 'UL') {
-          parentEl.classList.add('mm-show');
-        }
+        if (parentEl.tagName === 'LI') parentEl.classList.add('mm-active');
+        if (parentEl.tagName === 'UL') parentEl.classList.add('mm-show');
         parentEl = parentEl.parentElement;
       }
     }
   }
 
-  // initialize(): void {
-  //   this.menuItems = MENU;
-  // }
-
-// ici utiliser le droit accés
-  initialize(): void {
-  this.menuItems = this.filterMenuByRole(MENU, this.userRole);
-}
-
-/**
- * Filtre récursivement le menu selon le rôle
- */
-filterMenuByRole(items: MenuItem[], role: string): MenuItem[] {
-  return items
-    .filter(item => !item.roles || item.roles.includes(role))
-    .map(item => ({
-      ...item,
-      subItems: item.subItems ? this.filterMenuByRole(item.subItems, role) : []
-    }));
-}
-
   hasItems(item: MenuItem) {
-    return item.subItems !== undefined ? item.subItems.length > 0 : false;
+    return item.subItems?.length > 0;
   }
 }

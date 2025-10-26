@@ -57,24 +57,29 @@ async function getDemandeCongePaginatedByManager (req, res) {
     }
 }
 
-async function validerDemandeConge(){
-
-try {
-    const { demandeId, valide } = req.body; 
-    const login_manager = req.user?.login || req.body.login_manager;
-
+async function validerDemandeConge(req, res) {  // ⚠️ Ajouter req et res comme paramètres
+  try {
+      console.log('req.body:', req.body);
+    const { demandeId, valide, login_manager } = req.body;  // ⚠️ Ajouter login_manager ici aussi
+    const loginManager = req.user?.login || login_manager;  // Prioriser req.user si disponible
+    
+        console.log('demandeId:', demandeId, 'Type:', typeof demandeId);
+    console.log('valide:', valide, 'Type:', typeof valide);
+    console.log('loginManager:', loginManager);
     if (!demandeId || typeof valide !== 'boolean') {
       return res.status(400).json({ message: 'Paramètres manquants ou invalides' });
     }
-
-    const demande = await congesService.validerDemandeConge(login_manager, demandeId, valide);
-
+    
+    if (!loginManager) {
+      return res.status(400).json({ message: 'Login manager manquant' });
+    }
+    
+    const demande = await congesService.validerDemandeConge(loginManager, demandeId, valide);
     res.json({ success: true, demande });
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: err.message });
   }
-
 }
 
 // solde

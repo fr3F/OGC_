@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit() {
-    // ✅ L'utilisateur ne tape que le nom court (ex: user050)
+    // L'utilisateur ne tape que le nom court (ex: user050)
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  // ✅ Soumission du formulaire
+  // Soumission du formulaire
   onSubmit() {
     this.submitted = true;
     this.error = '';
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
     console.log('[DEBUG] Tentative de connexion :', payload);
 
     this.http.post<{ success: boolean; message: string }>(`${apiUrl}/login`, payload,
-        { withCredentials: true } 
+      { withCredentials: true }
     )
       .subscribe({
         next: (res) => {

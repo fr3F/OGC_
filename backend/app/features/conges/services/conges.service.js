@@ -135,39 +135,121 @@ async function saveDemande(data, solde, diffDays) {
 
 // Valider demande conge
 async function validerDemandeConge(login_manager, demandeId, valide) {
-  // Récupérer la demande
-  const demande = await db.demandeconge.findOne({
-    where: { id_demande_conge: demandeId, id_manager: login_manager }
-  });
-
-  if (!demande) throw new Error("Demande non trouvée ou vous n'êtes pas le manager de cette demande");
-
-  // Mettre à jour le statut
-  demande.is_valide = valide; 
-  demande.id_status_conge = await getStatusId(valide ? "Validé" : "Rejeté");
-  // demande.date_validation = new Date();
-
-  await demande.save();
-
-  // Si validé et pas maladie, ajuster solde
-  if (valide) {
-    const typeConge = await db.typeConge.findByPk(demande.id_type_conge);
-    if (typeConge.nom_type_conge.toLowerCase() !== "maladie") {
-      const collab = await db.collaborateur.findOne({ where: { login: demande.login } });
-      const solde = await db.solde.findOne({
-        where: { id_collab: collab.id_collab, id_type_conge: typeConge.id_type_conge }
-      });
-
-      const diffTime = new Date(demande.date_fin_conge).getTime() - new Date(demande.date_debut_conge).getTime();
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-
-      solde.nb_jours_utilises += diffDays;
-      solde.nb_jours_restants -= diffDays;
-      await solde.save();
+  try {
+    // Récupérer le manager
+    const manager = await db.manager.findOne({
+      where: { login: login_manager }
+    });
+    
+    if (!manager) {
+      throw new Error("Manager non trouvé");
     }
+    
+    // Récupérer la demande
+    const demande = await db.demandeconge.findOne({
+      where: { 
+        id: demandeId,
+        id_manager: manager.id
+      }
+    });
+    
+    if (!demande) {
+      throw new Error("Demande non trouvée ou vous n'êtes pas le manager de cette demande");
+    }
+    
+    // Obtenir le statut ID
+    const statusId = await getOrCreateStatusId(valide ? "Validé" : "Rejeté");
+    
+    // Utiliser update directement
+    await db.demandeconge.update(
+      {
+        is_valide: valide,
+        id_status_conge: statusId
+      },
+      {
+        where: { id: demandeId }
+      }
+    );
+    
+    // Si validé et pas maladie, ajuster solde
+    if (valide) {
+      const typeConge = await db.typeConge.findByPk(demande.id_type_conge);
+      
+      if (!typeConge) {
+        throw new Error("Type de congé non trouvé");
+      }
+      
+      if (typeConge.nom_type_conge.toLowerCase() !== "maladie") {
+        const collab = await db.collaborateur.findOne({ 
+          where: { login: demande.login } 
+        });
+        
+        if (!collab) {
+          throw new Error("Collaborateur non trouvé");
+        }
+        
+        const solde = await db.solde.findOne({
+          where: { 
+            id_collab: collab.id, 
+            id_type_conge: typeConge.id 
+          }
+        });
+        
+        if (!solde) {
+          throw new Error("Solde de congé non trouvé pour ce collaborateur");
+        }
+        
+        const diffTime = new Date(demande.date_fin_conge).getTime() - new Date(demande.date_debut_conge).getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+        
+        if (solde.nb_jours_restants < diffDays) {
+          throw new Error(`Solde insuffisant. Jours demandés: ${diffDays}, Jours restants: ${solde.nb_jours_restants}`);
+        }
+        
+        // Utiliser update pour le solde aussi
+        await db.solde.update(
+          {
+            nb_jours_utilises: solde.nb_jours_utilises + diffDays,
+            nb_jours_restants: solde.nb_jours_restants - diffDays
+          },
+          {
+            where: { 
+              id_collab: collab.id, 
+              id_type_conge: typeConge.id 
+            }
+          }
+        );
+      }
+    }
+    
+    // Récupérer la demande mise à jour
+    const demandeUpdated = await db.demandeconge.findByPk(demandeId, { raw: true });
+    return demandeUpdated;
+    
+  } catch (error) {
+    console.error('Erreur dans validerDemandeConge:', error);
+    throw error;
   }
+}
 
-  return demande;
+async function getOrCreateStatusId(nomStatus) {
+  // Chercher le statut existant
+  let status = await db.statusconge.findOne({
+    where: { nom_status_conge: nomStatus }
+  });
+ 
+  // Si pas trouvé, le créer automatiquement
+  if (!status) {
+    console.log(`Statut "${nomStatus}" non trouvé, création en cours...`);
+    
+    status = await db.statusconge.create({
+      nom_status_conge: nomStatus
+    });
+    
+    console.log(`Statut "${nomStatus}" créé avec l'ID: ${status.id}`);
+  }
+ 
+  return status.id;
 }
 
 // Fonction pour récupérer l'ID du manager d'un collaborateur

@@ -3,9 +3,9 @@
 module.exports = {
     HOST: "localhost",
     USER: "root",
-    PASSWORD: "Admin*25",
+    // PASSWORD: "Admin*25",
 
-    // PASSWORD: "",
+    PASSWORD: "",
 
     // PASSWORD: "",
     DB: "ogc",  
