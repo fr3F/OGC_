@@ -16,7 +16,7 @@ export interface UserData {
   providedIn: 'root'
 })
 export class UserStorageService {
-  
+
   private readonly USER_DATA_KEY = 'userData';
 
   saveUserData(userData: UserData): void {
@@ -30,7 +30,7 @@ export class UserStorageService {
     try {
       const userDataStr = localStorage.getItem(this.USER_DATA_KEY);
       if (!userDataStr) return null;
-      
+
       return JSON.parse(userDataStr) as UserData;
     } catch (error) {
       console.error('Erreur lors de la lecture userData:', error);
@@ -50,7 +50,7 @@ export class UserStorageService {
 
   getUserType(): string {
     const userData = this.getUserData();
-    return userData?.type ;
+    return userData?.type;
   }
 
   getUsername(): string | null {

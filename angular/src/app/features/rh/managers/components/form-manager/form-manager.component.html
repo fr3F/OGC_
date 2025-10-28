@@ -7,12 +7,16 @@
 
   <form [formGroup]="formGroup" (ngSubmit)="valider()">
     <div class="row g-3 align-items-center">
-
       <!-- Nom du manager -->
       <div class="col-12">
         <label for="nom_manager" class="form-label">Nom du manager</label>
-        <input id="nom_manager" type="text" class="form-control" formControlName="nom_manager"
-               placeholder="Entrez le nom du manager" />
+        <input
+          id="nom_manager"
+          type="text"
+          class="form-control"
+          formControlName="nom_manager"
+          placeholder="Entrez le nom du manager"
+        />
         <div *ngIf="submit && formGroup.get('nom_manager')?.invalid" class="text-danger mt-1 small">
           Le nom du manager est requis.
         </div>
@@ -21,8 +25,12 @@
       <!-- Sélection du manager supérieur -->
       <div class="col-12">
         <label for="id_manager" class="form-label">Son manager</label>
-        <select id="id_manager" class="form-select" formControlName="id_manager"
-                [ngClass]="{'is-invalid': isInvalid('id_manager')}">
+        <select
+          id="id_manager"
+          class="form-select"
+          formControlName="id_manager"
+          [ngClass]="{ 'is-invalid': isInvalid('id_manager') }"
+        >
           <option value="">-- Sélectionnez son manager --</option>
           <option *ngFor="let m of managers" [value]="m.id">{{ m.nom_manager }}</option>
         </select>
@@ -34,8 +42,12 @@
       <!-- Sélection du manager supérieur -->
       <div class="col-12">
         <label for="login" class="form-label">Login</label>
-        <select id="login" class="form-select" formControlName="login"
-                [ngClass]="{'is-invalid': isInvalid('login')}">
+        <select
+          id="login"
+          class="form-select"
+          formControlName="login"
+          [ngClass]="{ 'is-invalid': isInvalid('login') }"
+        >
           <option value="">-- Sélectionnez login --</option>
           <option *ngFor="let c of comptes" [value]="c.login">{{ c.login }}</option>
         </select>
@@ -51,7 +63,6 @@
           <span class="ms-1">{{ data?.id ? 'Modifier' : 'Enregistrer' }}</span>
         </button>
       </div>
-
     </div>
   </form>
 </div>
