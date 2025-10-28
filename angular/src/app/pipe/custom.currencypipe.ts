@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
         digitsInfo: string = '1.2-2',
         locale: string = 'fr',
     ): string | null {
-          // ✅ Vérifie que la valeur est un nombre fini et non nul
+          // Vérifie que la valeur est un nombre fini et non nul
     if (!isFinite(value) || value === null || value === undefined) {
       value = 0; // ou retourne null pour masquer
     }

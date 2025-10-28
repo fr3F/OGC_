@@ -39,14 +39,14 @@ export const MENU: MenuItem[] = [
     label: 'MENUITEMS.CONGE.TEXT',
     icon: 'bx-calendar',
     subItems: [
-      {
-        id: 7,
-        label: 'MENUITEMS.STATUT_CONGES.TEXT',
-        icon: 'bx-badge-check',
-        link: '/statut-conges',
-        parentId: 6,
-        roles: ['admin','user', "manager"]
-      },
+      // {
+      //   id: 7,
+      //   label: 'MENUITEMS.STATUT_CONGES.TEXT',
+      //   icon: 'bx-badge-check',
+      //   link: '/statut-conges',
+      //   parentId: 6,
+      //   roles: ['admin','user', "manager"]
+      // },
       {
         id: 8,
         label: 'MENUITEMS.TYPE_CONGES.TEXT',

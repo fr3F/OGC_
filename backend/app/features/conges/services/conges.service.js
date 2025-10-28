@@ -1,9 +1,6 @@
 // app/feature/reception/service/collaborateur.service.js
-const { allColors } = require("winston/lib/winston/config");
 const db = require("../../../../models");
-const soldeModel = require("../../../../models/solde/solde.model");
 const { getVarNecessairePagination, getFiltreRecherche, dataToJson, getPagingData } = require("../../../helpers/helpers.helper");
-const { sequelize } = require('../../../../models'); // ton instance sequelize
 
 const StatusConge = db.statusconge;
 const TypeConge = db.typeConge;
@@ -65,6 +62,7 @@ async function createDemandeConge(req, data) {
   try {
     const { collab, loginShort } = await getCollaborateurWithSolde(req);
     const { typeConge, diffDays, solde } = await checkConges(collab, data);
+
     const preparedData = await prepareDemande(collab, loginShort, data);
     const demande = await saveDemande(preparedData);
 
@@ -74,6 +72,7 @@ async function createDemandeConge(req, data) {
     throw err;
   }
 }
+
 
 async function getCollaborateurWithSolde(req) {
   const loginAD = getLoginFromSession(req);
@@ -135,39 +134,76 @@ async function saveDemande(data, solde, diffDays) {
 
 // Valider demande conge
 async function validerDemandeConge(login_manager, demandeId, valide) {
-  // Récupérer la demande
-  const demande = await db.demandeconge.findOne({
-    where: { id_demande_conge: demandeId, id_manager: login_manager }
-  });
+  try {
+    const manager = await db.manager.findOne({ where: { login: login_manager } });
+    if (!manager) throw new Error("Manager non trouvé");
 
-  if (!demande) throw new Error("Demande non trouvée ou vous n'êtes pas le manager de cette demande");
+    const demande = await db.demandeconge.findOne({
+      where: { id: demandeId, id_manager: manager.id }
+    });
+    if (!demande) throw new Error("Demande non trouvée ou vous n'êtes pas le manager");
 
-  // Mettre à jour le statut
-  demande.is_valide = valide; 
-  demande.id_status_conge = await getStatusId(valide ? "Validé" : "Rejeté");
-  // demande.date_validation = new Date();
+    const statusId = await getOrCreateStatusId(valide ? "Validé" : "Rejeté");
 
-  await demande.save();
+    await db.demandeconge.update(
+      { is_valide: valide, id_status_conge: statusId },
+      { where: { id: demandeId } }
+    );
 
-  // Si validé et pas maladie, ajuster solde
-  if (valide) {
     const typeConge = await db.typeConge.findByPk(demande.id_type_conge);
-    if (typeConge.nom_type_conge.toLowerCase() !== "maladie") {
-      const collab = await db.collaborateur.findOne({ where: { login: demande.login } });
-      const solde = await db.solde.findOne({
-        where: { id_collab: collab.id_collab, id_type_conge: typeConge.id_type_conge }
-      });
+    const collab = await db.collaborateur.findOne({ where: { login: demande.login } });
+    const solde = await db.solde.findOne({
+      where: { id_collab: collab.id, id_type_conge: typeConge.id }
+    });
 
-      const diffTime = new Date(demande.date_fin_conge).getTime() - new Date(demande.date_debut_conge).getTime();
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+    const diffTime = new Date(demande.date_fin_conge).getTime() - new Date(demande.date_debut_conge).getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
-      solde.nb_jours_utilises += diffDays;
-      solde.nb_jours_restants -= diffDays;
-      await solde.save();
+    if (valide) {
+      // Valider → soustraire les jours
+      await db.solde.update(
+        {
+          nb_jours_utilises: Math.max(0, solde.nb_jours_utilises + diffDays),
+          nb_jours_restants: Math.max(0, solde.nb_jours_restants - diffDays)
+        },
+        { where: { id_collab: collab.id, id_type_conge: typeConge.id } }
+      );
+    } else {
+      // Rejeter → remettre les jours dans le solde
+      await db.solde.update(
+        {
+          nb_jours_utilises: Math.max(0, solde.nb_jours_utilises - diffDays),
+          nb_jours_restants: Math.max(0, solde.nb_jours_restants + diffDays)
+        },
+        { where: { id_collab: collab.id, id_type_conge: typeConge.id } }
+      );
     }
-  }
 
-  return demande;
+    return await db.demandeconge.findByPk(demandeId, { raw: true });
+  } catch (error) {
+    console.error('Erreur dans validerDemandeConge:', error);
+    throw error;
+  }
+}
+
+async function getOrCreateStatusId(nomStatus) {
+  // Chercher le statut existant
+  let status = await db.statusconge.findOne({
+    where: { nom_status_conge: nomStatus }
+  });
+ 
+  // Si pas trouvé, le créer automatiquement
+  if (!status) {
+    console.log(`Statut "${nomStatus}" non trouvé, création en cours...`);
+    
+    status = await db.statusconge.create({
+      nom_status_conge: nomStatus
+    });
+    
+    console.log(`Statut "${nomStatus}" créé avec l'ID: ${status.id}`);
+  }
+ 
+  return status.id;
 }
 
 // Fonction pour récupérer l'ID du manager d'un collaborateur
@@ -180,7 +216,6 @@ async function getIdManagerCollaborateur(collabId) {
   if (!collaborateur) throw new Error("Collaborateur introuvable");
   return collaborateur.id_manager;
 }
-
 
 function getLoginFromSession(req) {
   const loginAD = req.session?.currentUser?.username;

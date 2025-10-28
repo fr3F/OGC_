@@ -24,7 +24,7 @@
         <select id="id_manager" class="form-select" formControlName="id_manager"
                 [ngClass]="{'is-invalid': isInvalid('id_manager')}">
           <option value="">-- Sélectionnez son manager --</option>
-          <option *ngFor="let m of managers" [value]="m.id">{{ c.nom_manager }}</option>
+          <option *ngFor="let m of managers" [value]="m.id">{{ m.nom_manager }}</option>
         </select>
         <div *ngIf="isInvalid('id_manager')" class="invalid-feedback">
           Veuillez sélectionner un manager.

@@ -6,6 +6,7 @@ import { PagetitleComponent } from 'src/app/shared/ui/pagetitle/pagetitle.compon
 import { BaseListPageComponent } from 'src/app/core/base/base-list-page/base-list-page.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ListSoldesComponent } from '../../components/list-solde/list-solde.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-liste-page-Solde',
@@ -19,7 +20,8 @@ import { ListSoldesComponent } from '../../components/list-solde/list-solde.comp
     ReactiveFormsModule,
     NgbPaginationModule,
     NgxPaginationModule,
-    ListSoldesComponent
+    ListSoldesComponent,
+    NgxSpinnerModule
   ]
 })
 export class ListePageSoldeComponent extends BaseListPageComponent {

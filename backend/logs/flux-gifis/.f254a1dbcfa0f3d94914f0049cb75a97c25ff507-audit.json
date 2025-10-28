@@ -6,16 +6,6 @@
     "auditLog": "logs\\flux-gifis\\.f254a1dbcfa0f3d94914f0049cb75a97c25ff507-audit.json",
     "files": [
         {
-            "date": 1760331122522,
-            "name": "logs\\flux-gifis\\flux-gifi-2025-10-13.log",
-            "hash": "fbb1abfb4ecbdf2fa5a5a18b2b5645751c442dc3eb809cfe10739da37394b4b0"
-        },
-        {
-            "date": 1760417673579,
-            "name": "logs\\flux-gifis\\flux-gifi-2025-10-14.log",
-            "hash": "007075b505b7ff959b3c4d82609faf5f4965bed9ffed131b7b39822ccf8fa5a4"
-        },
-        {
             "date": 1760504317053,
             "name": "logs\\flux-gifis\\flux-gifi-2025-10-15.log",
             "hash": "a9de56ba60e6be7c2719eccacfe5231263d4f5d94c78a2649d383152de8f230d"
@@ -59,6 +49,16 @@
             "date": 1761368667835,
             "name": "logs\\flux-gifis\\flux-gifi-2025-10-25.log",
             "hash": "a767ed5dbef21f88ad73642dec4eb1afc5b489aac5a850a7154ca6e51c0e95cd"
+        },
+        {
+            "date": 1761542901995,
+            "name": "logs\\flux-gifis\\flux-gifi-2025-10-27.log",
+            "hash": "0192139629fbb17b2e2ef60a3d65b1130b24385206dfb0e8c76f67188eb9f51e"
+        },
+        {
+            "date": 1761628440089,
+            "name": "logs\\flux-gifis\\flux-gifi-2025-10-28.log",
+            "hash": "9539927e0ec44481b281b551768ebc480f55e98cc1b0e1444cadcc8a8c587c42"
         }
     ],
     "hashType": "sha256"

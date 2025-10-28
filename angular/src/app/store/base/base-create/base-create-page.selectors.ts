@@ -6,7 +6,7 @@ export const selectBaseState = createFeatureSelector<BaseState>('baseCreate');
 // Sélecteur pour récupérer l’état d’un modèle donné
 export const selectModelState = (nomModele: string) =>
   createSelector(selectBaseState, (state) =>
-    state[nomModele] || { loading: false, error: null, success: false } // ✅ fallback complet
+    state[nomModele] || { loading: false, error: null, success: false } // fallback complet
   );
 
 

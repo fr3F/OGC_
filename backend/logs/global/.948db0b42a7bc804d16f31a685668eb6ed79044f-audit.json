@@ -6,16 +6,6 @@
     "auditLog": "logs\\global\\.948db0b42a7bc804d16f31a685668eb6ed79044f-audit.json",
     "files": [
         {
-            "date": 1760331122528,
-            "name": "logs\\global\\gestion-caisse-2025-10-13.log",
-            "hash": "98124a1f1157f86f77050a587cd342ffc3ac064048e1bfda5702a35c4bbf24e6"
-        },
-        {
-            "date": 1760417673606,
-            "name": "logs\\global\\gestion-caisse-2025-10-14.log",
-            "hash": "818108cd60a73b391ed09c6d998844dd8a8b6f193e252288eab01f2cb30980da"
-        },
-        {
             "date": 1760504317089,
             "name": "logs\\global\\gestion-caisse-2025-10-15.log",
             "hash": "dde61e9bc402a3bec1894dc16f8399ad8faf6d9e51635432c631f7f820ba3e83"
@@ -59,6 +49,16 @@
             "date": 1761368667872,
             "name": "logs\\global\\gestion-caisse-2025-10-25.log",
             "hash": "c8054588cee9b3dc2cdb50b50a3933f7316e413e25f21972e4dc6300abf6a132"
+        },
+        {
+            "date": 1761542902006,
+            "name": "logs\\global\\gestion-caisse-2025-10-27.log",
+            "hash": "efc9f37ef6ac75fc72265966d4ed1451803ad2906d57911b4cc9d3c580a3c138"
+        },
+        {
+            "date": 1761628440095,
+            "name": "logs\\global\\gestion-caisse-2025-10-28.log",
+            "hash": "68844024d135c69126bed7c24bc3d1cd8756a60eca6c6d2f8fbfa664cec3675f"
         }
     ],
     "hashType": "sha256"

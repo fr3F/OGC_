@@ -6,6 +6,7 @@ import { PagetitleComponent } from 'src/app/shared/ui/pagetitle/pagetitle.compon
 import { BaseListPageComponent } from 'src/app/core/base/base-list-page/base-list-page.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ListStatutCongesComponent } from '../../components/list-statut-conges/list-statut-conges.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-liste-page-statut-conges',
@@ -19,7 +20,8 @@ import { ListStatutCongesComponent } from '../../components/list-statut-conges/l
     ReactiveFormsModule,
     NgbPaginationModule,
     NgxPaginationModule,
-    ListStatutCongesComponent
+    ListStatutCongesComponent,
+    NgxSpinnerModule    
   ]
 })
 export class ListePageStatutCongesComponent extends BaseListPageComponent {

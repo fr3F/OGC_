@@ -9,6 +9,7 @@ export interface UserData {
   matricule?: string;
   type: string;
   id_manager?: number | null;
+  login_manager?:string
 }
 
 @Injectable({

@@ -1,0 +1,94 @@
+<div class="needs-validation">
+
+  <div class="mb-3">
+    <label class="control-label card-title">Role</label>
+    <select class="form-control" (change)="changeRole($event)">
+      <option *ngFor="let role of roles" value="{{role.id}}">{{role.nom}}</option>
+    </select>
+  </div>
+  <div class="row shadow rounded" style="min-height: 500px;">
+
+    <!-- Colonne modules (gauche) -->
+    <nav class="col-md-3 bg-light border-end p-3 d-flex flex-column" style="max-height: 500px; overflow-y: auto;">
+      <h5 class="mb-3 fw-bold">Modules</h5>
+      <ul class="list-group flex-grow-1">
+        <li
+          *ngFor="let mod of modules"
+          (click)="selectModule(mod)"
+          [class.active]="mod.id === moduleSelectedId"
+          class="list-group-item list-group-item-action"
+          style="cursor: pointer;"
+          aria-current="{{ mod.id === moduleSelectedId ? 'true' : 'false' }}"
+        >
+          {{ mod.nom }}
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Colonne menus + fonctionnalités (droite) -->
+    <section class="col-md-9 p-4 overflow-auto" style="max-height: 500px;">
+      <ng-container *ngIf="moduleSelectedId === 0; else moduleContent">
+        <div class="text-center text-muted fst-italic mt-5">
+          Sélectionnez un module à gauche pour afficher ses menus et fonctionnalités.
+        </div>
+      </ng-container>
+
+      <ng-template #moduleContent>
+        <div class="row">
+          <!-- Colonne Menus -->
+          <div class="col-md-6">
+            <h4 class="mb-3 border-bottom pb-2">Menus</h4>
+            <div *ngIf="getMenusByModule(moduleSelectedId)?.length > 0; else noMenus">
+              <div *ngFor="let menu of getMenusByModule(moduleSelectedId)" class="form-check mb-2">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [id]="'menu' + menu.id"
+                  [checked]="menu.checked"
+                  (change)="changeCheck(menu, [])"
+                />
+                <label class="form-check-label" [for]="'menu' + menu.id">
+                  {{ menu.label }}
+                </label>
+              </div>
+            </div>
+            <ng-template #noMenus>
+              <div class="text-muted fst-italic">Aucun menu</div>
+            </ng-template>
+          </div>
+
+          <!-- Colonne Fonctionnalités -->
+          <div class="col-md-6">
+            <h4 class="mb-3 border-bottom pb-2">Fonctionnalités</h4>
+            <div *ngIf="getFonctionnalitesByModule(moduleSelectedId)?.length > 0; else noFonctionnalites">
+              <div *ngFor="let f of getFonctionnalitesByModule(moduleSelectedId)" class="form-check mb-2">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [id]="'fonct' + f.id"
+                  [checked]="f.checked"
+                  (change)="changeCheckFonctionnalite(f)"
+                />
+                <label class="form-check-label" [for]="'fonct' + f.id">
+                  {{ f.nom }}
+                </label>
+              </div>
+            </div>
+            <ng-template #noFonctionnalites>
+              <div class="text-muted fst-italic">Aucune fonctionnalité</div>
+            </ng-template>
+          </div>
+        </div>
+      </ng-template>
+    </section>
+
+  </div>
+
+  <!-- Validation -->
+  <div class="text-center mt-4">
+    <button class="btn btn-success btn-lg px-5" (click)="valider()">
+      <i class="fa fa-check me-2"></i> Valider
+    </button>
+  </div>
+
+</div>

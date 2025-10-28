@@ -22,20 +22,23 @@ export class BaseListPageEffects {
     this.actions$.pipe(
       ofType(loadList),
       tap(() => this.spinner.show()),
-      mergeMap(({ nomModele, params, status }) =>
-        this.getService(nomModele, params, status).pipe(
+      mergeMap(({ nomModele, params, status }) => {
+       
+        return this.getService(nomModele, params, status).pipe(
           tap((response) => console.log(`Réponse API ${nomModele}`, response)),
           map((response: any) => this.normalizeResponse(nomModele, response)),
           catchError((error) => {
             this.notif.error(error);
             return of(loadListFailure({ nomModele, error }));
           }),
-          finalize(() => this.spinner.hide())
-        )
-      )
+          finalize(() => {
+            this.spinner.hide();
+          })
+        );
+      })
     )
   );
-  
+
   private normalizeResponse(nomModele: string, response: any) {
   let data: any[] = [];
   let totalItems = 0;

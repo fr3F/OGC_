@@ -5,9 +5,9 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DemandeCongesService {  
+export class DemandeCongesService {
   nomModele: string = "demandeconge";
-  private baseUrl = environment.apiUrl; 
+  private baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
   getAll() {
@@ -22,7 +22,7 @@ export class DemandeCongesService {
     return this.http.post(`${this.baseUrl}/${this.nomModele}`, data);
   }
 
-  update(id, data){
+  update(id, data) {
     return this.http.put(`${this.baseUrl}/${this.nomModele}/${id}`, data);
   }
 
@@ -30,7 +30,7 @@ export class DemandeCongesService {
     return this.http.delete(`${this.baseUrl}/${this.nomModele}/${id}`);
   }
 
-  getAllDemandeConge(nomModele: string, params: any){
+  getAllDemandeConge(nomModele: string, params: any) {
     const url = `${this.baseUrl}/${nomModele}/allDemandeConge`
     return this.http.get(url, { params });
   }
@@ -39,15 +39,20 @@ export class DemandeCongesService {
     const url = `${this.baseUrl}/${nomModele}/allDemandeConge`;
     return this.http.get(url, { params: { ...params } });
   }
-  
+
   getAllDemandeCongeManagerByLogin(nomModele: string, params: any) {
     const url = `${this.baseUrl}/${nomModele}/demandeCongeByManager`;
     return this.http.get(url, { params: { ...params } });
   }
-  
+
   createDemandeConge(data, nomModele) {
-    console.log("data--data", data);
-    
     return this.http.post(`${this.baseUrl}/${nomModele}/ajouter`, data, { withCredentials: true });
+  }
+
+  validerDemandeConge(demandeId: number, valide: boolean, login_manager: string, nomModele: string) {
+    return this.http.post<{ success: boolean, demande: any }>(
+      `${this.baseUrl}/${nomModele}/valider`,
+      { demandeId, valide, login_manager }
+    );
   }
 }

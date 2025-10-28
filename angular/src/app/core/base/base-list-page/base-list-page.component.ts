@@ -57,7 +57,7 @@ export class BaseListPageComponent extends BaseComponentComponent implements OnI
     this.fonctionnalites = {};
     this.initializeFonctionnalite();
 
-    // ⚡ Sélecteurs NgRx
+    // Sélecteurs NgRx
     this.list$ = this.store.select(selectListByNomModele(this.nomModele));
     this.loading$ = this.store.select(selectLoadingByNomModele(this.nomModele));
     this.count$ = this.store.select(selectTotalItemsByNomModele(this.nomModele));

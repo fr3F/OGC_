@@ -6,6 +6,7 @@ import { PagetitleComponent } from 'src/app/shared/ui/pagetitle/pagetitle.compon
 import { BaseListPageComponent } from 'src/app/core/base/base-list-page/base-list-page.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ListDepartementComponent } from '../../components/list-departement/list-departement.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-liste-page-departements',
@@ -19,7 +20,8 @@ import { ListDepartementComponent } from '../../components/list-departement/list
     ReactiveFormsModule,
     NgbPaginationModule,
     NgxPaginationModule,
-    ListDepartementComponent
+    ListDepartementComponent,
+    NgxSpinnerModule
   ]
 })
 export class ListePageDepartementsComponent extends BaseListPageComponent {

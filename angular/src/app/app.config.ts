@@ -19,6 +19,7 @@ import { BaseCreateEffects } from './store/base/base-create/base-create-page.eff
 import { BaseListPageEffects } from './store/base/base-liste/base-list-page.effects';
 import { BaseUpdateEffects } from './store/base/base-update/base-update.effects';
 import { BaseDeletePageEffects } from './store/base/base-delete/base-delete-page.effects';
+import { UserEffects } from './store/user/user.effect';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -35,7 +36,8 @@ export const appConfig: ApplicationConfig = {
         BaseListPageEffects,
         BaseCreateEffects,
         BaseUpdateEffects,
-        BaseDeletePageEffects
+        BaseDeletePageEffects,
+        UserEffects
       ]
     ),
     provideHttpClient(withInterceptorsFromDi()),

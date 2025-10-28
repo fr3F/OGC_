@@ -6,6 +6,7 @@ import { PagetitleComponent } from 'src/app/shared/ui/pagetitle/pagetitle.compon
 import { ListCollaborateurComponent } from '../../components/list-collaborateur/list-collaborateur.component';
 import { BaseListPageComponent } from 'src/app/core/base/base-list-page/base-list-page.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-liste-page-collaborateurs',
@@ -19,7 +20,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     NgbPaginationModule,
     NgxPaginationModule,
-    ListCollaborateurComponent
+    ListCollaborateurComponent,
+    NgxSpinnerModule
   ]
 })
 export class ListePageCollaborateursComponent extends BaseListPageComponent {

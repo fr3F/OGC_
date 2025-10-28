@@ -8,6 +8,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ListDemandeCongeComponent } from '../../component/list-demande-conge/list-demande-conge.component';
 import { UserContextService } from 'src/app/core/services/user-context.service';
 import { UserStorageService } from 'src/app/core/services/UserStorageService';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ManagersService } from 'src/app/features/rh/managers/services/managers.service';
 
 @Component({
   selector: 'app-liste-page-demande-conge',
@@ -22,6 +24,7 @@ import { UserStorageService } from 'src/app/core/services/UserStorageService';
     NgbPaginationModule,
     NgxPaginationModule,
     ListDemandeCongeComponent,
+    NgxSpinnerModule
   ],
 })
 export class ListePageDemandeCongeComponent extends BaseListPageComponent {
@@ -29,36 +32,36 @@ export class ListePageDemandeCongeComponent extends BaseListPageComponent {
   titre: string = 'Liste des demandes de congé';
   userContext = inject(UserContextService);
   userStorageService = inject(UserStorageService)
+  managerService = inject(ManagersService)
   status
+  manager
   ngOnInit() {
-    super.ngOnInit();
     this.setUserParams();
-    this.refreshData();
-
+    super.ngOnInit();
   }
 
-private setUserParams() {
-  const userData = this.userStorageService.getUserData();
-  this.status=userData.type
+  private setUserParams() {
+    const userData = this.userStorageService.getUserData();
+    this.status = userData?.type;
 
-  if (!userData) {
-    console.warn('Aucune donnée utilisateur');
-    return;
-  }
-
-  // Ajouter uniquement les paramètres nécessaires
-  ['typeCompte', 'login_manager'].forEach(p => {
-    if (!this.paramSearchs.includes(p)) {
-      this.paramSearchs.push(p);
+    if (!userData) {
+      console.warn('Aucune donnée utilisateur');
+      return;
     }
-  });
 
-  // Créer les propriétés
-  this['typeCompte'] = userData.type;
-  // this['login_manager'] = userData.username;
-  this['login_manager'] = "user028";
-  console.log("Params configurés depuis UserStorageService sans login");
-}
+    console.log('🟢 Configuration params - status:', this.status);
+
+    // Ajouter les paramètres nécessaires
+    ['typeCompte', 'login_manager'].forEach(p => {
+      if (!this.paramSearchs.includes(p)) {
+        this.paramSearchs.push(p);
+      }
+    });
+
+    // Créer les propriétés
+    this['typeCompte'] = userData.type;
+    this['login_manager'] = userData.login_manager;
+  }
 
 
 }

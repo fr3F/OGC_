@@ -46,7 +46,6 @@ export class BaseComponentComponent implements OnInit {
   onError = (err) => {
     this.hideSpinner();
     this.loading = false;
-    // console.log('8ss989898')
     this.notif.error(err)
   }
 

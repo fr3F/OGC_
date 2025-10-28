@@ -9,6 +9,7 @@ import { baseReducer, BaseState } from "./base/base-create/base-create-page.redu
 import { baseListReducer, BaseListState } from "./base/base-liste/base-list-page.reducer";
 import { BaseUpdateReducer, BaseUpdateState } from "./base/base-update/base-update.reducer";
 import { baseDeleteReducer, BaseDeleteState } from "./base/base-delete/base-delete-page.reducer";
+import { userReducer, UserState } from "./user/user.reducer";
 
 
 export interface RootReducerState {
@@ -18,8 +19,8 @@ export interface RootReducerState {
     baseListPage:BaseListState,
     baseCreate:BaseState,
     baseUpdate:BaseUpdateState,
-    baseDelete:BaseDeleteState
-
+    baseDelete:BaseDeleteState,
+    user : UserState
 }
 
 export const rootReducer: ActionReducerMap<RootReducerState> = {
@@ -29,6 +30,6 @@ export const rootReducer: ActionReducerMap<RootReducerState> = {
     baseListPage:baseListReducer ,
     baseCreate: baseReducer,
     baseUpdate: BaseUpdateReducer,
-    baseDelete: baseDeleteReducer
-
+    baseDelete: baseDeleteReducer,
+    user : userReducer
   }

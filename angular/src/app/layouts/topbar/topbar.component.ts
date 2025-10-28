@@ -100,8 +100,6 @@ ngOnInit() {
   } else {
     this.currentUser = ''; 
   }
-
-  console.log('[DEBUG] Current user:', this.currentUser);
 }
 
   setLanguage(text: string, lang: string, flag: string) {
