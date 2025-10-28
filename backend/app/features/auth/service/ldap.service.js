@@ -1,6 +1,5 @@
 const ActiveDirectory = require('activedirectory');
 
-// 🔧 Configuration LDAP
 const config = {
   url: "ldap://172.16.110.2:389",
   baseDN: "DC=sodim,DC=corp",
@@ -8,109 +7,86 @@ const config = {
 
 const ad = new ActiveDirectory(config);
 
-// 👤 Compte par défaut (fallback si LDAP indisponible)
-const DEFAULT_ACCOUNT = {
-  username: "admin@sodim.corp",
-  password: "admin123",
-  displayName: "Administrateur Local",
-  email: "admin@sodim.corp",
-  title: "Administrateur",
-  department: "Informatique",
-};
-
-/**
- * 🔐 Authentifie un utilisateur
- * Essaie d’abord sur LDAP, sinon sur le compte par défaut
- */
 function authenticateUser(username, password) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     if (!username || !password) {
-      console.warn("⚠️ Username ou password manquant");
+      console.warn("Username ou password manquant");
       return resolve(false);
     }
 
     ad.authenticate(username, password, (err, auth) => {
       if (err) {
-        console.error("⚠️ LDAP non disponible ou erreur:", err.message);
-
-        // ✅ Fallback sur le compte par défaut
-        if (
-          username === DEFAULT_ACCOUNT.username &&
-          password === DEFAULT_ACCOUNT.password
-        ) {
-          console.log("✅ Authentifié via compte local par défaut");
-          return resolve(true);
-        }
-
-        return resolve(false);
+        console.error('LDAP ERROR:', err);
+        return reject(err);
       }
-
       if (auth) {
-        console.log(`✅ LDAP: utilisateur "${username}" authentifié`);
+        console.log('LDAP Authenticated!');
         resolve(true);
       } else {
-        console.warn(`❌ LDAP: échec d’authentification pour "${username}"`);
-
-        // ✅ Fallback local si LDAP répond mais refuse
-        if (
-          username === DEFAULT_ACCOUNT.username &&
-          password === DEFAULT_ACCOUNT.password
-        ) {
-          console.log("✅ Authentifié via compte local par défaut");
-          return resolve(true);
-        }
-
+        console.log('LDAP Authentication failed!');
         resolve(false);
       }
     });
   });
 }
 
-/**
- * 👤 Récupère les infos d’un utilisateur
- * Si LDAP échoue, renvoie le compte local par défaut
- */
 function getUserInfo(username) {
-  return new Promise((resolve) => {
-    if (!username) {
-      console.warn("⚠️ Username manquant");
-      return resolve(null);
+  return new Promise((resolve, reject) => {
+    if (!username) return resolve(null);
+
+    try {
+      const sanitizedUsername = username.trim().toLowerCase();
+
+
+      ad.findUsers(`sAMAccountName=${sanitizedUsername}`, true, function(err, users) {
+        if (err) {
+          console.log('ERROR: ' +JSON.stringify(err));
+          return;
+        }
+
+        if ((! users) || (users.length == 0)) console.log('No users found.');
+        else {
+          console.log('findUsers: '+JSON.stringify(users));
+        }
+      })
+      
+      // ad.findUsers(`sAMAccountName=${sanitizedUsername}`, true, (err, users) => {
+      //   console.log("users_1__", users);
+      //   if (err) {
+      //     console.error('LDAP ERROR (findUsers):', err.message);
+      //     return resolve(null); // éviter crash
+      //   }
+      //   console.log("users___", users);
+
+      //   if (!users || !Array.isArray(users) || users.length === 0) {
+      //     console.log(`Utilisateur ${sanitizedUsername} non trouvé dans l'AD`);
+      //     return resolve(null);
+      //   }
+      //   const user = users[0] || {};
+
+      //   console.log("user___", user);
+        
+      //   const userInfo = {
+      //     username: user.sAMAccountName || '',
+      //     displayName: user.displayName || '',
+      //     email: user.mail || '',
+      //     title: user.title || '',
+      //     department: user.department || ''
+      //   };
+
+      //   resolve(userInfo);
+      // });
+
+
+
+    } catch(e) {
+      console.error('Wrapper Error (findUser):', e.message);
+      resolve(null);
     }
-
-    const sanitizedUsername = username.trim().toLowerCase();
-
-    ad.findUser(sanitizedUsername, (err, user) => {
-      if (err) {
-        console.error("⚠️ LDAP indisponible, retour compte par défaut");
-        if (sanitizedUsername === DEFAULT_ACCOUNT.username) {
-          return resolve(DEFAULT_ACCOUNT);
-        }
-        return resolve(null);
-      }
-
-      if (!user) {
-        console.warn(`ℹ️ Utilisateur ${sanitizedUsername} non trouvé dans LDAP`);
-        if (sanitizedUsername === DEFAULT_ACCOUNT.username) {
-          return resolve(DEFAULT_ACCOUNT);
-        }
-        return resolve(null);
-      }
-
-      const userInfo = {
-        username: user.sAMAccountName || "",
-        displayName: user.displayName || "",
-        email: user.mail || "",
-        title: user.title || "",
-        department: user.department || "",
-      };
-
-      console.log("👤 LDAP User Info:", userInfo);
-      resolve(userInfo);
-    });
   });
 }
-
+// Export
 module.exports = {
   authenticateUser,
-  getUserInfo,
+  getUserInfo
 };

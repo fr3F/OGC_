@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   error = '';
   fieldTextType = false;
   loading = false;
-  manager
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     private userStorage: UserStorageService,
     private collaborateurService: CollaborateurService,
     private notificationService: NotificationService,
-    private managerService : ManagersService
+    private managerService: ManagersService
   ) {}
 
   ngOnInit() {
@@ -49,24 +49,24 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  // Soumission du formulaire
   onSubmit() {
     this.submitted = true;
     this.error = '';
 
     if (this.loginForm.invalid) return;
+
     this.loading = true;
 
     let username = this.f['username'].value.trim();
     const password = this.f['password'].value;
 
-    // Ajout du domaine automatiquement
     const domain = '@sodim.corp';
     if (!username.includes('@')) {
       username += domain;
     }
 
     const payload = { username, password };
+
     this.http.post<{ success: boolean; message: string }>(
       `${apiUrl}/login`,
       payload,
@@ -74,37 +74,46 @@ export class LoginComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         this.loading = false;
+        console.log('[DEBUG] Réponse du serveur :', res);
 
-        if (res.success) {
-          const simpleUser = username.split('@')[0];
-          localStorage.setItem('currentUser', simpleUser);
-
-          this.loadUserData(simpleUser);
-        } else {
+        if (!res.success) {
           this.error = res.message || 'Identifiants incorrects.';
-        }
-      },
-      error: (err) => {
-        this.loading = false;
-        this.error = err?.error?.message || 'Erreur de connexion au serveur.';
-      }
-    });
-  }
-
-  // Charger les vraies données utilisateur depuis la BD
-  private loadUserData(username: string) {
-    this.collaborateurService.getByLogin(username).subscribe({
-      next: (collab: Collaborateur & { compte?: { type: string } }) => {
-
-        if (!collab) {
-          this.notificationService.error('Aucun collaborateur trouvé.');
           return;
         }
 
-        // Si le collaborateur a un manager, charger ses données
-        if (collab.id_manager) {
-          this.managerService.getById(Number(collab.id_manager)).subscribe({
-            next: (manager:Manager) => {             
+        // Login réussi : récupérer les infos du collaborateur
+        this.collaborateurService.getByLogin(username).subscribe({
+          next: (collab: Collaborateur & { compte?: { type: string } }) => {
+            if (!collab) {
+              this.notificationService.error('Aucun collaborateur trouvé.');
+              return;
+            }
+
+            if (collab.id_manager) {
+              this.managerService.getById(Number(collab.id_manager)).subscribe({
+                next: (manager: Manager) => {
+                  const userData: UserData = {
+                    id: collab.id!,
+                    username,
+                    nom: collab.nom_collab,
+                    prenom: collab.prenom_collab,
+                    email: collab.email_collab || `${username}@sodim.corp`,
+                    matricule: collab.matricule_collab,
+                    type: collab.compte?.type,
+                    id_manager: Number(collab.id_manager),
+                    login_manager: manager?.login || null
+                  };
+
+                  this.userStorage.saveUserData(userData);
+                  this.router.navigate(['/demande-conge/ajouter']);
+                },
+                error: (err) => {
+                  console.error('[ERREUR getManager]', err);
+                  this.notificationService.error('Erreur lors du chargement du manager.');
+                }
+              });
+            } else {
+              // Pas de manager
               const userData: UserData = {
                 id: collab.id!,
                 username,
@@ -113,30 +122,24 @@ export class LoginComponent implements OnInit {
                 email: collab.email_collab || `${username}@sodim.corp`,
                 matricule: collab.matricule_collab,
                 type: collab.compte?.type,
-                id_manager: Number(collab.id_manager),
-                login_manager: manager?.login || null  
+                id_manager: null,
+                login_manager: null
               };
-
-              // Enregistrer dans UserStorageService
               this.userStorage.saveUserData(userData);
-
-              // Redirection après chargement complet
               this.router.navigate(['/demande-conge/ajouter']);
             }
-
-          });
-        }
+          },
+          error: (err) => {
+            console.error('[ERREUR getByLogin]', err);
+            this.notificationService.error('Erreur lors du chargement des données collaborateur.');
+          }
+        });
       },
       error: (err) => {
-        console.error('[ERREUR getByLogin]', err);
-        this.notificationService.error('Erreur lors du chargement des données collaborateur.');
+        this.loading = false;
+        console.error('[ERREUR SERVEUR]', err);
+        this.error = err?.error?.message || 'Erreur de connexion au serveur.';
       }
     });
-  }
-
-
-  // Afficher / masquer mot de passe
-  toggleFieldTextType() {
-    this.fieldTextType = !this.fieldTextType;
   }
 }

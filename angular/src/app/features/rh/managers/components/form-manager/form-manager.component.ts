@@ -12,7 +12,7 @@ import { ComptesService } from '../../../compte/services/compte.service';
   styleUrls: ['./form-manager.component.css'],
   standalone: true,
   imports: [
-    ReactiveFormsModule,
+    ReactiveFormsModule, 
     CommonModule
   ],
 })
@@ -20,7 +20,7 @@ export class FormManagerComponent extends BaseFormComponent {
   @Input() data!: Manager;
   managers
   comptes
-
+  
   private managerService = inject(ManagersService);
   private ComptesService = inject(ComptesService)
 
@@ -37,17 +37,16 @@ export class FormManagerComponent extends BaseFormComponent {
     });
   }
 
-  getAllManager() {
-    this.managerService.getAll().subscribe((r) => {
-      console.log("Manager", r);
+  getAllManager(){
+    this.managerService.getAll().subscribe((r)=>{
+            console.log("Manager", r);
 
-      this.managers = r
-    })
+      this.managers = r})
   }
-  getAllCompte() {
-    this.ComptesService.getAll().subscribe((r) => {
+  getAllCompte(){
+    this.ComptesService.getAll().subscribe((r)=>{
       this.comptes = r
-
+      
     })
   }
 
@@ -59,7 +58,7 @@ export class FormManagerComponent extends BaseFormComponent {
     const payload = {
       data: flattenedData,
       nomModele: this.managerService.nomModele,
-    };
+    };  
 
     const redirectUrl = '/manager';
     super.storeAction(payload, redirectUrl);

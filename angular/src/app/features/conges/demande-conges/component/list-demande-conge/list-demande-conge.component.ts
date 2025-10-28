@@ -13,6 +13,7 @@ import { AutoriseZeroService } from 'src/app/core/services/autorise-zero.service
 import { ManagersService } from 'src/app/features/rh/managers/services/managers.service';
 import { UserStorageService } from 'src/app/core/services/UserStorageService';
 
+
 @Component({
   selector: 'app-list-demande-conge',
   templateUrl: './list-demande-conge.component.html',
@@ -33,7 +34,6 @@ export class ListDemandeCongeComponent extends BaseListComponent {
   itemSelected = {};
   isVisible = true;
   manager 
-
   private dateUtils = inject(DateUtilsService);
   private demandeCongesService = inject(DemandeCongesService)
   private notificationService = inject(NotificationService)
@@ -59,7 +59,6 @@ export class ListDemandeCongeComponent extends BaseListComponent {
   }
 
   delete(index) {
-   
     const id = index.demande_id || index.id
     console.log("id", id);   
 
