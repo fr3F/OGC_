@@ -81,6 +81,7 @@ export class LoginComponent implements OnInit {
             // NOUVEAU : Charger les données complètes du collaborateur
             const simpleUser = username.split('@')[0];
             this.loadCollaborateurData(simpleUser, username);
+            
           } else {
             this.loading = false;
             this.error = res.message || 'Identifiants incorrects.';
@@ -88,7 +89,6 @@ export class LoginComponent implements OnInit {
         },
         error: (err) => {
           this.loading = false;
-          console.error('[ERREUR SERVEUR]', err);
           this.error = err?.error?.message || 'Erreur de connexion au serveur.';
         }
       });

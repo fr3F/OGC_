@@ -55,7 +55,6 @@ module.exports = (app) => {
   registerModelRoutes("solde", congesController,[
     {method: "get", path:"/allSolde", handler: congesController.getSoldeCongePaginated},
     { method: "post", path: "/ajouter", handler: congesController.createSolde },
-    
   ])
   // Ajoute d'autres modèles ici...
 

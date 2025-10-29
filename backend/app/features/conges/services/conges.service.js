@@ -73,7 +73,6 @@ async function createDemandeConge(req, data) {
   }
 }
 
-
 async function getCollaborateurWithSolde(req) {
   const loginAD = getLoginFromSession(req);
   const loginShort = extractShortLogin(loginAD);
@@ -405,14 +404,13 @@ async function getDemandeCongePaginatedByManager(req) {
     const totalItems = countResults[0].total;
 
     return {
-        data: results,
-        page: params.page,
-        size: params.size,
-        totalItems,
-        totalPages: Math.ceil(totalItems / params.size)
+      data: results,
+      page: params.page,
+      size: params.size,
+      totalItems,
+      totalPages: Math.ceil(totalItems / params.size)
     };
 }
-
 
 //Create solde personnaliser
 async function createSolde(data) {
@@ -427,10 +425,9 @@ async function createSolde(data) {
     return solde;
 
   } catch (error) {
-    console.error("Erreur createSolde:", error);
     throw error;
   }
-}
+} 
 async function getTypeCongeOrThrow(id_type_conge) {
   const typeConge = await TypeConge.findByPk(id_type_conge);
   if (!typeConge) throw new Error("Type de congé introuvable");

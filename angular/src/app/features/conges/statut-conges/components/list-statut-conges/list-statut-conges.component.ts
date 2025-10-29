@@ -18,7 +18,8 @@ import { FormStatutCongesComponent } from '../form-statut-conges/form-statut-con
     NgbModalModule,
     NgxPaginationModule,
     RouterModule,
-    FormStatutCongesComponent
+    FormStatutCongesComponent,
+    
   ]
 })
 

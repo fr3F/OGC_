@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModalModule, NgbPaginationModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { BaseListComponent } from 'src/app/core/base/base-list/base-list.component';
 import { NgxPaginationModule } from "ngx-pagination";
 import { RouterModule } from '@angular/router';
 import { FormTypeCongesComponent } from '../form-type-conges/form-type-conges.component';
+import { ChartBotComponent } from 'src/app/features/chart-bot/chart-bot.component';
 
 @Component({
   selector: 'app-list-type-conges',
@@ -18,8 +19,10 @@ import { FormTypeCongesComponent } from '../form-type-conges/form-type-conges.co
     NgbModalModule,
     NgxPaginationModule,
     RouterModule,
-    FormTypeCongesComponent
-  ]
+    FormTypeCongesComponent,
+    ChartBotComponent
+  ],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 export class ListTypeCongesComponent extends BaseListComponent {

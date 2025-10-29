@@ -1,0 +1,5 @@
+2025-10-28 15:37:19.555 [ERROR]: connect ETIMEDOUT
+2025-10-28 15:37:21.242 [ERROR]: SequelizeConnectionError: connect ETIMEDOUT
+    at ConnectionManager.connect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\mysql\connection-manager.js:102:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ConnectionManager._connect (D:\projet\sodim\Angluar 18\OGC\projet\backend\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)

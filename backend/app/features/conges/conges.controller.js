@@ -57,15 +57,11 @@ async function getDemandeCongePaginatedByManager (req, res) {
     }
 }
 
-async function validerDemandeConge(req, res) {  //  Ajouter req et res comme paramètres
+async function validerDemandeConge(req, res) { 
   try {
-      console.log('req.body:', req.body);
-    const { demandeId, valide, login_manager } = req.body;  //  Ajouter login_manager ici aussi
-    const loginManager = req.user?.login || login_manager;  // Prioriser req.user si disponible
+    const { demandeId, valide, login_manager } = req.body;  
+    const loginManager = req.user?.login || login_manager; 
     
-        console.log('demandeId:', demandeId, 'Type:', typeof demandeId);
-    console.log('valide:', valide, 'Type:', typeof valide);
-    console.log('loginManager:', loginManager);
     if (!demandeId || typeof valide !== 'boolean') {
       return res.status(400).json({ message: 'Paramètres manquants ou invalides' });
     }

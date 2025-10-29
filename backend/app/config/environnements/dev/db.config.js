@@ -1,7 +1,7 @@
 ﻿
 // Dev
 module.exports = {
-    HOST: "localhost",
+    HOST: " ",
     USER: "root",
     PASSWORD: "Admin*25",
 
